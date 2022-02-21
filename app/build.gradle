@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk DefaultConfig.compileSdk
 
     defaultConfig {
-        applicationId "id.go.jabarprov.dbmpr.temanjabar"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId DefaultConfig.applicationId
+        minSdk DefaultConfig.minSdk
+        targetSdk DefaultConfig.targetSdk
+        versionCode Releases.versionCode
+        versionName Releases.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
