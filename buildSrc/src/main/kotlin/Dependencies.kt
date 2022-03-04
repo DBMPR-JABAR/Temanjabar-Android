@@ -1,6 +1,6 @@
 object DefaultConfig {
     const val applicationId = "id.go.jabarprov.dbmpr.temanjabar"
-    const val minSdk = 21
+    const val minSdk = 23
     const val targetSdk = 32
     const val compileSdk = 32
 }
@@ -15,12 +15,13 @@ object Features {
 }
 
 object Versions {
-    const val gradleTools = "7.1.1"
+    const val gradleTools = "7.1.2"
     const val kotlinPlugin = "1.6.10"
 
     const val androidCore = "1.7.0"
     const val appCompat = "1.4.1"
     const val materialDesign = "1.5.0"
+    const val constraintLayout = "2.1.3"
 
     const val jUnit = "4.13.2"
     const val androidJUnit = "1.1.3"
@@ -34,8 +35,20 @@ object Libs {
     const val androidCore = "androidx.core:core-ktx:${Versions.androidCore}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
+    const val constraintLayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val arcgis = "com.esri.arcgisruntime:arcgis-android:100.13.0"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val androidJUnit = "androidx.test.ext:junit:${Versions.androidJUnit}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+}
+
+object TemanjabarApp {
+    const val android = ":app"
+}
+
+object Core {
+    const val main = ":core:core_main"
+    const val views = ":core:core_views"
 }

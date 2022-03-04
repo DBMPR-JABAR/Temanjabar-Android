@@ -10,8 +10,17 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://esri.jfrog.io/artifactory/arcgis'
+        }
     }
 }
+
 rootProject.name = "Temanjabar"
-include ':app'
-include ':features:map'
+
+include ":app"
+
+include ":core:core_main"
+include ":core:core_views"
+
+include ":features:map"
