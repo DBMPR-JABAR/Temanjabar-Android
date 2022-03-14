@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorTertiaryVariant" format="color" />
+    <attr name="colorActive" format="color" />
+    <attr name="colorWarning" format="color" />
+    <attr name="colorInfo" format="color" />
+    <attr name="headerTextColor" format="color" />
+    <attr name="bodyTextColor" format="color" />
+    <attr name="disabledTextColor" format="color" />
+</resources>
