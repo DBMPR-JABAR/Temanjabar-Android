@@ -9,12 +9,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.esri.arcgisruntime.data.QueryParameters
 import com.esri.arcgisruntime.data.ServiceFeatureTable
+import com.esri.arcgisruntime.geometry.Envelope
 import com.esri.arcgisruntime.layers.FeatureLayer
 import com.esri.arcgisruntime.mapping.ArcGISMap
 import com.esri.arcgisruntime.mapping.BasemapStyle
 import com.esri.arcgisruntime.mapping.Viewpoint
 import com.esri.arcgisruntime.mapping.view.LocationDisplay
+import com.esri.arcgisruntime.ogc.wfs.WfsFeatureTable
 import com.esri.arcgisruntime.symbology.SimpleLineSymbol
 import com.esri.arcgisruntime.symbology.SimpleRenderer
 import id.go.jabarprov.dbmpr.temanjabar.feature.map.databinding.ActivityMapBinding
@@ -59,34 +62,40 @@ class MapActivity : AppCompatActivity() {
         binding.mvArcgis.map = map
         binding.mvArcgis.setViewpoint(Viewpoint(-6.921359549350742, 107.61111502699526, 72000.0))
 
-        // create the service feature table
-        val serviceFeatureTable =
-            ServiceFeatureTable("https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/8/")
-
-//        serviceFeatureTable.requestConfiguration.headers["ak"] = "9bea4cef-904d-4e00-adb2-6e1cf67b24ae"
-
-//        Log.d(TAG, "setUpArcGISMap: ${serviceFeatureTable.requestConfiguration}")
-        // create the feature layer using the service feature table
-        val featureLayer = FeatureLayer(serviceFeatureTable)
-
-        featureLayer.addLoadStatusChangedListener {
-            Log.d(TAG, "setUpArcGISMap: STATUS ${it.newLoadStatus.name}")
-        }
-
-        featureLayer.addDoneLoadingListener {
-            Log.d(TAG, "setUpArcGISMap: ${featureLayer.name}")
-            if (featureLayer.loadError != null) {
-                Log.d(TAG, "setUpArcGISMap: ${featureLayer.loadError}")
-            }
-        }
-
         // Simple renderer for override style in feature layer
         val lineSymbol = SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, Color.rgb(0, 0, 255), 2f)
         val simpleRenderer = SimpleRenderer(lineSymbol)
 
-//        featureLayer.renderer = simpleRenderer
+        val wfsFeatureTable = WfsFeatureTable(
+            "https://tj.temanjabar.net/geoserver/wfs?service=wfs&version=2.0.0&request=GetCapabilities",
+            "temanjabar:0_rj_prov",
+        )
 
-        map.operationalLayers.add(featureLayer)
+        wfsFeatureTable.featureRequestMode = ServiceFeatureTable.FeatureRequestMode.MANUAL_CACHE
+
+        val featureLayer = FeatureLayer(wfsFeatureTable)
+        featureLayer.renderer = simpleRenderer
+
+        featureLayer.addDoneLoadingListener {
+            Log.d(TAG, "setUpArcGISMap: ${featureLayer.loadStatus}")
+            if (featureLayer.loadError != null) {
+                Log.d(TAG, "setUpArcGISMap: ERROR ${featureLayer.loadError.cause}")
+            }
+        }
+
+        binding.mvArcgis.map.operationalLayers.add(featureLayer)
+
+        binding.mvArcgis.addNavigationChangedListener {
+            if (!it.isNavigating) {
+                popoulateFromServer(wfsFeatureTable, binding.mvArcgis.visibleArea.extent)
+            }
+        }
+    }
+
+    private fun popoulateFromServer(wfsFeatureTable: WfsFeatureTable, extent: Envelope) {
+        val visibleExtentQuery = QueryParameters()
+        visibleExtentQuery.geometry = extent
+        wfsFeatureTable.populateFromServiceAsync(visibleExtentQuery, false, null)
     }
 
     private fun checkAndRequestLocationPermission() {
