@@ -1,0 +1,30 @@
+apply {
+    from("$rootDir/common-android-library.gradle")
+}
+
+android {
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
+    }
+}
+
+dependencies {
+    implementation Libs.androidCore
+    implementation Libs.materialDesign
+
+    // Integration with activities
+    implementation Libs.activityCompose
+
+    // Compose Material Design
+    implementation Libs.materialCompose
+
+    // Tooling support (Previews, etc.)
+    implementation Libs.toolingCompose
+    
+    // Integration with ViewModels
+    implementation Libs.viewModelCompose
+}

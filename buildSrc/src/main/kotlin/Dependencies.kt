@@ -24,6 +24,13 @@ object Versions {
     const val materialDesign = "1.5.0"
     const val constraintLayout = "2.1.3"
 
+    const val activityCompose = "1.4.0"
+    const val materialCompose = "1.1.1"
+    const val toolingCompose = "1.1.1"
+    const val viewModelCompose = "2.4.1"
+
+    const val arcgis = "100.13.0"
+
     const val jUnit = "4.13.2"
     const val androidJUnit = "1.1.3"
     const val espresso = "3.4.0"
@@ -38,7 +45,14 @@ object Libs {
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val arcgis = "com.esri.arcgisruntime:arcgis-android:100.13.0"
+
+    const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    const val materialCompose = "androidx.compose.material:material:${Versions.materialCompose}"
+    const val toolingCompose = "androidx.compose.ui:ui-tooling:${Versions.toolingCompose}"
+    const val viewModelCompose =
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewModelCompose}"
+
+    const val arcgis = "com.esri.arcgisruntime:arcgis-android:${Versions.arcgis}"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val androidJUnit = "androidx.test.ext:junit:${Versions.androidJUnit}"
