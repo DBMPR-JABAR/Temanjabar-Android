@@ -49,6 +49,8 @@ dependencies {
 
     implementation project(Core.main)
     implementation project(Core.views)
+
+    implementation project(Features.dashboard)
     implementation project(Features.map)
 
     implementation Libs.androidCore

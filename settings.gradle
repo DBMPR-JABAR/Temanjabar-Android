@@ -24,3 +24,4 @@ include ":core:core_main"
 include ":core:core_views"
 
 include ":features:map"
+include ':features:dashboard'
