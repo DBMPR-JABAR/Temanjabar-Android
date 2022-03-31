@@ -19,7 +19,7 @@
         <!-- Customize your theme here. -->
         <item name="colorError">@color/red_700</item>
         <item name="colorWarning">@color/yellow_700</item>
-        <item name="colorInfo">@color/blue_800</item>
+        <item name="colorInfo">@color/blue_700</item>
         <item name="colorActive">@color/green_700</item>
         <item name="headerTextColor">@color/gray_900</item>
         <item name="bodyTextColor">@color/gray_800</item>
