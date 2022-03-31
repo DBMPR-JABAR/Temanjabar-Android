@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdk DefaultConfig.compileSdk
@@ -52,4 +53,6 @@ android {
 
 dependencies {
     implementation Libs.androidCore
+    implementation Libs.navigationFragment
+    implementation Libs.navigationUi
 }

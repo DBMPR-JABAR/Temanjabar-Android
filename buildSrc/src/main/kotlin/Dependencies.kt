@@ -24,6 +24,8 @@ object Versions {
     const val materialDesign = "1.5.0"
     const val constraintLayout = "2.1.3"
 
+    const val navigation = "2.4.1"
+
     const val activityCompose = "1.4.0"
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
@@ -45,6 +47,12 @@ object Libs {
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+
+    const val navigationSafeArgs =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
+    const val navigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val materialCompose = "androidx.compose.material:material:${Versions.materialCompose}"

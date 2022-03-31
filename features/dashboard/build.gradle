@@ -1,10 +1,14 @@
 apply {
     from("$rootDir/common-android-library.gradle")
 }
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     buildFeatures {
         compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
     }
 }
 
@@ -16,5 +20,17 @@ dependencies {
     implementation Libs.appCompat
     implementation Libs.materialDesign
     implementation Libs.constraintLayout
+
+    // Integration with activities
+    implementation Libs.activityCompose
+
+    // Compose Material Design
+    implementation Libs.materialCompose
+
+    // Tooling support (Previews, etc.)
+    implementation Libs.toolingCompose
+
+    // Integration with ViewModels
+    implementation Libs.viewModelCompose
 }
 

@@ -2,6 +2,12 @@ apply {
     from("$rootDir/common-android-library.gradle")
 }
 
+android {
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
+    }
+}
+
 dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
