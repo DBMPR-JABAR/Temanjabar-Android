@@ -58,10 +58,25 @@ private val Intro = FontFamily(
 
 val AppTypography = Typography(
     defaultFontFamily = Lato,
+    h1 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Bold,
+        fontSize = 96.sp
+    ),
+    h2 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Bold,
+        fontSize = 60.sp
+    ),
+    h3 = TextStyle(
+        fontFamily = Lato,
+        fontWeight = FontWeight.Bold,
+        fontSize = 48.sp
+    ),
     h4 = TextStyle(
         fontFamily = Lato,
         fontWeight = FontWeight.Bold,
-        fontSize = 30.sp
+        fontSize = 34.sp
     ),
     h5 = TextStyle(
         fontFamily = Lato,
@@ -105,6 +120,6 @@ val AppTypography = Typography(
     overline = TextStyle(
         fontFamily = Lato,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontSize = 10.sp
     )
 )

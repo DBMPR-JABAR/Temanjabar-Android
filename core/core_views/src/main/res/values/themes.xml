@@ -14,6 +14,20 @@
         <item name="colorTertiary">@color/blue_600</item>
         <item name="colorTertiaryVariant">@color/blue_800</item>
         <item name="colorOnTertiary">@color/white</item>
+        <!-- Typography -->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.TemanJabar.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.TemanJabar.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.TemanJabar.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.TemanJabar.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.TemanJabar.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.TemanJabar.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.TemanJabar.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.TemanJabar.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.TemanJabar.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.TemanJabar.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.TemanJabar.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.TemanJabar.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.TemanJabar.Overline</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
@@ -25,5 +39,6 @@
         <item name="bodyTextColor">@color/gray_800</item>
         <item name="disabledTextColor">@color/gray_600</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="fontFamily">@font/lato</item>
     </style>
 </resources>

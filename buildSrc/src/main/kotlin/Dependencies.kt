@@ -11,6 +11,8 @@ object Releases {
 }
 
 object Features {
+    const val common = ":common"
+
     const val map = ":features:map"
     const val dashboard = ":features:dashboard"
 }
@@ -30,6 +32,9 @@ object Versions {
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
     const val viewModelCompose = "2.4.1"
+
+    const val carouselIndicator = "2.1.6"
+    const val carousel = "2.1.0"
 
     const val arcgis = "100.13.0"
 
@@ -59,6 +64,10 @@ object Libs {
     const val toolingCompose = "androidx.compose.ui:ui-tooling:${Versions.toolingCompose}"
     const val viewModelCompose =
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewModelCompose}"
+
+    const val carouselIndicator = "me.relex:circleindicator:${Versions.carouselIndicator}"
+    const val carousel =
+        "org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:${Versions.carousel}"
 
     const val arcgis = "com.esri.arcgisruntime:arcgis-android:${Versions.arcgis}"
 

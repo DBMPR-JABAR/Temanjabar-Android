@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/dashboard_menu_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/dashboard_menu_comment"
+        android:icon="@drawable/ic_comment"
+        android:title="@string/pesan"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/dashboard_menu_empty"
+        android:title=""
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/dashboard_menu_faq"
+        android:icon="@drawable/ic_faq"
+        android:title="@string/faq"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/dashboard_menu_user"
+        android:icon="@drawable/ic_user"
+        android:title="@string/user"
+        app:showAsAction="always" />
+</menu>
