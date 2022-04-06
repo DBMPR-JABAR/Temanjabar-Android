@@ -32,6 +32,10 @@ android {
         jvmTarget = '11'
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
+    }
+
     buildFeatures {
         viewBinding true
     }

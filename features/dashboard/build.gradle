@@ -1,14 +1,10 @@
 apply {
     from("$rootDir/common-android-library.gradle")
 }
-apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     buildFeatures {
         compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
     }
 }
 
@@ -16,7 +12,7 @@ dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
 
-    implementation project(Features.common)
+    implementation project(Common.common)
 
     implementation Libs.androidCore
     implementation Libs.appCompat

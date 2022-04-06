@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="id.go.jabarprov.dbmpr.feature.dashboard.DashboardFragment"
+        android:name="id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 

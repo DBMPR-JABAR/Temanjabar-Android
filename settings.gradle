@@ -19,10 +19,10 @@ dependencyResolutionManagement {
 rootProject.name = "Temanjabar"
 
 include ":app"
-
 include ":core:core_main"
 include ":core:core_views"
-
+include ':common'
 include ":features:map"
 include ':features:dashboard'
-include ':common'
+include ':features:webview'
+include ':utils'

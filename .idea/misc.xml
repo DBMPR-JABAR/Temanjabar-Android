@@ -4,14 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Project/BPMR/Temanjabar/app/src/main/res/layout/activity_main.xml" value="0.3605072463768116" />
+        <entry key="..\:/Project/BPMR/Temanjabar/app/src/main/res/xml/file_provider_path.xml" value="0.3625" />
+        <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_dialog.xml" value="0.1475" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/ic_menu.xml" value="0.215" />
+        <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_loading_dialog.xml" value="0.8800000000000001" />
         <entry key="..\:/Project/BPMR/Temanjabar/core/core_views/src/main/res/font/intro.xml" value="0.3927083333333333" />
         <entry key="..\:/Project/BPMR/Temanjabar/core/core_views/src/main/res/font/lato.xml" value="0.3927083333333333" />
         <entry key="..\:/Project/BPMR/Temanjabar/core/core_views/src/main/res/font/lora.xml" value="0.3927083333333333" />
         <entry key="..\:/Project/BPMR/Temanjabar/core/core_views/src/main/res/font/roboto.xml" value="0.3927083333333333" />
-        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_dashboard.xml" value="0.33" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_faq.xml" value="0.3625" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_message.xml" value="0.3625" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_user.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/menu/dashboard_menu.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/map/src/main/res/layout/activity_map.xml" value="0.16" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/webview/src/main/res/layout/fragment_web_view.xml" value="0.2359375" />
       </map>
     </option>
   </component>

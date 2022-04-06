@@ -11,10 +11,17 @@ object Releases {
 }
 
 object Features {
-    const val common = ":common"
-
     const val map = ":features:map"
     const val dashboard = ":features:dashboard"
+    const val webview = ":features:webview"
+}
+
+object Common {
+    const val common = ":common"
+}
+
+object Utils {
+    const val utils = ":utils"
 }
 
 object Versions {
@@ -25,6 +32,7 @@ object Versions {
     const val appCompat = "1.4.1"
     const val materialDesign = "1.5.0"
     const val constraintLayout = "2.1.3"
+    const val swipeRefreshLayout = "1.1.0"
 
     const val navigation = "2.4.1"
 
@@ -52,6 +60,8 @@ object Libs {
     const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val swipeRefreshLayout =
+        "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
 
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"

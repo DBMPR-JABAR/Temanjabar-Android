@@ -1,0 +1,29 @@
+apply {
+    from("$rootDir/common-android-library.gradle")
+}
+
+android {
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+    implementation project(Core.main)
+    implementation project(Core.views)
+
+    implementation Libs.androidCore
+    implementation Libs.appCompat
+    implementation Libs.materialDesign
+    implementation Libs.constraintLayout
+
+    // Integration with activities
+    implementation Libs.activityCompose
+    // Compose Material Design
+    implementation Libs.materialCompose
+    // Tooling support (Previews, etc.)
+    implementation Libs.toolingCompose
+    // Integration with ViewModels
+    implementation Libs.viewModelCompose
+}
+
