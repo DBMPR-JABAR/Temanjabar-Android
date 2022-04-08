@@ -33,6 +33,7 @@ object Versions {
     const val materialDesign = "1.5.0"
     const val constraintLayout = "2.1.3"
     const val swipeRefreshLayout = "1.1.0"
+    const val dotsIndicator = "4.2"
 
     const val navigation = "2.4.1"
 
@@ -40,6 +41,13 @@ object Versions {
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
     const val viewModelCompose = "2.4.1"
+
+    const val coroutineCore = "1.6.0"
+    const val coroutineAndroid = "1.6.0"
+
+    const val viewModelScope = "2.4.0"
+    const val lifecycleScope = "2.4.0"
+    const val liveData = "2.4.0"
 
     const val carouselIndicator = "2.1.6"
     const val carousel = "2.1.0"
@@ -62,6 +70,7 @@ object Libs {
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val swipeRefreshLayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicator}"
 
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
@@ -69,15 +78,22 @@ object Libs {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
+
+    const val coroutineCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutineCore}"
+    const val coroutineAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutineAndroid}"
+
+    const val viewModelScope =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelScope}"
+    const val lifecycleScope = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleScope}"
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.liveData}"
+
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val materialCompose = "androidx.compose.material:material:${Versions.materialCompose}"
     const val toolingCompose = "androidx.compose.ui:ui-tooling:${Versions.toolingCompose}"
     const val viewModelCompose =
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewModelCompose}"
-
-    const val carouselIndicator = "me.relex:circleindicator:${Versions.carouselIndicator}"
-    const val carousel =
-        "org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:${Versions.carousel}"
 
     const val arcgis = "com.esri.arcgisruntime:arcgis-android:${Versions.arcgis}"
 

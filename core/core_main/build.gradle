@@ -1,0 +1,8 @@
+apply {
+    from("$rootDir/common-kotlin-library.gradle")
+}
+
+dependencies {
+    implementation Libs.coroutineCore
+    implementation Libs.coroutineAndroid
+}

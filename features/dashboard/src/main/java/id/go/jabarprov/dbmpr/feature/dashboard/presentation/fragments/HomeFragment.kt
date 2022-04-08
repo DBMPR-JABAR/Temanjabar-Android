@@ -1,60 +1,123 @@
 package id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.viewpager2.widget.ViewPager2
 import id.go.jabarprov.dbmpr.feature.dashboard.R
+import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.News
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import widget_utils.HorizontalMarginItemDecoration
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentHomeBinding
+
+    private val newsPagerAdapter by lazy { NewsPagerAdapter(LIST_OF_NEWS) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initUI()
+    }
+
+    private fun initUI() {
+        binding.apply {
+            viewPagerNews.apply {
+                adapter = newsPagerAdapter
+            }
+        }
+
+        setupCarousel()
+        setUpInfiniteOnPageListener(LIST_OF_NEWS.size)
+    }
+
+    private fun setupCarousel() {
+
+        binding.viewPagerNews.offscreenPageLimit = 1
+
+        val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
+        val currentItemHorizontalMarginPx =
+            resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+        val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+            page.translationX = -pageTranslationX * position
+            page.scaleY = 1 - (0.25f * kotlin.math.abs(position))
+            page.alpha = 0.25f + (1 - kotlin.math.abs(position))
+        }
+        binding.viewPagerNews.setPageTransformer(pageTransformer)
+        val itemDecoration = HorizontalMarginItemDecoration(
+            requireContext(),
+            R.dimen.viewpager_current_item_horizontal_margin
+        )
+        binding.viewPagerNews.addItemDecoration(itemDecoration)
+        binding.viewPagerNews.setCurrentItem(1, false)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                while (true) {
+                    delay(5000)
+                    binding.viewPagerNews.currentItem += 1
+                }
+            }
+        }
+    }
+
+    private fun setUpInfiniteOnPageListener(listSize: Int) {
+        val newListSize = listSize + 2
+        binding.viewPagerNews.apply {
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    super.onPageScrollStateChanged(state)
+
+                    if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                        when (binding.viewPagerNews.currentItem) {
+                            listSize - 1 -> binding.viewPagerNews.setCurrentItem(1, false)
+                            0 -> binding.viewPagerNews.setCurrentItem(newListSize - 2, false)
+                        }
+                    }
+                }
+            })
+        }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        val LIST_OF_NEWS = listOf(
+            News(
+                "Berita 1",
+                "-"
+            ),
+            News(
+                "Berita 2",
+                "-"
+            ),
+            News(
+                "Berita 3",
+                "-"
+            ),
+            News(
+                "Berita 4",
+                "-"
+            ),
+            News(
+                "Berita 5",
+                "-"
+            ),
+        )
     }
+
 }

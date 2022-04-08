@@ -5,17 +5,17 @@
         android:id="@+id/dashboard_menu_home"
         android:icon="@drawable/ic_home"
         android:title="@string/home"
-
         app:showAsAction="always" />
+
     <item
-        android:id="@+id/dashboard_menu_comment"
+        android:id="@+id/dashboard_menu_message"
         android:icon="@drawable/ic_comment"
         android:title="@string/pesan"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/dashboard_menu_empty"
-        android:title=""
+        android:title="@string/menu"
         app:showAsAction="always" />
 
     <item
@@ -23,6 +23,7 @@
         android:icon="@drawable/ic_faq"
         android:title="@string/faq"
         app:showAsAction="always" />
+
     <item
         android:id="@+id/dashboard_menu_user"
         android:icon="@drawable/ic_user"

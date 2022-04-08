@@ -16,9 +16,10 @@
         <entry key="..\:/Project/BPMR/Temanjabar/core/core_views/src/main/res/font/roboto.xml" value="0.3927083333333333" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_faq.xml" value="0.3625" />
-        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_message.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/fragment_user.xml" value="0.3625" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/layout/layout_pager_news.xml" value="0.22" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/dashboard/src/main/res/menu/dashboard_menu.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/map/src/main/res/layout/activity_map.xml" value="0.16" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/webview/src/main/res/layout/fragment_web_view.xml" value="0.2359375" />

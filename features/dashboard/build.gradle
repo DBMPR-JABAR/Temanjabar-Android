@@ -18,9 +18,13 @@ dependencies {
     implementation Libs.appCompat
     implementation Libs.materialDesign
     implementation Libs.constraintLayout
+    implementation Libs.swipeRefreshLayout
 
-    implementation Libs.carouselIndicator
-    implementation Libs.carousel
+    implementation Libs.viewModelScope
+    implementation Libs.lifecycleScope
+    implementation Libs.liveData
+
+    implementation Libs.dotsIndicator
 
     // Integration with activities
     implementation Libs.activityCompose

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="low_radius">4dp</dimen>
+    <dimen name="medium_radius">8dp</dimen>
+    <dimen name="high_radius">16dp</dimen>
+</resources>
