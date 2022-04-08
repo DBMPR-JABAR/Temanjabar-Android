@@ -34,6 +34,7 @@ object Versions {
     const val constraintLayout = "2.1.3"
     const val swipeRefreshLayout = "1.1.0"
     const val dotsIndicator = "4.2"
+    const val shimmer = "0.5.0"
 
     const val navigation = "2.4.1"
 
@@ -48,9 +49,6 @@ object Versions {
     const val viewModelScope = "2.4.0"
     const val lifecycleScope = "2.4.0"
     const val liveData = "2.4.0"
-
-    const val carouselIndicator = "2.1.6"
-    const val carousel = "2.1.0"
 
     const val arcgis = "100.13.0"
 
@@ -71,6 +69,7 @@ object Libs {
     const val swipeRefreshLayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicator}"
+    const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
 
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"

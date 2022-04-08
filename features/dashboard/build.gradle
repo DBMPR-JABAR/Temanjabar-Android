@@ -19,6 +19,7 @@ dependencies {
     implementation Libs.materialDesign
     implementation Libs.constraintLayout
     implementation Libs.swipeRefreshLayout
+    implementation Libs.shimmer
 
     implementation Libs.viewModelScope
     implementation Libs.lifecycleScope

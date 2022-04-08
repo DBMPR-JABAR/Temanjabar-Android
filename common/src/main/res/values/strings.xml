@@ -3,7 +3,7 @@
     <string name="home">Home</string>
     <string name="pesan">Pesan</string>
     <string name="faq">FAQ</string>
-    <string name="user">User</string>
+    <string name="akun">Akun</string>
     <string name="loading">Loading…</string>
     <string name="menu">Menu</string>
 </resources>

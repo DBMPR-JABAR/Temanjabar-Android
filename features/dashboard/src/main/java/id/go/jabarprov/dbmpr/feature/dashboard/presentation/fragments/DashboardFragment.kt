@@ -47,7 +47,7 @@ class DashboardFragment : Fragment() {
                         navigateChildFragment(faqFragment)
                         true
                     }
-                    R.id.dashboard_menu_user -> {
+                    R.id.dashboard_menu_account -> {
                         navigateChildFragment(userFragment)
                         true
                     }
