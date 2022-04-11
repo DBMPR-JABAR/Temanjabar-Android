@@ -1,4 +1,10 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cek_lokasi_description">Cek lokasi ruas jalan terdekat dengan lokasi Anda saat ini</string>
+    <string name="mencari_lokasi_ruas_jalan_terdekat">Mencari lokasi ruas jalan terdekat</string>
+    <string name="lokasi_anda_saat_ini">Lokasi Anda saat ini</string>
+    <string name="perbarui_lokasi">Perbarui Lokasi</string>
+    <string name="cek_lokasi_anda_dengan_klik_tombol_di_bawah_ini">Cek lokasi Anda dengan klik tombol di bawah ini</string>
+    <string name="cek_lokasi_anda">Cek Lokasi Anda</string>
 </resources>

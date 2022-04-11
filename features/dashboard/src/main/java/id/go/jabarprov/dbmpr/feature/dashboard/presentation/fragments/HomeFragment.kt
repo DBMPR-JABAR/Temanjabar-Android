@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -42,8 +43,33 @@ class HomeFragment : Fragment() {
             }
         }
 
+        setVisibilityCekLokasi(true)
         setupCarousel()
         setUpInfiniteOnPageListener(LIST_OF_NEWS.size)
+    }
+
+    private fun setVisibilityLoadingLokasi(isVisible: Boolean) {
+        binding.shimmerFrameLayoutLoadingLokasi.apply {
+            visibility = if (isVisible) {
+                startShimmer()
+                View.VISIBLE
+            } else {
+                stopShimmer()
+                View.GONE
+            }
+        }
+    }
+
+    private fun setVisibilityCekLokasi(isVisible: Boolean) {
+        binding.constraintLayoutCekLokasi.apply {
+            this.isVisible = isVisible
+        }
+    }
+
+    private fun setVisibilityLokasiSaatIni(isVisible: Boolean) {
+        binding.constraintLayoutCurrentLokasi.apply {
+            this.isVisible = isVisible
+        }
     }
 
     private fun setupCarousel() {

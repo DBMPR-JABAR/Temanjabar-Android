@@ -1,6 +1,6 @@
 object DefaultConfig {
     const val applicationId = "id.go.jabarprov.dbmpr.temanjabar"
-    const val minSdk = 23
+    const val minSdk = 28
     const val targetSdk = 32
     const val compileSdk = 32
 }
