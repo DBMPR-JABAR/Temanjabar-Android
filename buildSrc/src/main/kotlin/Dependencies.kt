@@ -38,6 +38,8 @@ object Versions {
 
     const val navigation = "2.4.1"
 
+    const val hilt = "2.38.1"
+
     const val activityCompose = "1.4.0"
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
@@ -77,6 +79,9 @@ object Libs {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
+    const val hiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
 
     const val coroutineCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutineCore}"

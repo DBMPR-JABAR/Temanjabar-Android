@@ -2,7 +2,9 @@ package id.go.jabarprov.dbmpr.temanjabar.application
 
 import android.app.Application
 import com.esri.arcgisruntime.ArcGISRuntimeEnvironment
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class TemanjabarApplication : Application() {
     override fun onCreate() {
         super.onCreate()
