@@ -67,6 +67,11 @@ dependencies {
     implementation Libs.hiltAndroid
     kapt Libs.hiltCompiler
 
+    implementation Libs.retrofit
+    implementation Libs.gsonConverter
+    implementation Libs.okHttp
+    implementation Libs.logginInterceptor
+
     testImplementation Libs.jUnit
     androidTestImplementation Libs.androidJUnit
     androidTestImplementation Libs.espresso

@@ -83,6 +83,11 @@ object Libs {
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
 
+    const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:2.9.0"
+    const val okHttp = "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    const val logginInterceptor = "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+
     const val coroutineCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutineCore}"
     const val coroutineAndroid =

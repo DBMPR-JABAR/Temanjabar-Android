@@ -25,7 +25,8 @@ dependencies {
     implementation Libs.lifecycleScope
     implementation Libs.liveData
 
-    implementation Libs.dotsIndicator
+    implementation Libs.retrofit
+    implementation Libs.gsonConverter
 
     // Integration with activities
     implementation Libs.activityCompose

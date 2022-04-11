@@ -17,6 +17,8 @@ dependencies {
     implementation Libs.materialDesign
     implementation Libs.constraintLayout
 
+    implementation Libs.gsonConverter
+
     // Integration with activities
     implementation Libs.activityCompose
     // Compose Material Design

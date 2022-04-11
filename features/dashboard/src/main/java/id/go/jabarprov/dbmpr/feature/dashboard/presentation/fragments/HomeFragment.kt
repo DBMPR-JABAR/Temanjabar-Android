@@ -6,19 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
+import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.News
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import widget_utils.HorizontalMarginItemDecoration
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
+
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -46,6 +52,7 @@ class HomeFragment : Fragment() {
         setVisibilityCekLokasi(true)
         setupCarousel()
         setUpInfiniteOnPageListener(LIST_OF_NEWS.size)
+        homeViewModel.getNewsForSlider()
     }
 
     private fun setVisibilityLoadingLokasi(isVisible: Boolean) {
