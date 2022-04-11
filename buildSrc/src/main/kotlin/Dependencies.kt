@@ -35,6 +35,7 @@ object Versions {
     const val swipeRefreshLayout = "1.1.0"
     const val dotsIndicator = "4.2"
     const val shimmer = "0.5.0"
+    const val coil = "2.0.0-rc02"
 
     const val navigation = "2.4.1"
 
@@ -72,6 +73,7 @@ object Libs {
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicator}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
 
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"

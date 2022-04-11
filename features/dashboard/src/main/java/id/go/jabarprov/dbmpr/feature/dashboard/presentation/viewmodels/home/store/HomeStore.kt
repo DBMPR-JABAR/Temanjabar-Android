@@ -2,7 +2,7 @@ package id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.sto
 
 import id.go.jabarprov.dbmpr.core_main.store.Store
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.usecase.GetNewsForSlider
-import id.go.jabarprov.dbmpr.surveisapulubang.core.None
+import id.go.jabarprov.dbmpr.core_main.None
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

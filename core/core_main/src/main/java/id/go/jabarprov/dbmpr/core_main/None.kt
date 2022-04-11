@@ -1,3 +1,3 @@
-package id.go.jabarprov.dbmpr.surveisapulubang.core
+package id.go.jabarprov.dbmpr.core_main
 
 object None

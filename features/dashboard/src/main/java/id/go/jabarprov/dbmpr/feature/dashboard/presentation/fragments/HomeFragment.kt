@@ -14,10 +14,11 @@ import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
+import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
-import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.News
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import widget_utils.HorizontalMarginItemDecoration
@@ -30,6 +31,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val newsPagerAdapter by lazy { NewsPagerAdapter(LIST_OF_NEWS) }
+
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,7 +110,11 @@ class HomeFragment : Fragment() {
         binding.viewPagerNews.addItemDecoration(itemDecoration)
         binding.viewPagerNews.setCurrentItem(1, false)
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        job = startAutomaticScroll()
+    }
+
+    private fun startAutomaticScroll(): Job {
+        return viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 while (true) {
                     delay(5000)
@@ -125,8 +132,10 @@ class HomeFragment : Fragment() {
                     super.onPageScrollStateChanged(state)
 
                     if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                        job?.cancel()
+                        job = startAutomaticScroll()
                         when (binding.viewPagerNews.currentItem) {
-                            listSize - 1 -> binding.viewPagerNews.setCurrentItem(1, false)
+                            newListSize - 1 -> binding.viewPagerNews.setCurrentItem(1, false)
                             0 -> binding.viewPagerNews.setCurrentItem(newListSize - 2, false)
                         }
                     }
@@ -139,17 +148,7 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 homeViewModel.uiState.collect {
-                    if (it.isLoading) {
-                        setVisibilityLoadingLokasi(true)
-                        setVisibilityCekLokasi(false)
-                        setVisibilityLokasiSaatIni(false)
-                    }
 
-                    if (it.isSuccess) {
-                        setVisibilityLoadingLokasi(false)
-                        setVisibilityCekLokasi(false)
-                        setVisibilityLokasiSaatIni(true)
-                    }
                 }
             }
         }
@@ -158,25 +157,35 @@ class HomeFragment : Fragment() {
     companion object {
         val LIST_OF_NEWS = listOf(
             News(
-                "Berita 1",
-                "-"
+                id = 0,
+                title = "-",
+                content = "-",
+                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
             ),
             News(
-                "Berita 2",
-                "-"
+                id = 0,
+                title = "-",
+                content = "-",
+                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
             ),
             News(
-                "Berita 3",
-                "-"
+                id = 0,
+                title = "-",
+                content = "-",
+                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
             ),
             News(
-                "Berita 4",
-                "-"
+                id = 0,
+                title = "-",
+                content = "-",
+                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
             ),
             News(
-                "Berita 5",
-                "-"
-            ),
+                id = 0,
+                title = "-",
+                content = "-",
+                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+            )
         )
     }
 

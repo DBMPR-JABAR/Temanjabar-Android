@@ -4,13 +4,30 @@
     android:id="@+id/material_card_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardCornerRadius="@dimen/high_radius">
+    app:cardCornerRadius="@dimen/high_radius"
+    app:cardElevation="0dp">
 
     <ImageView
         android:id="@+id/image_view_thumbnail_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?colorPrimary"
-        android:scaleType="center" />
+        android:background="@color/gray_600"
+        android:scaleType="center"
+        android:visibility="invisible"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_frame_layout_loading_news_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_auto_start="true"
+        app:shimmer_highlight_alpha="0.45">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_400"
+            android:scaleType="center" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </com.google.android.material.card.MaterialCardView>
