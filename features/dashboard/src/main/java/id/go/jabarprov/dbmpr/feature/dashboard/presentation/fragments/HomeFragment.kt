@@ -17,6 +17,7 @@ import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.News
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import widget_utils.HorizontalMarginItemDecoration
@@ -40,6 +41,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUI()
+        observeHomeState()
+
+        getSliderNews()
+    }
+
+    private fun getSliderNews() {
+        homeViewModel.processAction(HomeAction.GetSliderNews)
     }
 
     private fun initUI() {
@@ -52,7 +60,6 @@ class HomeFragment : Fragment() {
         setVisibilityCekLokasi(true)
         setupCarousel()
         setUpInfiniteOnPageListener(LIST_OF_NEWS.size)
-        homeViewModel.getNewsForSlider()
     }
 
     private fun setVisibilityLoadingLokasi(isVisible: Boolean) {
@@ -125,6 +132,26 @@ class HomeFragment : Fragment() {
                     }
                 }
             })
+        }
+    }
+
+    private fun observeHomeState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                homeViewModel.uiState.collect {
+                    if (it.isLoading) {
+                        setVisibilityLoadingLokasi(true)
+                        setVisibilityCekLokasi(false)
+                        setVisibilityLokasiSaatIni(false)
+                    }
+
+                    if (it.isSuccess) {
+                        setVisibilityLoadingLokasi(false)
+                        setVisibilityCekLokasi(false)
+                        setVisibilityLokasiSaatIni(true)
+                    }
+                }
+            }
         }
     }
 

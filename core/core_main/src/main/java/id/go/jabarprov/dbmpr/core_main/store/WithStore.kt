@@ -11,6 +11,4 @@ interface WithStore<T : Action, S : State> {
     fun processAction(action: T)
 
     fun subscribeActionChannel()
-
-    fun onCleared()
 }
