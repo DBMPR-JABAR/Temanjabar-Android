@@ -53,6 +53,12 @@ class HomeStore @Inject constructor(
                         },
                     )
                 }
+                is HomeAction.GetLocation -> state.value = state.value.copy(
+                    nearbyRuasJalanState = Resource.Loading()
+                )
+                is HomeAction.GetLocationFailed -> state.value = state.value.copy(
+                    nearbyRuasJalanState = Resource.Failed(action.errorMessage)
+                )
             }
         }
     }

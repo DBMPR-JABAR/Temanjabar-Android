@@ -6,6 +6,6 @@ import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
 
 data class HomeState(
-    val listSlideNewsState: Resource<List<News>> = Resource.Loading(),
-    val nearbyRuasJalanState: Resource<RuasJalan> = Resource.Loading()
+    val listSlideNewsState: Resource<List<News>> = Resource.Initial(),
+    val nearbyRuasJalanState: Resource<RuasJalan> = Resource.Initial()
 ) : State

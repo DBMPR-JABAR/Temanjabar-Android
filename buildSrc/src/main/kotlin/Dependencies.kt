@@ -41,6 +41,11 @@ object Versions {
 
     const val hilt = "2.38.1"
 
+    const val retrofit = "2.9.0"
+    const val gsonConverter = "2.9.0"
+    const val okHttp = "5.0.0-alpha.2"
+    const val loggingInterceptor = "5.0.0-alpha.2"
+
     const val activityCompose = "1.4.0"
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
@@ -49,12 +54,15 @@ object Versions {
 
     const val coroutineCore = "1.6.0"
     const val coroutineAndroid = "1.6.0"
+    const val coroutinePlayServices = "1.6.1"
 
     const val viewModelScope = "2.4.0"
     const val lifecycleScope = "2.4.0"
     const val liveData = "2.4.0"
 
     const val arcgis = "100.13.0"
+
+    const val playServiceLocation = "19.0.1"
 
     const val jUnit = "4.13.2"
     const val androidJUnit = "1.1.3"
@@ -86,15 +94,18 @@ object Libs {
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
 
-    const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
-    const val gsonConverter = "com.squareup.retrofit2:converter-gson:2.9.0"
-    const val okHttp = "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
-    const val logginInterceptor = "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.gsonConverter}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+    const val loggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
 
     const val coroutineCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutineCore}"
     const val coroutineAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutineAndroid}"
+    const val coroutinePlayServices =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.coroutinePlayServices}"
 
     const val viewModelScope =
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelScope}"
@@ -108,6 +119,9 @@ object Libs {
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewModelCompose}"
 
     const val arcgis = "com.esri.arcgisruntime:arcgis-android:${Versions.arcgis}"
+
+    const val playServiceLocation =
+        "com.google.android.gms:play-services-location:${Versions.playServiceLocation}"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val androidJUnit = "androidx.test.ext:junit:${Versions.androidJUnit}"

@@ -1,9 +1,12 @@
 package id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.registerForActivityResult
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,14 +14,21 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.tasks.CancellationToken
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.gms.tasks.OnTokenCanceledListener
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
+import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
+import id.go.jabarprov.dbmpr.utils.extensions.checkPermission
+import id.go.jabarprov.dbmpr.utils.extensions.showToast
+import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -33,7 +43,24 @@ class HomeFragment : Fragment() {
 
     private val newsPagerAdapter by lazy { NewsPagerAdapter() }
 
+    private val locationUtils by lazy { LocationUtils(requireActivity()) }
+
     private var job: Job? = null
+
+    private val locationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            when {
+                permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
+                    getNearbyLocation()
+                }
+                permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+                    getNearbyLocation()
+                }
+                else -> {
+                    showToast("Izin Lokasi Ditolak")
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +73,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUI()
         observeHomeState()
-
         getSliderNews()
     }
 
@@ -58,6 +84,22 @@ class HomeFragment : Fragment() {
         binding.apply {
             viewPagerNews.apply {
                 adapter = newsPagerAdapter
+            }
+
+            buttonCekLokasi.setOnClickListener {
+                if (!checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION) || !checkPermission(
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                ) {
+                    locationPermissionLauncher.launch(
+                        arrayOf(
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                    )
+                } else {
+                    getNearbyLocation()
+                }
             }
         }
 
@@ -90,6 +132,26 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun getNearbyLocation() {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            homeViewModel.processAction(HomeAction.GetLocation)
+            if (!locationUtils.isLocationEnabled()) {
+                locationUtils.enableLocationService()
+            }
+            val location = locationUtils.getCurrentLocation(CancellationTokenSource().token)
+            if (location == null) {
+                homeViewModel.processAction(HomeAction.GetLocationFailed("Tidak Dapat Mengambil Lokasi"))
+            } else {
+                homeViewModel.processAction(
+                    HomeAction.GetNearbyRuasJalan(
+                        location.latitude,
+                        location.longitude
+                    )
+                )
+            }
+        }
+    }
+
     private fun setupCarousel() {
 
         binding.viewPagerNews.offscreenPageLimit = 1
@@ -101,7 +163,6 @@ class HomeFragment : Fragment() {
         val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
             page.translationX = -pageTranslationX * position
             page.scaleY = 1 - (0.25f * kotlin.math.abs(position))
-            page.alpha = 0.25f + (1 - kotlin.math.abs(position))
         }
         binding.viewPagerNews.setPageTransformer(pageTransformer)
         val itemDecoration = HorizontalMarginItemDecoration(
@@ -149,13 +210,49 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 homeViewModel.uiState.collect {
-                    when (it.listSlideNewsState) {
-                        is Resource.Success -> {
-                            newsPagerAdapter.submitList(it.listSlideNewsState.data)
-                            binding.viewPagerNews.setCurrentItem(1, false)
-                        }
-                    }
+                    processSlideNewsState(it.listSlideNewsState)
+                    processNearbyRuasJalanState(it.nearbyRuasJalanState)
                 }
+            }
+        }
+    }
+
+    private fun processSlideNewsState(state: Resource<List<News>>) {
+        when (state) {
+            is Resource.Success -> {
+                newsPagerAdapter.submitList(state.data)
+                binding.viewPagerNews.setCurrentItem(1, false)
+            }
+        }
+    }
+
+    private fun processNearbyRuasJalanState(state: Resource<RuasJalan>) {
+        when (state) {
+            is Resource.Initial -> {
+                setVisibilityCekLokasi(true)
+                setVisibilityLoadingLokasi(false)
+                setVisibilityLokasiSaatIni(false)
+            }
+            is Resource.Failed -> {
+                setVisibilityCekLokasi(true)
+                setVisibilityLoadingLokasi(false)
+                setVisibilityLokasiSaatIni(false)
+                showToast(state.errorMessage)
+            }
+            is Resource.Loading -> {
+                setVisibilityCekLokasi(false)
+                setVisibilityLoadingLokasi(true)
+                setVisibilityLokasiSaatIni(false)
+            }
+            is Resource.Success -> {
+                binding.apply {
+                    textViewCurrentLokasiRuasJalan.text = state.data.nama
+                    textViewCurrentLokasiKota.text = state.data.kota
+                }
+
+                setVisibilityCekLokasi(false)
+                setVisibilityLoadingLokasi(false)
+                setVisibilityLokasiSaatIni(true)
             }
         }
     }

@@ -14,6 +14,8 @@ dependencies {
 
     implementation project(Common.common)
 
+    implementation project(Utils.utils)
+
     implementation Libs.androidCore
     implementation Libs.appCompat
     implementation Libs.materialDesign

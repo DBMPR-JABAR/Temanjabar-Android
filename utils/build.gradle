@@ -4,4 +4,7 @@ apply {
 
 dependencies {
     implementation Libs.androidCore
+
+    implementation Libs.playServiceLocation
+    api Libs.coroutinePlayServices
 }

@@ -70,7 +70,7 @@ dependencies {
     implementation Libs.retrofit
     implementation Libs.gsonConverter
     implementation Libs.okHttp
-    implementation Libs.logginInterceptor
+    implementation Libs.loggingInterceptor
 
     testImplementation Libs.jUnit
     androidTestImplementation Libs.androidJUnit
