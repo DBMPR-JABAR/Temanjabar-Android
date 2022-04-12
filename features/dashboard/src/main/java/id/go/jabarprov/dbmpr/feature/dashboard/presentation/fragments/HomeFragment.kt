@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.registerForActivityResult
+import androidx.compose.ui.text.capitalize
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,6 +27,7 @@ import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
+import id.go.jabarprov.dbmpr.utils.extensions.capitalizeEachWord
 import id.go.jabarprov.dbmpr.utils.extensions.checkPermission
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
@@ -100,6 +102,10 @@ class HomeFragment : Fragment() {
                 } else {
                     getNearbyLocation()
                 }
+            }
+
+            buttonPerbaruiLokasi.setOnClickListener {
+                getNearbyLocation()
             }
         }
 
@@ -247,7 +253,7 @@ class HomeFragment : Fragment() {
             is Resource.Success -> {
                 binding.apply {
                     textViewCurrentLokasiRuasJalan.text = state.data.nama
-                    textViewCurrentLokasiKota.text = state.data.kota
+                    textViewCurrentLokasiKota.text = state.data.kota.capitalizeEachWord()
                 }
 
                 setVisibilityCekLokasi(false)
