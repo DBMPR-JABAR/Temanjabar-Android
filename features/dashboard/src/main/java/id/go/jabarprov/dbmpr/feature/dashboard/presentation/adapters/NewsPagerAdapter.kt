@@ -9,11 +9,15 @@ import coil.load
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.LayoutPagerNewsBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
 
-class NewsPagerAdapter(listNews: List<News>) :
+class NewsPagerAdapter(listNews: List<News>? = null) :
     RecyclerView.Adapter<NewsPagerAdapter.NewsItemViewHolder>() {
 
-    private var extendedList: List<News> =
-        listOf(listNews.first()) + listNews + listOf(listNews.last())
+    private var extendedList: List<News>? =
+        if (!listNews.isNullOrEmpty()) {
+            listOf(listNews.last()) + listNews + listOf(listNews.first())
+        } else {
+            null
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,16 +26,18 @@ class NewsPagerAdapter(listNews: List<News>) :
     }
 
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
-        holder.bind(extendedList[position])
+        extendedList?.get(position)?.let {
+            holder.bind(it)
+        }
     }
 
     override fun getItemCount(): Int {
-        return extendedList.size
+        return extendedList?.size ?: 7
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(newListNews: List<News>) {
-        extendedList = listOf(newListNews.first()) + newListNews + listOf(newListNews.last())
+        extendedList = listOf(newListNews.last()) + newListNews + listOf(newListNews.first())
         notifyDataSetChanged()
     }
 

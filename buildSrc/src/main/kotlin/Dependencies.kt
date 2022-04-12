@@ -45,6 +45,7 @@ object Versions {
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
     const val viewModelCompose = "2.4.1"
+    const val composeCompiler = "1.2.0-alpha07"
 
     const val coroutineCore = "1.6.0"
     const val coroutineAndroid = "1.6.0"

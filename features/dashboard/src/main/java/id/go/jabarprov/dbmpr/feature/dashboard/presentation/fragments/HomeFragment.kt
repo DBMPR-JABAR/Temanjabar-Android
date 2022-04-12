@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
+import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val newsPagerAdapter by lazy { NewsPagerAdapter(LIST_OF_NEWS) }
+    private val newsPagerAdapter by lazy { NewsPagerAdapter() }
 
     private var job: Job? = null
 
@@ -62,7 +63,7 @@ class HomeFragment : Fragment() {
 
         setVisibilityCekLokasi(true)
         setupCarousel()
-        setUpInfiniteOnPageListener(LIST_OF_NEWS.size)
+        setUpInfiniteOnPageListener(5)
     }
 
     private fun setVisibilityLoadingLokasi(isVisible: Boolean) {
@@ -148,45 +149,15 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 homeViewModel.uiState.collect {
-
+                    when (it.listSlideNewsState) {
+                        is Resource.Success -> {
+                            newsPagerAdapter.submitList(it.listSlideNewsState.data)
+                            binding.viewPagerNews.setCurrentItem(1, false)
+                        }
+                    }
                 }
             }
         }
-    }
-
-    companion object {
-        val LIST_OF_NEWS = listOf(
-            News(
-                id = 0,
-                title = "-",
-                content = "-",
-                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-            ),
-            News(
-                id = 0,
-                title = "-",
-                content = "-",
-                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-            ),
-            News(
-                id = 0,
-                title = "-",
-                content = "-",
-                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-            ),
-            News(
-                id = 0,
-                title = "-",
-                content = "-",
-                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-            ),
-            News(
-                id = 0,
-                title = "-",
-                content = "-",
-                imageUrl = "https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
-            )
-        )
     }
 
 }
