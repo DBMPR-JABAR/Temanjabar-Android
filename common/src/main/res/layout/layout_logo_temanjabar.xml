@@ -12,10 +12,10 @@
         android:src="@drawable/ic_logo_jabar" />
 
     <TextView
+        style="@style/Style.TemanJabar.TitleLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="TEMANJABAR"
-        app:style="@style/Style.TemanJabar.TitleLogo" />
+        android:text="TEMANJABAR" />
 
 </LinearLayout>

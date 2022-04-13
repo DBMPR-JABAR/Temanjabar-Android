@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="Style.TemanJabar.TitleLogo" parent="">
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/intro</item>

@@ -8,4 +8,6 @@
 
     <include app:graph="@navigation/web_view_navigation" />
 
+    <include app:graph="@navigation/map_navigation" />
+
 </navigation>

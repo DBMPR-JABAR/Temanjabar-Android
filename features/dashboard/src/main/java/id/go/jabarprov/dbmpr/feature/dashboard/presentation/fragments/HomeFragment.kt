@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
@@ -30,6 +31,7 @@ import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.stor
 import id.go.jabarprov.dbmpr.utils.extensions.capitalizeEachWord
 import id.go.jabarprov.dbmpr.utils.extensions.checkPermission
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
+import id.go.jabarprov.dbmpr.utils.functions.createDeepLinkUri
 import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -106,6 +108,11 @@ class HomeFragment : Fragment() {
 
             buttonPerbaruiLokasi.setOnClickListener {
                 getNearbyLocation()
+            }
+
+            buttonLihatLokasiPeta.setOnClickListener {
+                val request = createDeepLinkUri()
+                findNavController().navigate(request)
             }
         }
 
