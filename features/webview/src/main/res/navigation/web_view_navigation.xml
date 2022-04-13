@@ -9,6 +9,10 @@
         android:id="@+id/webViewFragment"
         android:name="id.go.jabarprov.dbmpr.features.webview.presentation.WebViewFragment"
         android:label="fragment_web_view"
-        tools:layout="@layout/fragment_web_view" />
+        tools:layout="@layout/fragment_web_view">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://temanjabar.dbmpr.jabarprov.go.id/webview?url={url}" />
+    </fragment>
 
 </navigation>

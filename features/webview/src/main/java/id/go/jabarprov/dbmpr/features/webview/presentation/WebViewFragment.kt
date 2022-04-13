@@ -130,7 +130,7 @@ class WebViewFragment : Fragment() {
     }
 
     private fun loadUrl() {
-        binding.webView.loadUrl("https://tj.temanjabar.net/")
+        binding.webView.loadUrl(arguments?.get("url").toString())
     }
 
     private fun isHasCameraPermission(): Boolean {

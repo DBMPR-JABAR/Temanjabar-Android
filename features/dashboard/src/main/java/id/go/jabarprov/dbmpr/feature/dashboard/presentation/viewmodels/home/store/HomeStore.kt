@@ -36,7 +36,9 @@ class HomeStore @Inject constructor(
                 }
                 is HomeAction.GetNearbyRuasJalan -> {
                     state.value = state.value.copy(
-                        nearbyRuasJalanState = Resource.Loading()
+                        nearbyRuasJalanState = Resource.Loading(),
+                        currentLat = action.lat,
+                        currentLong = action.long
                     )
                     val params = GetNearbyRuasJalan.Params(action.lat, action.long)
                     val result = getNearbyRuasJalan.run(params)
