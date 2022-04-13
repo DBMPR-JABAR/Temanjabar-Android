@@ -3,7 +3,7 @@
     <style name="Style.TemanJabar.TitleLogo" parent="">
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/intro</item>
-        <item name="android:textFontWeight">900</item>
+        <item name="android:textFontWeight">700</item>
         <item name="android:textColor">@color/black</item>
     </style>
 </resources>

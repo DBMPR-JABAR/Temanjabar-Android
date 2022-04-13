@@ -6,14 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.UserFragment">
 
-    <TextView
+    <include
+        android:id="@+id/logo_teman_jabar"
+        layout="@layout/layout_logo_temanjabar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.17" />
+
+    <ImageView
+        android:id="@+id/image_view_thought"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/img_thought"
+        app:layout_constraintDimensionRatio="h,2:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <TextView
+        android:id="@+id/text_view_title"
+        style="@style/Style.Text.Section.Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Silahkan Login Terlebih Dahulu"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_2" />
+
+    <TextView
+        android:id="@+id/text_view_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.1"
+        android:text="Untuk dapat menggunakan semua fitur silahkan untuk login terlebih dahulu agar data dapat terintegrasi dengan akun Anda."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_title" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_3" />
+
+    <TextView
+        android:id="@+id/text_view_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="App Version 0.0.0"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
