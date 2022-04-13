@@ -36,6 +36,10 @@ class UserFragment : Fragment() {
                     .build()
                 findNavController().navigate(request)
             }
+
+            val packageInfo =
+                requireContext().packageManager.getPackageInfo(context?.packageName!!, 0)
+            textViewVersion.text = "App Version\n${packageInfo.versionName}"
         }
     }
 }
