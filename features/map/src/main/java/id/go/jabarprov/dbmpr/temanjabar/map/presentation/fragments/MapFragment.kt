@@ -1,12 +1,17 @@
 package id.go.jabarprov.dbmpr.temanjabar.map.presentation.fragments
 
+import android.Manifest
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.esri.arcgisruntime.data.QueryParameters
 import com.esri.arcgisruntime.data.ServiceFeatureTable
 import com.esri.arcgisruntime.geometry.Envelope
@@ -14,11 +19,14 @@ import com.esri.arcgisruntime.layers.FeatureLayer
 import com.esri.arcgisruntime.mapping.ArcGISMap
 import com.esri.arcgisruntime.mapping.BasemapStyle
 import com.esri.arcgisruntime.mapping.Viewpoint
+import com.esri.arcgisruntime.mapping.view.LocationDisplay
 import com.esri.arcgisruntime.ogc.wfs.WfsFeatureTable
 import com.esri.arcgisruntime.symbology.SimpleLineSymbol
 import com.esri.arcgisruntime.symbology.SimpleRenderer
-import id.go.jabarprov.dbmpr.temanjabar.feature.map.R
 import id.go.jabarprov.dbmpr.temanjabar.feature.map.databinding.FragmentMapBinding
+import id.go.jabarprov.dbmpr.utils.extensions.checkPermission
+import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
+import kotlinx.coroutines.launch
 
 private const val TAG = "MapFragment"
 
@@ -30,6 +38,8 @@ class MapFragment : Fragment() {
 
     private val locationDisplay by lazy { mapView.locationDisplay }
 
+    private val locationUtils by lazy { LocationUtils(requireActivity()) }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,9 +50,17 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUI()
+        if (checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION) && checkPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            initLocation()
+        }
     }
 
     private fun initUI() {
+        binding.apply {
+            appBarLayout.buttonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
         setUpArcGISMap()
     }
 
@@ -85,6 +103,18 @@ class MapFragment : Fragment() {
         binding.mvArcgis.addNavigationChangedListener {
             if (!it.isNavigating) {
                 popoulateFromServer(wfsFeatureTable, binding.mvArcgis.visibleArea.extent)
+            }
+        }
+    }
+
+    private fun initLocation() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                if (!locationUtils.isLocationEnabled()) {
+                    locationUtils.enableLocationService()
+                }
+                locationDisplay.autoPanMode = LocationDisplay.AutoPanMode.RECENTER
+                locationDisplay.startAsync()
             }
         }
     }

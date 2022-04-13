@@ -15,7 +15,9 @@ dependencies {
     implementation Libs.materialDesign
     implementation Libs.constraintLayout
 
+    implementation Libs.viewModelScope
+    implementation Libs.lifecycleScope
+
     api Libs.arcgis
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
