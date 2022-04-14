@@ -13,6 +13,7 @@ object Releases {
 object Features {
     const val map = ":features:map"
     const val dashboard = ":features:dashboard"
+    const val news = ":features:news"
     const val webview = ":features:webview"
 }
 

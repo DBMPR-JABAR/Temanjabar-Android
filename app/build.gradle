@@ -57,6 +57,7 @@ dependencies {
     implementation project(Features.dashboard)
     implementation project(Features.map)
     implementation project(Features.webview)
+    implementation project(Features.news)
 
     implementation Libs.androidCore
     implementation Libs.appCompat

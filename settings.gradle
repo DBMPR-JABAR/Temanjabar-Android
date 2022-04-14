@@ -26,3 +26,4 @@ include ":features:map"
 include ':features:dashboard'
 include ':features:webview'
 include ':utils'
+include ':features:news'
