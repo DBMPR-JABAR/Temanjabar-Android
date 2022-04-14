@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.feature.dashboard.data.models.remote.response
+package id.go.jabarprov.dbmpr.common.data.models.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -12,5 +12,6 @@ data class NewsResponse(
     @SerializedName("published_at") val publishedAt: String,
     val userId: Int,
     @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String
+    @SerializedName("updated_at") val updatedAt: String,
+    val publisher: PublisherResponse?
 )

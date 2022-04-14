@@ -1,6 +1,6 @@
 package id.go.jabarprov.dbmpr.feature.dashboard.data.services
 
-import data.models.remote.response.BaseResponse
+import id.go.jabarprov.dbmpr.common.data.models.remote.response.BaseResponse
 import id.go.jabarprov.dbmpr.feature.dashboard.data.models.remote.response.NearbyRuasJalanResponse
 import retrofit2.Response
 import retrofit2.http.GET

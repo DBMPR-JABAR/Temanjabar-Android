@@ -18,10 +18,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
+import id.go.jabarprov.dbmpr.common.domain.entity.News
 import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
-import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
@@ -33,7 +33,7 @@ import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import widget_utils.HorizontalMarginItemDecoration
+import id.go.jabarprov.dbmpr.common.widget_utils.HorizontalMarginItemDecoration
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -83,8 +83,14 @@ class HomeFragment : Fragment() {
 
     private fun initUI() {
         binding.apply {
+            root.isEnabled = false
+
             viewPagerNews.apply {
-                adapter = newsPagerAdapter
+                adapter = newsPagerAdapter.apply {
+                    setOnClickListener {
+
+                    }
+                }
             }
 
             buttonCekLokasi.setOnClickListener {
@@ -236,7 +242,17 @@ class HomeFragment : Fragment() {
     private fun processSlideNewsState(state: Resource<List<News>>) {
         when (state) {
             is Resource.Success -> {
-                newsPagerAdapter.submitList(state.data)
+                newsPagerAdapter.submitList(
+                    state.data + listOf(
+                        News(
+                            id = 999,
+                            title = "",
+                            content = "",
+                            imageUrl = "https://tj.temanjabar.net/assets/images/Untitled-1.png",
+                            slug = "laporan-masyarakat"
+                        )
+                    )
+                )
                 binding.viewPagerNews.setCurrentItem(1, false)
             }
         }

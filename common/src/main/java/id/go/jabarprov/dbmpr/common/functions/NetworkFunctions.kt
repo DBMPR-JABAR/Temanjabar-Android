@@ -1,4 +1,4 @@
-package functions
+package id.go.jabarprov.dbmpr.common.functions
 
 import id.go.jabarprov.dbmpr.core_main.exceptions.RemoteDataSourceException
 import retrofit2.HttpException

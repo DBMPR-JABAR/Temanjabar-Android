@@ -1,9 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdk DefaultConfig.compileSdk
@@ -60,6 +58,4 @@ dependencies {
     implementation Libs.androidCore
     implementation Libs.navigationFragment
     implementation Libs.navigationUi
-    implementation Libs.hiltAndroid
-    kapt Libs.hiltCompiler
 }

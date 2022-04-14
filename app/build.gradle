@@ -52,6 +52,8 @@ dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
 
+    implementation project(Common.common)
+
     implementation project(Features.dashboard)
     implementation project(Features.map)
     implementation project(Features.webview)

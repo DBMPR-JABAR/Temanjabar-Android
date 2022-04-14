@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.LayoutPagerNewsBinding
-import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.News
+import id.go.jabarprov.dbmpr.common.domain.entity.News
 
 class NewsPagerAdapter(listNews: List<News>? = null) :
     RecyclerView.Adapter<NewsPagerAdapter.NewsItemViewHolder>() {
+
+    private var onClickListener: ((News) -> Unit)? = null
 
     private var extendedList: List<News>? =
         if (!listNews.isNullOrEmpty()) {
@@ -27,13 +29,15 @@ class NewsPagerAdapter(listNews: List<News>? = null) :
 
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
         extendedList?.get(position)?.let {
-            holder.bind(it)
+            holder.bind(it, onClickListener)
         }
     }
 
     override fun getItemCount(): Int {
         return extendedList?.size ?: 7
     }
+
+    fun setOnClickListener(action: (News) -> Unit) = this.apply { onClickListener = action }
 
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(newListNews: List<News>) {
@@ -43,7 +47,7 @@ class NewsPagerAdapter(listNews: List<News>? = null) :
 
     class NewsItemViewHolder(private val binding: LayoutPagerNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(news: News) {
+        fun bind(news: News, action: ((News) -> Unit)?) {
             binding.apply {
                 imageViewThumbnailNews.load(news.imageUrl) {
                     listener(
@@ -53,6 +57,9 @@ class NewsPagerAdapter(listNews: List<News>? = null) :
                             imageViewThumbnailNews.visibility = View.VISIBLE
                         },
                     )
+                }
+                root.setOnClickListener {
+                    action?.invoke(news)
                 }
             }
         }

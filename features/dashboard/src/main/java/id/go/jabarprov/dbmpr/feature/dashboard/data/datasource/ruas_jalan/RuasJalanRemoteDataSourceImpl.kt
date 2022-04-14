@@ -1,6 +1,6 @@
-package id.go.jabarprov.dbmpr.feature.dashboard.data.remote.ruas_jalan
+package id.go.jabarprov.dbmpr.feature.dashboard.data.datasource.ruas_jalan
 
-import functions.safeApiCall
+import id.go.jabarprov.dbmpr.common.functions.safeApiCall
 import id.go.jabarprov.dbmpr.feature.dashboard.data.models.remote.response.NearbyRuasJalanResponse
 import id.go.jabarprov.dbmpr.feature.dashboard.data.services.RuasJalanAPI
 import javax.inject.Inject

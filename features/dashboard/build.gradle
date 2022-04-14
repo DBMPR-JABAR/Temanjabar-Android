@@ -2,6 +2,9 @@ apply {
     from("$rootDir/common-android-library.gradle")
 }
 
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "kotlin-kapt"
+
 android {
     buildFeatures {
         compose true
@@ -30,6 +33,9 @@ dependencies {
 
     implementation Libs.retrofit
     implementation Libs.gsonConverter
+
+    implementation Libs.hiltAndroid
+    kapt Libs.hiltCompiler
 
     // Integration with activities
     implementation Libs.activityCompose

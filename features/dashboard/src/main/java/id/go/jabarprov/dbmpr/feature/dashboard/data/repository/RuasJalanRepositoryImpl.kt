@@ -4,7 +4,7 @@ import id.go.jabarprov.dbmpr.core_main.either.Either
 import id.go.jabarprov.dbmpr.core_main.extensions.safeDataSourceCall
 import id.go.jabarprov.dbmpr.core_main.failures.Failure
 import id.go.jabarprov.dbmpr.feature.dashboard.data.mapper.RuasJalanDataMapper
-import id.go.jabarprov.dbmpr.feature.dashboard.data.remote.ruas_jalan.RuasJalanRemoteDataSource
+import id.go.jabarprov.dbmpr.feature.dashboard.data.datasource.ruas_jalan.RuasJalanRemoteDataSource
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.repository.RuasJalanRepository
 import javax.inject.Inject

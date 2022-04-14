@@ -1,10 +1,10 @@
-package id.go.jabarprov.dbmpr.feature.dashboard.di.module.network
+package id.go.jabarprov.dbmpr.common.di.network
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import id.go.jabarprov.dbmpr.feature.dashboard.data.services.RuasJalanAPI
+import id.go.jabarprov.dbmpr.common.data.services.NewsAPI
 import retrofit2.Retrofit
 
 @Module
@@ -12,8 +12,8 @@ import retrofit2.Retrofit
 abstract class NetworkModule {
     companion object {
         @Provides
-        fun providesRuasJalanApi(retrofit: Retrofit): RuasJalanAPI {
-            return retrofit.create(RuasJalanAPI::class.java)
+        fun providesNewsApi(retrofit: Retrofit): NewsAPI {
+            return retrofit.create(NewsAPI::class.java)
         }
     }
 }
