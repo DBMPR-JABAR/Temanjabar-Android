@@ -7,6 +7,7 @@ data class News(
     val title: String,
     val content: String,
     val imageUrl: String? = null,
+    val shortDescription: String? = null,
     val slug: String,
     val publishedAt: Calendar? = null,
     val publishedBy: String? = null

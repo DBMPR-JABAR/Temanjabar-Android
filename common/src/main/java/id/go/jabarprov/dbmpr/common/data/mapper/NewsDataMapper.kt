@@ -14,6 +14,7 @@ abstract class NewsDataMapper {
                 content = newsResponse.content,
                 imageUrl = newsResponse.pathUrl,
                 slug = newsResponse.slug,
+                shortDescription = newsResponse.description,
                 publishedAt = newsResponse.publishedAt.let {
                     CalendarUtils.formatStringToCalendar(
                         newsResponse.publishedAt,

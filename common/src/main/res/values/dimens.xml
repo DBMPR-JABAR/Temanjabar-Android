@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="placeholder_text_subtitle_height">8dp</dimen>
+    <dimen name="placeholder_text_title_height">16dp</dimen>
+    <dimen name="placeholder_text_body_height">10dp</dimen>
+</resources>

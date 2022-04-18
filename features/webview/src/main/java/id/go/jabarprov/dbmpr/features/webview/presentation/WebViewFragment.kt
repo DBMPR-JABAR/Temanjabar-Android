@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -130,6 +131,7 @@ class WebViewFragment : Fragment() {
     }
 
     private fun loadUrl() {
+        Log.d(TAG, "loadUrl: ${arguments?.get("url")}")
         binding.webView.loadUrl(arguments?.get("url").toString())
     }
 

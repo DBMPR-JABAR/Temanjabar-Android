@@ -15,7 +15,7 @@ abstract class CalendarUtils {
          * Represent date as ISO-8601 representation
          * Example: 2022-03-27T17:00:00.000000Z
          * */
-        const val ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        const val ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
         /**
          * Represent date as DATE-MONTH-YEAR in human readable representation

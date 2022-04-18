@@ -2,6 +2,7 @@ package id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.common.domain.entity.News
+import id.go.jabarprov.dbmpr.common.widget_utils.HorizontalMarginItemDecoration
 import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
@@ -33,7 +35,8 @@ import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import id.go.jabarprov.dbmpr.common.widget_utils.HorizontalMarginItemDecoration
+
+private const val TAG = "HomeFragment"
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -88,7 +91,19 @@ class HomeFragment : Fragment() {
             viewPagerNews.apply {
                 adapter = newsPagerAdapter.apply {
                     setOnClickListener {
-
+                        if (it.slug == "laporan-masyarakat") {
+                            val request = NavDeepLinkRequest
+                                .Builder
+                                .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/webview?url=https://tj.temanjabar.net#laporan".toUri())
+                                .build()
+                            findNavController().navigate(request)
+                        } else {
+                            val request = NavDeepLinkRequest
+                                .Builder
+                                .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/news?slug=${it.slug}".toUri())
+                                .build()
+                            findNavController().navigate(request)
+                        }
                     }
                 }
             }
@@ -194,7 +209,7 @@ class HomeFragment : Fragment() {
         binding.viewPagerNews.addItemDecoration(itemDecoration)
         binding.viewPagerNews.setCurrentItem(1, false)
 
-        job = startAutomaticScroll()
+//        job = startAutomaticScroll()
     }
 
     private fun startAutomaticScroll(): Job {
@@ -209,15 +224,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpInfiniteOnPageListener(listSize: Int) {
-        val newListSize = listSize + 2
+        val newListSize = listSize + 3
         binding.viewPagerNews.apply {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {
                     super.onPageScrollStateChanged(state)
 
                     if (state == ViewPager2.SCROLL_STATE_IDLE) {
-                        job?.cancel()
-                        job = startAutomaticScroll()
+//                        job?.cancel()
+//                        job = startAutomaticScroll()
                         when (binding.viewPagerNews.currentItem) {
                             newListSize - 1 -> binding.viewPagerNews.setCurrentItem(1, false)
                             0 -> binding.viewPagerNews.setCurrentItem(newListSize - 2, false)
