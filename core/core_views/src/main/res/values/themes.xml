@@ -40,6 +40,8 @@
         <item name="disabledTextColor">@color/gray_600</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="fontFamily">@font/lato</item>
+        <!-- Widget. -->
+        <item name="textInputStyle">@style/Widget.TextInputLayout.OutlinedBox</item>
     </style>
 
     <style name="Theme.Temanjabar.Transparent.StatusBar" parent="Theme.Temanjabar">

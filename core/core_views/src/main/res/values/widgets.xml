@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Text Input Layout Outlined  -->
+    <style name="Widget.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopEnd">@dimen/medium_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/medium_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/medium_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/medium_radius</item>
+        <item name="boxBackgroundColor">@color/color_background_text_input_layout</item>
+        <item name="boxStrokeColor">@color/color_stroke_text_input_layout</item>
+        <item name="hintEnabled">false</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.TextInputLayout.OutlinedBox</item>
+    </style>
+
+    <style name="Widget.TextInputEditText.OutlinedBox" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="hintTextColor">@color/color_hint_edit_text</item>
+    </style>
+
+    <style name="ThemeOverlay.TextInputLayout.OutlinedBox" parent="">
+        <item name="editTextStyle">@style/Widget.TextInputEditText.OutlinedBox</item>
+    </style>
+    <!--  End Text Input Layout Outlined  -->
+
+</resources>
