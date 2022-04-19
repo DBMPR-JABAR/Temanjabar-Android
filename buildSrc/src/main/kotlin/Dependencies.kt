@@ -15,6 +15,7 @@ object Features {
     const val dashboard = ":features:dashboard"
     const val news = ":features:news"
     const val webview = ":features:webview"
+    const val authentication = ":features:authentication"
 }
 
 object Common {

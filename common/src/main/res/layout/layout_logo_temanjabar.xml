@@ -9,13 +9,13 @@
     <ImageView
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:src="@drawable/ic_logo_jabar" />
+        android:src="@drawable/ic_logo_temanjabar" />
 
     <TextView
-        style="@style/Style.Text.TitleLogo"
+        style="@style/Style.Text.Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="TEMANJABAR" />
+        android:text="@string/temanjabar" />
 
 </LinearLayout>

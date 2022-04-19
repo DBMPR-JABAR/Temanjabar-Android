@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/core/core_main" />
             <option value="$PROJECT_DIR$/core/core_views" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/authentication" />
             <option value="$PROJECT_DIR$/features/dashboard" />
             <option value="$PROJECT_DIR$/features/map" />
             <option value="$PROJECT_DIR$/features/news" />
