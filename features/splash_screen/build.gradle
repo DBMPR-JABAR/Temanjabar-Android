@@ -1,0 +1,45 @@
+apply {
+    from("$rootDir/common-android-library.gradle")
+}
+
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "kotlin-kapt"
+apply plugin: 'org.jetbrains.kotlin.android'
+
+dependencies {
+    implementation project(Core.main)
+    implementation project(Core.views)
+
+    implementation project(Common.common)
+
+    implementation project(Utils.utils)
+
+    implementation Libs.androidCore
+    implementation Libs.appCompat
+    implementation Libs.materialDesign
+    implementation Libs.constraintLayout
+    implementation Libs.swipeRefreshLayout
+    implementation Libs.shimmer
+    implementation Libs.coil
+
+    implementation Libs.viewModelScope
+    implementation Libs.lifecycleScope
+    implementation Libs.liveData
+
+    implementation Libs.retrofit
+    implementation Libs.gsonConverter
+
+    implementation Libs.hiltAndroid
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt Libs.hiltCompiler
+
+    // Integration with activities
+    implementation Libs.activityCompose
+    // Compose Material Design
+    implementation Libs.materialCompose
+    // Tooling support (Previews, etc.)
+    implementation Libs.toolingCompose
+    // Integration with ViewModels
+    implementation Libs.viewModelCompose
+}
+

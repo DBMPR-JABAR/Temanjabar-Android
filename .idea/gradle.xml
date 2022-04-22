@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/features/dashboard" />
             <option value="$PROJECT_DIR$/features/map" />
             <option value="$PROJECT_DIR$/features/news" />
+            <option value="$PROJECT_DIR$/features/splash_screen" />
             <option value="$PROJECT_DIR$/features/webview" />
             <option value="$PROJECT_DIR$/utils" />
           </set>

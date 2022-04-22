@@ -16,6 +16,7 @@ object Features {
     const val news = ":features:news"
     const val webview = ":features:webview"
     const val authentication = ":features:authentication"
+    const val splashScreen = ":features:splash_screen"
 }
 
 object Common {
@@ -27,8 +28,8 @@ object Utils {
 }
 
 object Versions {
-    const val gradleTools = "7.1.2"
-    const val kotlinPlugin = "1.6.10"
+    const val gradleTools = "7.1.3"
+    const val kotlinPlugin = "1.6.20"
 
     const val androidCore = "1.7.0"
     const val appCompat = "1.4.1"
@@ -52,7 +53,7 @@ object Versions {
     const val materialCompose = "1.1.1"
     const val toolingCompose = "1.1.1"
     const val viewModelCompose = "2.4.1"
-    const val composeCompiler = "1.2.0-alpha07"
+    const val composeCompiler = "1.2.0-alpha08"
 
     const val coroutineCore = "1.6.0"
     const val coroutineAndroid = "1.6.0"

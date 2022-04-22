@@ -23,4 +23,12 @@
     </style>
     <!--  End Text Input Layout Outlined  -->
 
+    <!--  Circular Progress Bar  -->
+    <style name="Widget.CircularProgressIndicator.Indeterminate" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="android:indeterminate">true</item>
+        <item name="indicatorColor">?colorPrimary</item>
+        <item name="trackCornerRadius">4dp</item>
+    </style>
+    <!--  End Circular Progress Bar  -->
+
 </resources>

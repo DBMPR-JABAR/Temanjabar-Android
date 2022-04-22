@@ -9,6 +9,7 @@
         <entry key="..\:/Project/BPMR/Temanjabar/app/src/main/res/xml/file_provider_path.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_container_gray_100_solid.xml" value="0.2235" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_dialog.xml" value="0.1475" />
+        <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/ic_logo_temanjabar.xml" value="0.3465" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/ic_menu.xml" value="0.215" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_app_bar.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_loading_dialog.xml" value="0.8800000000000001" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/map/src/main/res/layout/activity_map.xml" value="0.16" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/map/src/main/res/layout/fragment_map.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/news/src/main/res/layout/fragment_news.xml" value="0.33" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/splash_screen/src/main/res/layout/fragment_splash_screen.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/webview/src/main/res/layout/fragment_web_view.xml" value="0.2359375" />
       </map>
     </option>
