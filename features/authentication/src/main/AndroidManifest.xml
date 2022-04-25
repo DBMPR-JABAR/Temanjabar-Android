@@ -2,5 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.go.jabarprov.dbmpr.feature.authentication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application android:theme="@style/Theme.Temanjabar" />
 </manifest>

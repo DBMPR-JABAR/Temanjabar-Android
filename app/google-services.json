@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "468840996773",
+    "project_id": "teman-jabar-31a18",
+    "storage_bucket": "teman-jabar-31a18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468840996773:android:9abe1d7171764b6e8e924c",
+        "android_client_info": {
+          "package_name": "id.go.jabarprov.dbmpr.temanjabar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468840996773-a121uvfe6aj1ro0f5bqivpc3p1rn53tg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.go.jabarprov.dbmpr.temanjabar",
+            "certificate_hash": "7998b3b9dba280628617bd88c54f6fe305f2baa2"
+          }
+        },
+        {
+          "client_id": "468840996773-bfu58ovhcnnjaapvn4jdiotf9v77bi30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYYfncjbJ4xmZe3P5zuNdoxGi0h5wXUQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468840996773-bfu58ovhcnnjaapvn4jdiotf9v77bi30.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "468840996773-aeqbfgnr60v99hitajllhrjh4l2g5vpa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dbmpr.jabarprov.go.id.temanjabar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

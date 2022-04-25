@@ -65,7 +65,10 @@ object Versions {
 
     const val arcgis = "100.13.0"
 
+    const val googleService = "4.3.10"
+    const val firebaseBom = "29.3.1"
     const val playServiceLocation = "19.0.1"
+    const val playServiceAuth = "20.1.0"
 
     const val jUnit = "4.13.2"
     const val androidJUnit = "1.1.3"
@@ -123,8 +126,15 @@ object Libs {
 
     const val arcgis = "com.esri.arcgisruntime:arcgis-android:${Versions.arcgis}"
 
+    const val googleService = "com.google.gms:google-services:${Versions.googleService}"
+    const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
+    const val firebaseCore = "com.google.firebase:firebase-core"
+    const val firebaseAuth = "com.google.firebase:firebase-auth"
+
     const val playServiceLocation =
         "com.google.android.gms:play-services-location:${Versions.playServiceLocation}"
+    const val playServiceAuth =
+        "com.google.android.gms:play-services-auth:${Versions.playServiceAuth}"
 
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val androidJUnit = "androidx.test.ext:junit:${Versions.androidJUnit}"

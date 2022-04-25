@@ -4,7 +4,8 @@ apply {
 
 apply plugin: "dagger.hilt.android.plugin"
 apply plugin: "kotlin-kapt"
-apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.google.gms.google-services"
 
 dependencies {
     implementation project(Core.main)
@@ -19,27 +20,35 @@ dependencies {
     implementation Libs.materialDesign
     implementation Libs.constraintLayout
     implementation Libs.swipeRefreshLayout
+
+    // Shimmer Layout
     implementation Libs.shimmer
+
+    // Coil Image Loader
     implementation Libs.coil
 
+    // Lifecycle Scope Coroutine
     implementation Libs.viewModelScope
     implementation Libs.lifecycleScope
     implementation Libs.liveData
 
+    // Retrofit & Gson
     implementation Libs.retrofit
     implementation Libs.gsonConverter
 
+    // Hilt Dependency Injection
     implementation Libs.hiltAndroid
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.hiltCompiler
 
-    // Integration with activities
+    // Firebase
+    implementation platform(Libs.firebaseBom)
+    implementation Libs.firebaseAuth
+    implementation Libs.playServiceAuth
+
+    // Compose
     implementation Libs.activityCompose
-    // Compose Material Design
     implementation Libs.materialCompose
-    // Tooling support (Previews, etc.)
     implementation Libs.toolingCompose
-    // Integration with ViewModels
     implementation Libs.viewModelCompose
 }
 

@@ -3,4 +3,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
     <string name="agreement"><![CDATA[Dengan mencentang checkbox ketika login, maka Anda setuju dengan syarat dan ketentuan Terms & Conditions dan privasi data Data Privacy penggunaan aplikasi Teman Jabar.]]></string>
+    <string name="web_client_id">468840996773-bfu58ovhcnnjaapvn4jdiotf9v77bi30.apps.googleusercontent.com</string>
 </resources>
