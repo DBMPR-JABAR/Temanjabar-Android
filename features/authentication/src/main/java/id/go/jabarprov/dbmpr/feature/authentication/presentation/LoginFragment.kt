@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -83,6 +84,9 @@ class LoginFragment : Fragment() {
             )
         }
 
-        binding.textViewAgreement.text = spannableString
+        binding.textViewAgreement.apply {
+            text = spannableString
+            movementMethod = LinkMovementMethod.getInstance()
+        }
     }
 }
