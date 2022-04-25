@@ -31,4 +31,10 @@
     </style>
     <!--  End Circular Progress Bar  -->
 
+    <!--  Checkbox  -->
+    <style name="Widget.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/color_checkbox</item>
+    </style>
+    <!--  End Checkbox  -->
+
 </resources>

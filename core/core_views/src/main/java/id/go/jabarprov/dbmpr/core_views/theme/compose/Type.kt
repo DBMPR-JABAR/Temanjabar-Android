@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.core_views.theme
+package id.go.jabarprov.dbmpr.core_views.theme.compose
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

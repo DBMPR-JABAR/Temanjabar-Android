@@ -26,7 +26,7 @@
             android:id="@+id/image_view_logo"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:src="@drawable/ic_logo_temanjabar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="@string/password"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -129,6 +129,110 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/button_login_with_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/login"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_password" />
+
+        <View
+            android:id="@+id/divider_left"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_or"
+            app:layout_constraintEnd_toStartOf="@id/text_view_or"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_view_or" />
+
+        <TextView
+            android:id="@+id/text_view_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Atau"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/gray_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_login_with_account" />
+
+        <View
+            android:id="@+id/divider_right"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/text_view_or"
+            app:layout_constraintTop_toTopOf="@id/text_view_or" />
+
+        <Button
+            android:id="@+id/button_login_with_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Login dengan Google"
+            app:icon="@drawable/ic_contained_logo_google"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@null"
+            app:layout_constraintTop_toBottomOf="@id/text_view_or" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/text_view_version"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:gravity="center"-->
+<!--            android:lineSpacingMultiplier="1.5"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textAppearance="?textAppearanceBody2"-->
+<!--            android:textColor="@color/gray_500"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/button_login_with_google"-->
+<!--            tools:text="App Version\n0.0.0 (Alpha)" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="48dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_login_with_google">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+            <TextView
+                android:id="@+id/text_view_agreement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="?textAppearanceBody2"
+                android:textColor="@color/gray_500"
+                tools:text="@string/agreement" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

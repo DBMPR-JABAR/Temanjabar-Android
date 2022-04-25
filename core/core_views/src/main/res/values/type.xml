@@ -87,9 +87,8 @@
         <item name="android:fontFamily">@font/lato</item>
     </style>
 
-    <style name="TextAppearance.TemanJabar.Button" parent="TextAppearance.MaterialComponents.Button">
+    <style name="TextAppearance.TemanJabar.Button" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">12sp</item>
-        <item name="textAllCaps">false</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/lato</item>
         <item name="android:fontFamily">@font/lato</item>
