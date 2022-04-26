@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentRegisterBinding
+import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
 
 
 class RegisterFragment : Fragment() {
@@ -30,6 +31,10 @@ class RegisterFragment : Fragment() {
         setEnableStepSecond(false)
         setEnableStepThird(false)
         setEnableStepFourth(false)
+        binding.apply {
+            linearLayoutNext.setEnabledRecursive(false)
+            linearLayoutPrevious.setEnabledRecursive(false)
+        }
     }
 
     private fun setEnableStepFirst(isEnable: Boolean) {

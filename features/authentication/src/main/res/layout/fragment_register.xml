@@ -61,6 +61,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_step"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/gray_100"
@@ -266,5 +267,89 @@
         <!--    End Step Terms & Conditions    -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/barrier_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_step" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="linear_layout_next, linear_layout_previous" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_button">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_circle_info"
+            android:padding="6dp"
+            android:src="@drawable/ic_chevron_left"
+            app:tint="@color/color_tint_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/sebelumnya"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_previous" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_button">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/selanjutnya"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_next" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_circle_active"
+            android:padding="6dp"
+            android:src="@drawable/ic_chevron_right"
+            app:tint="@color/color_tint_icon" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
