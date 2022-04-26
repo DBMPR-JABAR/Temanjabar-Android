@@ -5,13 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import id.go.jabarprov.dbmpr.feature.authentication.R
 import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentRegisterBinding
-import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
 
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
+
+    private val registerNameFragment by lazy { RegisterNameFragment() }
+    private val registerEmailFragment by lazy { RegisterEmailFragment() }
+    private val registerPasswordFragment by lazy { RegisterPasswordFragment() }
+    private val registerAgreementFragment by lazy { RegisterAgreementFragment() }
+
+    private var indexPage = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +38,66 @@ class RegisterFragment : Fragment() {
         setEnableStepSecond(false)
         setEnableStepThird(false)
         setEnableStepFourth(false)
+        initChildFragment()
         binding.apply {
-            linearLayoutNext.setEnabledRecursive(false)
-            linearLayoutPrevious.setEnabledRecursive(false)
+            linearLayoutNext.setOnClickListener {
+                if (indexPage > 3) {
+                    indexPage = 3
+                } else {
+                    indexPage += 1
+                }
+                when (indexPage) {
+                    0 -> {
+                        navigateChildFragment(registerNameFragment)
+                    }
+                    1 -> {
+                        navigateChildFragment(registerEmailFragment)
+                    }
+                    2 -> {
+                        navigateChildFragment(registerPasswordFragment)
+                    }
+                    3 -> {
+                        navigateChildFragment(registerAgreementFragment)
+                    }
+                }
+            }
+
+            linearLayoutPrevious.setOnClickListener {
+                if (indexPage > 0) {
+                    indexPage -= 1
+                } else {
+                    indexPage = 0
+                }
+                when (indexPage) {
+                    0 -> {
+                        navigateChildFragment(registerNameFragment)
+                    }
+                    1 -> {
+                        navigateChildFragment(registerEmailFragment)
+                    }
+                    2 -> {
+                        navigateChildFragment(registerPasswordFragment)
+                    }
+                    3 -> {
+                        navigateChildFragment(registerAgreementFragment)
+                    }
+                }
+            }
         }
+    }
+
+    private fun initChildFragment() {
+        childFragmentManager
+            .beginTransaction()
+            .add(R.id.frame_layout_fragment_container, registerNameFragment)
+            .commit()
+    }
+
+    private fun navigateChildFragment(fragment: Fragment) {
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.frame_layout_fragment_container, fragment)
+            .commit()
     }
 
     private fun setEnableStepFirst(isEnable: Boolean) {
