@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.feature.authentication.presentation
+package id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments
 
 import android.os.Bundle
 import android.text.SpannableString

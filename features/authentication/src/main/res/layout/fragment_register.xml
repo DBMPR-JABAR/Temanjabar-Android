@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.RegisterFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:contentInsetStart="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_back"
+                    style="@style/Style.Button.UnelevatedButton.Circle.Icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:backgroundTint="@color/white"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    app:icon="@drawable/ic_chevron_left"
+                    app:iconTint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_view_page_title"
+                    style="@style/Style.Text.Page.Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/register"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/button_back"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_100"
+        android:orientation="horizontal"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:weightSum="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+        <!--    Barrier    -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="text_view_no_1, text_view_no_2, text_view_no_3, text_view_no_4" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="text_view_no_1, text_view_no_2, text_view_no_3, text_view_no_4" />
+        <!--    End Barrier    -->
+
+        <!--    Step Nama    -->
+        <TextView
+            android:id="@+id/text_view_no_1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_step"
+            android:gravity="center"
+            android:text="1"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/guideline_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_step_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Nama"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/guideline_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+        <!--    End Step Nama    -->
+
+        <View
+            android:id="@+id/step_bar_1"
+            android:layout_width="0dp"
+            android:layout_height="2.5dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/step_bar"
+            app:layout_constraintBottom_toBottomOf="@id/barrier_bottom"
+            app:layout_constraintEnd_toStartOf="@id/text_view_no_2"
+            app:layout_constraintStart_toEndOf="@id/text_view_no_1"
+            app:layout_constraintTop_toTopOf="@id/barrier_top" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <!--    Step E-mail    -->
+        <TextView
+            android:id="@+id/text_view_no_2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_step"
+            android:gravity="center"
+            android:text="2"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/guideline_2"
+            app:layout_constraintStart_toEndOf="@id/guideline_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_step_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="E-Mail"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/guideline_2"
+            app:layout_constraintStart_toEndOf="@id/guideline_1"
+            app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+        <!--    End Step E-mail    -->
+
+        <View
+            android:id="@+id/step_bar_2"
+            android:layout_width="0dp"
+            android:layout_height="2.5dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/step_bar"
+            app:layout_constraintBottom_toBottomOf="@id/barrier_bottom"
+            app:layout_constraintEnd_toStartOf="@id/text_view_no_3"
+            app:layout_constraintStart_toEndOf="@id/text_view_no_2"
+            app:layout_constraintTop_toTopOf="@id/barrier_top" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <!--    Step Password    -->
+        <TextView
+            android:id="@+id/text_view_no_3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_step"
+            android:gravity="center"
+            android:text="3"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/guideline_3"
+            app:layout_constraintStart_toEndOf="@id/guideline_2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_step_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Password"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/guideline_3"
+            app:layout_constraintStart_toEndOf="@id/guideline_2"
+            app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+        <!--    End Step Password    -->
+
+        <View
+            android:id="@+id/step_bar_3"
+            android:layout_width="0dp"
+            android:layout_height="2.5dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/step_bar"
+            app:layout_constraintBottom_toBottomOf="@id/barrier_bottom"
+            app:layout_constraintEnd_toStartOf="@id/text_view_no_4"
+            app:layout_constraintStart_toEndOf="@id/text_view_no_3"
+            app:layout_constraintTop_toTopOf="@id/barrier_top" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <!--    Step Terms & Conditions    -->
+        <TextView
+            android:id="@+id/text_view_no_4"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_step"
+            android:gravity="center"
+            android:text="4"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_step_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Agreement"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/color_text_step"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_3"
+            app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+        <!--    End Step Terms & Conditions    -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
