@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_navigation"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="id.go.jabarprov.dbmpr.feature.authentication.presentation.LoginFragment"
+        android:name="id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments.RegisterFragment"

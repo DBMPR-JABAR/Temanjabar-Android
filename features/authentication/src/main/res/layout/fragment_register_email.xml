@@ -13,25 +13,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Mohon masukkan E-Mail Anda"
+        android:text="@string/mohon_masukkan_e_mail_anda"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_label_username"
+        android:id="@+id/text_view_label_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="E-Mail"
+        android:text="@string/e_mail"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_page_title" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_username"
+        android:id="@+id/text_input_layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,13 +39,13 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_label_username">
+        app:layout_constraintTop_toBottomOf="@id/text_view_label_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_username"
+            android:id="@+id/edit_text_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Masukkan E-Mail Anda" />
+            android:hint="@string/masukkan_e_mail" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

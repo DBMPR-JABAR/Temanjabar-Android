@@ -1,7 +1,9 @@
 apply {
     from("$rootDir/common-android-library.gradle")
 }
-apply plugin: 'org.jetbrains.kotlin.android'
+
+apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "kotlin-kapt"
 
 dependencies {
     implementation project(Core.main)
@@ -17,6 +19,9 @@ dependencies {
 
     implementation Libs.viewModelScope
     implementation Libs.lifecycleScope
+
+    implementation Libs.hiltAndroid
+    kapt Libs.hiltCompiler
 
     api Libs.arcgis
 }

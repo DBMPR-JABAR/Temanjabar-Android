@@ -34,8 +34,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
+                    android:background="?selectableItemBackgroundBorderless"
                     android:backgroundTint="@color/white"
-                    android:foreground="?selectableItemBackgroundBorderless"
                     app:icon="@drawable/ic_chevron_left"
                     app:iconTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="text_view_no_1, text_view_no_2, text_view_no_3, text_view_no_4" />
+            app:constraint_referenced_ids="text_view_no_1, text_view_no_2, text_view_no_3, text_view_no_4, image_view_checklist_step_1, image_view_checklist_step_2, image_view_checklist_step_3, image_view_checklist_step_4" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier_bottom"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="text_view_no_1, text_view_no_2, text_view_no_3, text_view_no_4" />
+            app:constraint_referenced_ids="text_view_no_1, text_view_no_2, text_view_no_3, text_view_no_4, image_view_checklist_step_1, image_view_checklist_step_2, image_view_checklist_step_3, image_view_checklist_step_4" />
         <!--    End Barrier    -->
 
         <!--    Step Nama    -->
@@ -111,11 +111,24 @@
             android:gravity="center"
             android:text="1"
             android:textAppearance="?textAppearanceBody2"
-            android:textColor="@color/color_text_step"
+            android:textColor="@color/gray_500"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/guideline_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_checklist_step_1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_circle_active"
+            android:padding="8dp"
+            android:src="@drawable/ic_checklist"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/guideline_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_nama"
@@ -130,6 +143,14 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_end_step_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="text_view_no_1, image_view_checklist_step_1" />
         <!--    End Step Nama    -->
 
         <View
@@ -139,8 +160,8 @@
             android:layout_margin="8dp"
             android:background="@drawable/step_bar"
             app:layout_constraintBottom_toBottomOf="@id/barrier_bottom"
-            app:layout_constraintEnd_toStartOf="@id/text_view_no_2"
-            app:layout_constraintStart_toEndOf="@id/text_view_no_1"
+            app:layout_constraintEnd_toStartOf="@id/barrier_start_step_2"
+            app:layout_constraintStart_toEndOf="@id/barrier_end_step_1"
             app:layout_constraintTop_toTopOf="@id/barrier_top" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -151,6 +172,14 @@
             app:layout_constraintGuide_percent="0.25" />
 
         <!--    Step E-mail    -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_start_step_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="text_view_no_2, image_view_checklist_step_2" />
+
         <TextView
             android:id="@+id/text_view_no_2"
             android:layout_width="32dp"
@@ -159,11 +188,24 @@
             android:gravity="center"
             android:text="2"
             android:textAppearance="?textAppearanceBody2"
-            android:textColor="@color/color_text_step"
+            android:textColor="@color/gray_500"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/guideline_2"
             app:layout_constraintStart_toEndOf="@id/guideline_1"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_checklist_step_2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_circle_active"
+            android:padding="8dp"
+            android:src="@drawable/ic_checklist"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/guideline_2"
+            app:layout_constraintStart_toEndOf="@id/guideline_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_email"
@@ -178,6 +220,14 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_2"
             app:layout_constraintStart_toEndOf="@id/guideline_1"
             app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_end_step_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="text_view_no_2, image_view_checklist_step_2" />
         <!--    End Step E-mail    -->
 
         <View
@@ -187,8 +237,8 @@
             android:layout_margin="8dp"
             android:background="@drawable/step_bar"
             app:layout_constraintBottom_toBottomOf="@id/barrier_bottom"
-            app:layout_constraintEnd_toStartOf="@id/text_view_no_3"
-            app:layout_constraintStart_toEndOf="@id/text_view_no_2"
+            app:layout_constraintEnd_toStartOf="@id/barrier_start_step_3"
+            app:layout_constraintStart_toEndOf="@id/barrier_end_step_2"
             app:layout_constraintTop_toTopOf="@id/barrier_top" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -199,6 +249,14 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <!--    Step Password    -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_start_step_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="text_view_no_3, image_view_checklist_step_3" />
+
         <TextView
             android:id="@+id/text_view_no_3"
             android:layout_width="32dp"
@@ -207,11 +265,24 @@
             android:gravity="center"
             android:text="3"
             android:textAppearance="?textAppearanceBody2"
-            android:textColor="@color/color_text_step"
+            android:textColor="@color/gray_500"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/guideline_3"
             app:layout_constraintStart_toEndOf="@id/guideline_2"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_checklist_step_3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_circle_active"
+            android:padding="8dp"
+            android:src="@drawable/ic_checklist"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/guideline_3"
+            app:layout_constraintStart_toEndOf="@id/guideline_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_password"
@@ -226,6 +297,14 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_3"
             app:layout_constraintStart_toEndOf="@id/guideline_2"
             app:layout_constraintTop_toBottomOf="@id/barrier_bottom" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_end_step_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="text_view_no_3, image_view_checklist_step_3" />
         <!--    End Step Password    -->
 
         <View
@@ -235,8 +314,8 @@
             android:layout_margin="8dp"
             android:background="@drawable/step_bar"
             app:layout_constraintBottom_toBottomOf="@id/barrier_bottom"
-            app:layout_constraintEnd_toStartOf="@id/text_view_no_4"
-            app:layout_constraintStart_toEndOf="@id/text_view_no_3"
+            app:layout_constraintEnd_toStartOf="@id/barrier_start_step_4"
+            app:layout_constraintStart_toEndOf="@id/barrier_end_step_3"
             app:layout_constraintTop_toTopOf="@id/barrier_top" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -247,6 +326,14 @@
             app:layout_constraintGuide_percent="0.75" />
 
         <!--    Step Terms & Conditions    -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_start_step_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="text_view_no_4, image_view_checklist_step_4" />
+
         <TextView
             android:id="@+id/text_view_no_4"
             android:layout_width="32dp"
@@ -255,11 +342,24 @@
             android:gravity="center"
             android:text="4"
             android:textAppearance="?textAppearanceBody2"
-            android:textColor="@color/color_text_step"
+            android:textColor="@color/gray_500"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline_3"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_checklist_step_4"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_circle_active"
+            android:padding="8dp"
+            android:src="@drawable/ic_checklist"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_agreement"
@@ -267,7 +367,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Agreement"
+            android:text="Persetujuan"
             android:textAppearance="?textAppearanceBody2"
             android:textColor="@color/color_text_step"
             android:textStyle="bold"
@@ -330,6 +430,7 @@
             app:tint="@color/color_tint_icon" />
 
         <TextView
+            android:id="@+id/text_view_previous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -355,6 +456,7 @@
         app:layout_constraintTop_toBottomOf="@id/barrier_button">
 
         <TextView
+            android:id="@+id/text_view_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

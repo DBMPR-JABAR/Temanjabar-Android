@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Syarat &amp; Ketentuan"
+                android:text="@string/syarat_dan_ketentuan"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,15 +36,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textAppearance="?textAppearanceBody1"
-                android:text="Selamat Datang di Teman Jabar" />
+                android:text="Selamat Datang di Teman Jabar"
+                android:textAppearance="?textAppearanceBody1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textAppearance="?textAppearanceBody1"
-                android:text="@string/lorem" />
+                android:text="@string/lorem"
+                android:textAppearance="?textAppearanceBody1" />
 
         </LinearLayout>
 
@@ -69,23 +69,23 @@
         android:layout_marginBottom="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
+        android:paddingTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox_agreement"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/text_view_agreement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingMultiplier="1.2"
-            android:text="Dengan mencentang checkbox ini, maka Anda setuju dengan syarat dan ketentuan diatas sebagai pengguna aplikasi Teman Jabar."
+            android:text="@string/register_agreement"
             android:textAppearance="?textAppearanceBody2" />
 
     </LinearLayout>

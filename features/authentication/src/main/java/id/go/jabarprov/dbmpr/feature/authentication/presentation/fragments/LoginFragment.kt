@@ -13,21 +13,22 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.GoogleAuthProvider
+import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.authentication.R
 import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentLoginBinding
 import id.go.jabarprov.dbmpr.utils.extensions.getColorFromAttr
-import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import kotlinx.coroutines.tasks.await
 
 private const val TAG = "LoginFragment"
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
@@ -66,23 +67,28 @@ class LoginFragment : Fragment() {
     }
 
     private fun initUI() {
-        setUpAgreementSpanText()
+        setUpRegisterSpanText()
         binding.apply {
             buttonLoginWithGoogle.setOnClickListener {
                 launchSignInWithGoogleIntent()
             }
+
+            val packageInfo =
+                requireContext().packageManager.getPackageInfo(context?.packageName!!, 0)
+            textViewVersion.text = "App Version\n${packageInfo.versionName}"
         }
     }
 
-    private fun setUpAgreementSpanText() {
-        val agreementText = requireContext().getString(R.string.agreement)
+    private fun setUpRegisterSpanText() {
+        val registerAccountText = requireContext().getString(R.string.register_account)
 
-        val termAndConditionStartIndex = agreementText.indexOf("Terms & Conditions")
-        val termAndConditionEndIndex = termAndConditionStartIndex + "Terms & Conditions".length
+        val startIndex = registerAccountText.indexOf("Daftar Sekarang")
+        val endIndex = startIndex + "Daftar Sekarang".length
 
-        val termAndConditionSpanText = object : ClickableSpan() {
+        val registerAccountSpanText = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                showToast("Terms & Conditions Clicked")
+                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                findNavController().navigate(action)
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -92,37 +98,16 @@ class LoginFragment : Fragment() {
             }
         }
 
-        val dataPrivacyStartIndex = agreementText.indexOf("Data Privacy")
-        val dataPrivacyEndIndex = dataPrivacyStartIndex + "Data Privacy".length
-
-        val dataPrivacySpanText = object : ClickableSpan() {
-            override fun onClick(p0: View) {
-                showToast("Data Privacy")
-            }
-
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.color =
-                    requireContext().getColorFromAttr(com.google.android.material.R.attr.colorPrimary)
-            }
-        }
-
-        val spannableString = SpannableString(agreementText).apply {
+        val spannableString = SpannableString(registerAccountText).apply {
             setSpan(
-                termAndConditionSpanText,
-                termAndConditionStartIndex,
-                termAndConditionEndIndex,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            setSpan(
-                dataPrivacySpanText,
-                dataPrivacyStartIndex,
-                dataPrivacyEndIndex,
+                registerAccountSpanText,
+                startIndex,
+                endIndex,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
 
-        binding.textViewAgreement.apply {
+        binding.textViewRegister.apply {
             text = spannableString
             movementMethod = LinkMovementMethod.getInstance()
         }

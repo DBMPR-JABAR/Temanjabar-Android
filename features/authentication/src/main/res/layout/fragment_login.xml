@@ -190,49 +190,36 @@
             app:iconTint="@null"
             app:layout_constraintTop_toBottomOf="@id/text_view_or" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_view_version"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="24dp"-->
-<!--            android:gravity="center"-->
-<!--            android:lineSpacingMultiplier="1.5"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textAppearance="?textAppearanceBody2"-->
-<!--            android:textColor="@color/gray_500"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/button_login_with_google"-->
-<!--            tools:text="App Version\n0.0.0 (Alpha)" />-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_view_version"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.5"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/gray_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_login_with_google"
+            tools:text="App Version\n0.0.0 (Alpha)" />
+
+        <TextView
+            android:id="@+id/text_view_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
             android:layout_marginBottom="48dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:text="@string/register_account"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/gray_500"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_login_with_google">
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true" />
-
-            <TextView
-                android:id="@+id/text_view_agreement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingMultiplier="1.2"
-                android:textAppearance="?textAppearanceBody2"
-                android:textColor="@color/gray_500"
-                tools:text="@string/agreement" />
-
-        </LinearLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_version" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
