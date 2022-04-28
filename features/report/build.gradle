@@ -6,12 +6,6 @@ apply plugin: "dagger.hilt.android.plugin"
 apply plugin: "kotlin-kapt"
 apply plugin: 'org.jetbrains.kotlin.android'
 
-android {
-    buildFeatures {
-        compose true
-    }
-}
-
 dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
@@ -36,6 +30,7 @@ dependencies {
     implementation Libs.gsonConverter
 
     implementation Libs.hiltAndroid
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.hiltCompiler
 
     // Integration with activities

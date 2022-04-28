@@ -5,18 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentReportBinding
+import id.go.jabarprov.dbmpr.feature.report.R
+import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentMakeReportBinding
 import id.go.jabarprov.dbmpr.common.R as CommonR
 
-class ReportFragment : Fragment() {
+class MakeReportFragment : Fragment() {
 
-    private lateinit var binding: FragmentReportBinding
+    private lateinit var binding: FragmentMakeReportBinding
+
+    private val categoryReportFragment by lazy { CategoryReportFragment() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentReportBinding.inflate(inflater, container, false)
+        binding = FragmentMakeReportBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,6 +32,10 @@ class ReportFragment : Fragment() {
         setEnableReportCategoryStep(false)
         setEnableReportPhotoVideoStep(false)
         setEnableReportDetailStep(false)
+
+        childFragmentManager.beginTransaction()
+            .add(R.id.frame_layout_fragment_container, categoryReportFragment)
+            .commit()
     }
 
     private fun setEnableReportCategoryStep(value: Boolean) {

@@ -42,6 +42,7 @@
         <item name="fontFamily">@font/lato</item>
         <!-- Widget. -->
         <item name="textInputStyle">@style/Widget.TextInputLayout.OutlinedBox</item>
+        <item name="editTextStyle">@style/Widget.TextInputEditText.OutlinedBox</item>
         <item name="circularProgressIndicatorStyle">
             @style/Widget.CircularProgressIndicator.Indeterminate
         </item>
