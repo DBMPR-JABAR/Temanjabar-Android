@@ -10,4 +10,7 @@
     <string name="sign_in">Sign In</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="sebelumnya">Sebelumnya</string>
+    <string name="selanjutnya">Selanjutnya</string>
+    <string name="selesai">Selesai</string>
 </resources>

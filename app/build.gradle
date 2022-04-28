@@ -61,6 +61,7 @@ dependencies {
     implementation project(Features.webview)
     implementation project(Features.news)
     implementation project(Features.authentication)
+    implementation project(Features.report)
 
     implementation Libs.androidCore
     implementation Libs.appCompat

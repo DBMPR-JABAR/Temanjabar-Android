@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import id.go.jabarprov.dbmpr.common.R as CommonResource
 import id.go.jabarprov.dbmpr.feature.authentication.R
 import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentRegisterBinding
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.RegisterViewModel
@@ -195,7 +196,7 @@ class RegisterFragment : Fragment() {
                 navigateChildFragment(registerPasswordFragment)
                 binding.apply {
                     linearLayoutPrevious.isVisible = true
-                    textViewNext.text = getString(R.string.selanjutnya)
+                    textViewNext.text = getString(CommonResource.string.selanjutnya)
                 }
             }
             RegisterScreenState.REGISTER_AGREEMENT -> {
@@ -208,7 +209,7 @@ class RegisterFragment : Fragment() {
                 )
                 binding.apply {
                     linearLayoutPrevious.isVisible = true
-                    textViewNext.text = getString(R.string.selesai)
+                    textViewNext.text = getString(CommonResource.string.selesai)
                 }
             }
         }

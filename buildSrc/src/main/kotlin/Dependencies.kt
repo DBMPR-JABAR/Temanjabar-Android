@@ -17,6 +17,7 @@ object Features {
     const val webview = ":features:webview"
     const val authentication = ":features:authentication"
     const val splashScreen = ":features:splash_screen"
+    const val report = ":features:report"
 }
 
 object Common {
@@ -67,6 +68,7 @@ object Versions {
 
     const val googleService = "4.3.10"
     const val firebaseBom = "29.3.1"
+    const val firebaseCore = "20.1.2"
     const val playServiceLocation = "19.0.1"
     const val playServiceAuth = "20.1.0"
 
@@ -128,7 +130,7 @@ object Libs {
 
     const val googleService = "com.google.gms:google-services:${Versions.googleService}"
     const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
-    const val firebaseCore = "com.google.firebase:firebase-core"
+    const val firebaseCore = "com.google.firebase:firebase-core:${Versions.firebaseCore}"
     const val firebaseAuth = "com.google.firebase:firebase-auth"
 
     const val playServiceLocation =

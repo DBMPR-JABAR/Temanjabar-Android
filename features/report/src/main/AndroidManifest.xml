@@ -2,4 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.go.jabarprov.dbmpr.feature.report">
 
+    <application android:theme="@style/Theme.Temanjabar" />
 </manifest>
