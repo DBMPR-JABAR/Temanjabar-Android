@@ -25,4 +25,10 @@
         <item name="shapeAppearanceOverlay">@style/ShapeOverlay.Button.Circle</item>
     </style>
 
+    <style name="Style.Text.Section.Header" parent="TextAppearance.TemanJabar.Body1">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
 </resources>
