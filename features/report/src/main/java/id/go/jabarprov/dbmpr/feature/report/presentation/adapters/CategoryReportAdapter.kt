@@ -7,6 +7,7 @@ import id.go.jabarprov.dbmpr.common.widget.DataStateListAdapter
 import id.go.jabarprov.dbmpr.feature.report.databinding.LayoutCategoryReportItemBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.diff_utils.CategoryReportModelDiffUtils
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
+import id.go.jabarprov.dbmpr.utils.extensions.setSelectedRecursive
 
 class CategoryReportAdapter(onDataEmpty: () -> Unit, onDataExist: () -> Unit) :
     DataStateListAdapter<CategoryReportModel, CategoryReportAdapter.CategoryReportItemViewHolder>(
@@ -37,6 +38,11 @@ class CategoryReportAdapter(onDataEmpty: () -> Unit, onDataExist: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(categoryReportModel: CategoryReportModel) {
             binding.apply {
+                if (categoryReportModel.isSelected) {
+                    root.setSelectedRecursive(true)
+                } else {
+                    root.setSelectedRecursive(false)
+                }
                 imageViewIconCategory.setImageResource(categoryReportModel.icon)
                 textViewCategory.text = categoryReportModel.description
             }

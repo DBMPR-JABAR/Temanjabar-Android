@@ -6,5 +6,6 @@ data class CategoryReportModel(
     val id: Int,
     @DrawableRes
     val icon: Int,
-    val description: String
+    val description: String,
+    val isSelected: Boolean = false
 )

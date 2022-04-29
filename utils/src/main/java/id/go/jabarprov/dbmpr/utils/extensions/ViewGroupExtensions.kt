@@ -14,3 +14,16 @@ fun ViewGroup.setEnabledRecursive(value: Boolean) {
         }
     }
 }
+
+fun ViewGroup.setSelectedRecursive(value: Boolean) {
+    isSelected = value
+    for (i in 0..childCount) {
+        val view = getChildAt(i)
+        if (view != null) {
+            view.isSelected = value
+            if (view is ViewGroup) {
+                view.setEnabled(value)
+            }
+        }
+    }
+}

@@ -15,6 +15,6 @@ class CategoryReportModelDiffUtils : DiffUtil.ItemCallback<CategoryReportModel>(
         oldItem: CategoryReportModel,
         newItem: CategoryReportModel
     ): Boolean {
-        return oldItem == newItem
+        return oldItem.isSelected == newItem.isSelected && oldItem.description == newItem.description && oldItem.icon == newItem.icon
     }
 }

@@ -48,7 +48,9 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/map/src/main/res/layout/activity_map.xml" value="0.16" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/map/src/main/res/layout/fragment_map.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/news/src/main/res/layout/fragment_news.xml" value="0.33" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/drawable/bg_category_report_item.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/drawable/bg_step.xml" value="0.3225" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/drawable/ripple_category_report_item.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_category_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_laporan.xml" value="0.32222222222222224" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_make_report.xml" value="0.32222222222222224" />

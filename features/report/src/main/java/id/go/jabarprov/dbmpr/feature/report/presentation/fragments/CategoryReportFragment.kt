@@ -1,5 +1,6 @@
 package id.go.jabarprov.dbmpr.feature.report.presentation.fragments
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import id.go.jabarprov.dbmpr.common.widget.GridSpacingItemDecoration
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentCategoryReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.CategoryReportAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
@@ -106,6 +108,16 @@ class CategoryReportFragment : Fragment() {
             ),
             CategoryReportModel(
                 1,
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_avalanche,
+                "Bencana Alam"
+            ),
+            CategoryReportModel(
+                2,
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_damage_road,
+                "Kerusakan Jalan"
+            ),
+            CategoryReportModel(
+                3,
                 id.go.jabarprov.dbmpr.common.R.drawable.ic_avalanche,
                 "Bencana Alam"
             ),
