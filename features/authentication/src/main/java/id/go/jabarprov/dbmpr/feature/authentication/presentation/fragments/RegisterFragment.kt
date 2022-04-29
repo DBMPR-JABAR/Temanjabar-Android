@@ -48,16 +48,11 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-        initChildFragment()
         onBackPressed()
         observeRegisterState()
     }
 
     private fun initUI() {
-        setEnableFirstStep(false)
-        setEnableSecondStep(false)
-        setEnableThridStep(false)
-        setEnableFourthStep(false)
         binding.apply {
             linearLayoutNext.setOnClickListener {
                 registerViewModel.processAction(RegisterAction.GoToNextScreen)
@@ -71,13 +66,6 @@ class RegisterFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-    }
-
-    private fun initChildFragment() {
-        childFragmentManager
-            .beginTransaction()
-            .add(R.id.frame_layout_fragment_container, registerNameFragment)
-            .commit()
     }
 
     private fun navigateChildFragment(fragment: Fragment) {

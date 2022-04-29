@@ -3,7 +3,7 @@ package id.go.jabarprov.dbmpr.feature.report.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import id.go.jabarprov.dbmpr.common.widget.DataStateListAdapter
+import id.go.jabarprov.dbmpr.common.presentation.widget.DataStateListAdapter
 import id.go.jabarprov.dbmpr.feature.report.databinding.LayoutCategoryReportItemBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.diff_utils.CategoryReportModelDiffUtils
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel

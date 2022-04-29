@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.common.widget_utils
+package id.go.jabarprov.dbmpr.common.presentation.widget_utils
 
 import android.content.Context
 import android.graphics.Rect

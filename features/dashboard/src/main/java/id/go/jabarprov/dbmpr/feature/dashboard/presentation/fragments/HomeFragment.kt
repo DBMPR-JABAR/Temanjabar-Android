@@ -2,7 +2,6 @@ package id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments
 
 import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.common.domain.entity.News
-import id.go.jabarprov.dbmpr.common.widget_utils.HorizontalMarginItemDecoration
+import id.go.jabarprov.dbmpr.common.presentation.widget_utils.HorizontalMarginItemDecoration
 import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
