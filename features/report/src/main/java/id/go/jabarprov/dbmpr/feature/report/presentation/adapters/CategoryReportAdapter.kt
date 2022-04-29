@@ -9,7 +9,11 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.diff_utils.CategoryRepo
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
 import id.go.jabarprov.dbmpr.utils.extensions.setSelectedRecursive
 
-class CategoryReportAdapter(onDataEmpty: () -> Unit, onDataExist: () -> Unit) :
+class CategoryReportAdapter(
+    private val onCategorySelected: ((CategoryReportModel) -> Unit)?,
+    onDataEmpty: () -> Unit,
+    onDataExist: () -> Unit,
+) :
     DataStateListAdapter<CategoryReportModel, CategoryReportAdapter.CategoryReportItemViewHolder>(
         CategoryReportModelDiffUtils(),
         onDataEmpty,
@@ -30,14 +34,20 @@ class CategoryReportAdapter(onDataEmpty: () -> Unit, onDataExist: () -> Unit) :
 
     override fun onBindViewHolder(holder: CategoryReportItemViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it)
+            holder.bind(it, onCategorySelected)
         }
     }
 
     class CategoryReportItemViewHolder(private val binding: LayoutCategoryReportItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(categoryReportModel: CategoryReportModel) {
+        fun bind(
+            categoryReportModel: CategoryReportModel,
+            onCategorySelected: ((CategoryReportModel) -> Unit)?
+        ) {
             binding.apply {
+                root.setOnClickListener {
+                    onCategorySelected?.invoke(categoryReportModel)
+                }
                 if (categoryReportModel.isSelected) {
                     root.setSelectedRecursive(true)
                 } else {

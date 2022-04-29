@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.R
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentMakeReportBinding
 import id.go.jabarprov.dbmpr.common.R as CommonR
 
+@AndroidEntryPoint
 class MakeReportFragment : Fragment() {
 
     private lateinit var binding: FragmentMakeReportBinding
