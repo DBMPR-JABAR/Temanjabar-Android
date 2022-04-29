@@ -1,7 +1,6 @@
 package id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,10 +54,10 @@ class RegisterFragment : Fragment() {
     }
 
     private fun initUI() {
-        setEnableStepFirst(false)
-        setEnableStepSecond(false)
-        setEnableStepThird(false)
-        setEnableStepFourth(false)
+        setEnableFirstStep(false)
+        setEnableSecondStep(false)
+        setEnableThridStep(false)
+        setEnableFourthStep(false)
         binding.apply {
             linearLayoutNext.setOnClickListener {
                 registerViewModel.processAction(RegisterAction.GoToNextScreen)
@@ -88,7 +87,7 @@ class RegisterFragment : Fragment() {
             .commit()
     }
 
-    private fun setEnableStepFirst(isEnable: Boolean) {
+    private fun setEnableFirstStep(isEnable: Boolean) {
         binding.apply {
             textViewStepNama.isEnabled = isEnable
             stepBar1.isEnabled = isEnable
@@ -103,7 +102,14 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun setEnableStepSecond(isEnable: Boolean) {
+    private fun setSelectedFirstStep(value: Boolean) {
+        binding.apply {
+            textViewNo1.isSelected = value
+            textViewStepNama.isSelected = value
+        }
+    }
+
+    private fun setEnableSecondStep(isEnable: Boolean) {
         binding.apply {
             textViewStepEmail.isEnabled = isEnable
             stepBar2.isEnabled = isEnable
@@ -118,7 +124,14 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun setEnableStepThird(isEnable: Boolean) {
+    private fun setSelectedSecondStep(value: Boolean) {
+        binding.apply {
+            textViewNo2.isSelected = value
+            textViewStepEmail.isSelected = value
+        }
+    }
+
+    private fun setEnableThridStep(isEnable: Boolean) {
         binding.apply {
             textViewStepPassword.isEnabled = isEnable
             stepBar3.isEnabled = isEnable
@@ -133,7 +146,14 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun setEnableStepFourth(isEnable: Boolean) {
+    private fun setSelectedThirdStep(value: Boolean) {
+        binding.apply {
+            textViewNo3.isSelected = value
+            textViewStepPassword.isSelected = value
+        }
+    }
+
+    private fun setEnableFourthStep(isEnable: Boolean) {
         binding.apply {
             textViewStepAgreement.isEnabled = isEnable
 
@@ -144,6 +164,13 @@ class RegisterFragment : Fragment() {
                 textViewNo4.isVisible = false
                 imageViewChecklistStep4.isVisible = true
             }
+        }
+    }
+
+    private fun setSelectedFourthStep(value: Boolean) {
+        binding.apply {
+            textViewNo4.isSelected = value
+            textViewStepAgreement.isSelected = value
         }
     }
 
@@ -169,30 +196,48 @@ class RegisterFragment : Fragment() {
     private fun processScreenState(state: RegisterScreenState) {
         when (state) {
             RegisterScreenState.REGISTER_NAME -> {
-                setEnableStepFirst(false)
-                setEnableStepSecond(false)
-                setEnableStepThird(false)
-                setEnableStepFourth(false)
+                setEnableFirstStep(false)
+                setEnableSecondStep(false)
+                setEnableThridStep(false)
+                setEnableFourthStep(false)
+
+                setSelectedFirstStep(true)
+                setSelectedSecondStep(false)
+                setSelectedThirdStep(false)
+                setSelectedFourthStep(false)
+
                 navigateChildFragment(registerNameFragment)
                 binding.apply {
                     linearLayoutPrevious.isVisible = false
                 }
             }
             RegisterScreenState.REGISTER_EMAIL -> {
-                setEnableStepFirst(true)
-                setEnableStepSecond(false)
-                setEnableStepThird(false)
-                setEnableStepFourth(false)
+                setEnableFirstStep(true)
+                setEnableSecondStep(false)
+                setEnableThridStep(false)
+                setEnableFourthStep(false)
+
+                setSelectedFirstStep(false)
+                setSelectedSecondStep(true)
+                setSelectedThirdStep(false)
+                setSelectedFourthStep(false)
+
                 navigateChildFragment(registerEmailFragment)
                 binding.apply {
                     linearLayoutPrevious.isVisible = true
                 }
             }
             RegisterScreenState.REGISTER_PASSWORD -> {
-                setEnableStepFirst(true)
-                setEnableStepSecond(true)
-                setEnableStepThird(false)
-                setEnableStepFourth(false)
+                setEnableFirstStep(true)
+                setEnableSecondStep(true)
+                setEnableThridStep(false)
+                setEnableFourthStep(false)
+
+                setSelectedFirstStep(false)
+                setSelectedSecondStep(false)
+                setSelectedThirdStep(true)
+                setSelectedFourthStep(false)
+
                 navigateChildFragment(registerPasswordFragment)
                 binding.apply {
                     linearLayoutPrevious.isVisible = true
@@ -200,10 +245,16 @@ class RegisterFragment : Fragment() {
                 }
             }
             RegisterScreenState.REGISTER_AGREEMENT -> {
-                setEnableStepFirst(true)
-                setEnableStepSecond(true)
-                setEnableStepThird(true)
-                setEnableStepFourth(false)
+                setEnableFirstStep(true)
+                setEnableSecondStep(true)
+                setEnableThridStep(true)
+                setEnableFourthStep(false)
+
+                setSelectedFirstStep(false)
+                setSelectedSecondStep(false)
+                setSelectedThirdStep(false)
+                setSelectedFourthStep(true)
+
                 navigateChildFragment(
                     registerAgreementFragment
                 )

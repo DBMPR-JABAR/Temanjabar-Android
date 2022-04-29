@@ -35,6 +35,11 @@ class MakeReportFragment : Fragment() {
         setEnableReportPhotoVideoStep(false)
         setEnableReportDetailStep(false)
 
+        binding.apply {
+            imageViewCategory.isSelected = true
+            textViewStepCategory.isSelected = true
+        }
+
         childFragmentManager.beginTransaction()
             .add(R.id.frame_layout_fragment_container, categoryReportFragment)
             .commit()

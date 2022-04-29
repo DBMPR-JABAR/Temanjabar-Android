@@ -107,13 +107,13 @@
             android:id="@+id/image_view_category"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@drawable/bg_step"
+            android:background="@drawable/bg_circle_step"
             android:padding="8dp"
             android:src="@drawable/ic_menu"
             app:layout_constraintEnd_toStartOf="@id/guideline_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/color_tint_icon_step" />
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_category"
@@ -159,7 +159,7 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_2"
             app:layout_constraintStart_toEndOf="@id/guideline_1"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/color_tint_icon_step" />
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_photo"
@@ -205,7 +205,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline_2"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/color_tint_icon_step" />
+            app:tint="@color/color_tint_icon" />
 
         <TextView
             android:id="@+id/text_view_step_detail"
