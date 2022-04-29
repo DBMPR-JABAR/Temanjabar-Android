@@ -5,7 +5,8 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportMo
 
 data class MakeReportState(
     val currentList: List<CategoryReportModel> = LIST_CATEGORY_REPORT,
-    val selectedCategory: CategoryReportModel? = null
+    val selectedCategory: CategoryReportModel? = null,
+    val screenState: MakeReportScreenState = MakeReportScreenState.CATEGORY
 ) : State {
     companion object {
         val LIST_CATEGORY_REPORT = listOf(
@@ -21,4 +22,10 @@ data class MakeReportState(
             ),
         )
     }
+}
+
+enum class MakeReportScreenState {
+    CATEGORY,
+    PHOTO_VIDEO,
+    DETAIL
 }

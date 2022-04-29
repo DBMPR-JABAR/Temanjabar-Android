@@ -6,4 +6,6 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportMo
 sealed class MakeReportAction : Action {
     data class UpdateSelectedCategory(val category: CategoryReportModel) : MakeReportAction()
     data class UpdateSearchKeyword(val keyword: String) : MakeReportAction()
+    object GoToNextScreen : MakeReportAction()
+    object GoToPreviousScreen : MakeReportAction()
 }

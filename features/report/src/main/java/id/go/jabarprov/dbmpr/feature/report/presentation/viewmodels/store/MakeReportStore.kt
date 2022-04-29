@@ -12,6 +12,8 @@ class MakeReportStore @Inject constructor() :
             when (action) {
                 is MakeReportAction.UpdateSearchKeyword -> updateListBySearchKeyword(action.keyword)
                 is MakeReportAction.UpdateSelectedCategory -> updateSelectedCategory(action.category)
+                MakeReportAction.GoToNextScreen -> goToNextScreen()
+                MakeReportAction.GoToPreviousScreen -> goToPreviousScreen()
             }
         }
     }
@@ -42,5 +44,29 @@ class MakeReportStore @Inject constructor() :
                 it.copy(isSelected = it.id == category.id)
             }
         )
+    }
+
+    private fun goToNextScreen() {
+        when (state.value.screenState) {
+            MakeReportScreenState.CATEGORY -> {
+                state.value = state.value.copy(screenState = MakeReportScreenState.PHOTO_VIDEO)
+            }
+            MakeReportScreenState.PHOTO_VIDEO -> {
+                state.value = state.value.copy(screenState = MakeReportScreenState.DETAIL)
+            }
+            else -> Unit
+        }
+    }
+
+    private fun goToPreviousScreen() {
+        when (state.value.screenState) {
+            MakeReportScreenState.DETAIL -> {
+                state.value = state.value.copy(screenState = MakeReportScreenState.PHOTO_VIDEO)
+            }
+            MakeReportScreenState.PHOTO_VIDEO -> {
+                state.value = state.value.copy(screenState = MakeReportScreenState.CATEGORY)
+            }
+            else -> Unit
+        }
     }
 }
