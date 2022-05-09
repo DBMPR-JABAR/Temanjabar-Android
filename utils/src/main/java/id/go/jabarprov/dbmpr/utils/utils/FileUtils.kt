@@ -25,7 +25,21 @@ abstract class FileUtils {
             if (!cachePictureDir.exists()) {
                 cachePictureDir.mkdirs()
             }
-            return File(cachePictureDir, "$fileName.jpeg")
+            return File(cachePictureDir, "PIC_$fileName.jpeg")
+        }
+
+        fun createVideoCacheFile(
+            context: Context,
+            fileName: String = CalendarUtils.formatCalendarToString(
+                Calendar.getInstance(),
+                pattern = "yyyy_MM_dd_HH_mm_ss"
+            )
+        ): File {
+            val cacheVideoDir = File(context.cacheDir, "Videos")
+            if (!cacheVideoDir.exists()) {
+                cacheVideoDir.mkdirs()
+            }
+            return File(cacheVideoDir, "VID_$fileName.mp4")
         }
     }
 }

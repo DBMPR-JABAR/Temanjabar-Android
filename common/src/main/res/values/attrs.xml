@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UploadFileView">
+        <attr name="uploadType" format="enum">
+            <enum name="file" value="1" />
+            <enum name="picture" value="2" />
+            <enum name="video" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

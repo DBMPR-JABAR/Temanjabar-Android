@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.common.presentation.widget
+package id.go.jabarprov.dbmpr.common.presentation.widgets
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter

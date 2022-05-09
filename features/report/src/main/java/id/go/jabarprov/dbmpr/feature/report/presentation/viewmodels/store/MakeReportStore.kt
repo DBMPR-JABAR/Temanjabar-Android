@@ -1,7 +1,9 @@
 package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store
 
+import android.net.Uri
 import id.go.jabarprov.dbmpr.core_main.store.Store
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -12,8 +14,9 @@ class MakeReportStore @Inject constructor() :
             when (action) {
                 is MakeReportAction.UpdateSearchKeyword -> updateListBySearchKeyword(action.keyword)
                 is MakeReportAction.UpdateSelectedCategory -> updateSelectedCategory(action.category)
-                MakeReportAction.GoToNextScreen -> goToNextScreen()
-                MakeReportAction.GoToPreviousScreen -> goToPreviousScreen()
+                is MakeReportAction.GoToNextScreen -> goToNextScreen()
+                is MakeReportAction.GoToPreviousScreen -> goToPreviousScreen()
+                is MakeReportAction.AddPhoto -> addPhoto(action.uri)
             }
         }
     }
@@ -68,5 +71,10 @@ class MakeReportStore @Inject constructor() :
             }
             else -> Unit
         }
+    }
+
+    private fun addPhoto(photoUri: Uri) {
+        state.value =
+            state.value.copy(listPhoto = state.value.listPhoto + listOf(PhotoModel(photoUri)))
     }
 }

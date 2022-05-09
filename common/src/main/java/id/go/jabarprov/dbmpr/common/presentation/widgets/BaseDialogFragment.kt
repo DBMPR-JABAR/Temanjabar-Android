@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.common.presentation.widget
+package id.go.jabarprov.dbmpr.common.presentation.widgets
 
 import androidx.fragment.app.DialogFragment
 import id.go.jabarprov.dbmpr.common.R

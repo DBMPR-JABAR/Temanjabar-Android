@@ -21,7 +21,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import id.go.jabarprov.dbmpr.common.presentation.widget.LoadingDialog
+import id.go.jabarprov.dbmpr.common.presentation.widgets.LoadingDialog
 import id.go.jabarprov.dbmpr.features.webview.databinding.FragmentWebViewBinding
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import id.go.jabarprov.dbmpr.utils.utils.FileUtils

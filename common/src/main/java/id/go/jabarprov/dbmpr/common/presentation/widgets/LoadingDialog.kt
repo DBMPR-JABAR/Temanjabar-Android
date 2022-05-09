@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.common.presentation.widget
+package id.go.jabarprov.dbmpr.common.presentation.widgets
 
 import android.os.Bundle
 import android.view.LayoutInflater
