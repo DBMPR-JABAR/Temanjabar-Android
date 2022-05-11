@@ -21,6 +21,7 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.PhotoAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.list_photo.ListPhotoViewModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.list_photo.store.ListPhotoAction
+import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import kotlinx.coroutines.launch
 import id.go.jabarprov.dbmpr.common.R as CR
 
@@ -37,7 +38,26 @@ class ListPhotoFragment : Fragment() {
 
     private val initialListPhoto by lazy { listPhotoFragmentArgs.listPhoto }
 
-    private val photoAdapter by lazy { PhotoAdapter(3, 16) }
+    private val photoAdapter by lazy {
+        PhotoAdapter(3, 16).apply {
+            setOnClickListener {
+                if (listPhotoViewModel.uiState.value.isModeDeleteImage) {
+                    val action = if (it.isSelected) {
+                        ListPhotoAction.UnselectPhoto(it)
+                    } else {
+                        ListPhotoAction.SelectPhoto(it)
+                    }
+                    listPhotoViewModel.processAction(action)
+                } else {
+                    showToast("SHOW IMAGE")
+                }
+            }
+            setOnLongClickListener {
+                listPhotoViewModel.processAction(ListPhotoAction.SelectPhoto(it))
+                listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(true))
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,11 +97,15 @@ class ListPhotoFragment : Fragment() {
                     }
                 })
             }
+
+            buttonCancel.setOnClickListener {
+                listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
+            }
         }
     }
 
     private fun initListPhoto() {
-        listPhotoViewModel.processAction(ListPhotoAction.UpdateListPhoto(initialListPhoto.toList()))
+        listPhotoViewModel.processAction(ListPhotoAction.InitializePhoto(initialListPhoto.toList()))
     }
 
     private fun observeListPhotoState() {
@@ -114,6 +138,9 @@ class ListPhotoFragment : Fragment() {
     }
 
     private fun updateListPhoto(listPhoto: List<PhotoModel>) {
+        if (listPhoto.none { it.isSelected }) {
+            listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
+        }
         photoAdapter.submitList(listPhoto)
     }
 

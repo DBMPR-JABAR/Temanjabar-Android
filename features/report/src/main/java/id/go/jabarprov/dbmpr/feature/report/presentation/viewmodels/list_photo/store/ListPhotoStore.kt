@@ -11,7 +11,9 @@ class ListPhotoStore @Inject constructor() :
         coroutineScope.launch {
             when (action) {
                 is ListPhotoAction.SetModeDeleteImage -> setModeDeleteImage(action.value)
-                is ListPhotoAction.UpdateListPhoto -> updateListPhoto(action.listPhoto)
+                is ListPhotoAction.InitializePhoto -> initListPhoto(action.listPhoto)
+                is ListPhotoAction.SelectPhoto -> selectPhoto(action.photoModel)
+                is ListPhotoAction.UnselectPhoto -> unselectPhoto(action.photoModel)
             }
         }
     }
@@ -20,7 +22,33 @@ class ListPhotoStore @Inject constructor() :
         state.value = state.value.copy(isModeDeleteImage = value)
     }
 
+    private fun initListPhoto(listPhoto: List<PhotoModel>) {
+        state.value = state.value.copy(initialListPhoto = listPhoto, currentListPhoto = listPhoto)
+    }
+
     private fun updateListPhoto(listPhoto: List<PhotoModel>) {
         state.value = state.value.copy(currentListPhoto = listPhoto)
+    }
+
+    private fun selectPhoto(photoModel: PhotoModel) {
+        val newList = state.value.currentListPhoto.map {
+            if (photoModel.uri == it.uri) {
+                it.copy(isSelected = true)
+            } else {
+                it
+            }
+        }
+        updateListPhoto(newList)
+    }
+
+    private fun unselectPhoto(photoModel: PhotoModel) {
+        val newList = state.value.currentListPhoto.map {
+            if (photoModel.uri == it.uri) {
+                it.copy(isSelected = false)
+            } else {
+                it
+            }
+        }
+        updateListPhoto(newList)
     }
 }
