@@ -37,4 +37,14 @@
     </style>
     <!--  End Checkbox  -->
 
+    <!--  TextButton Negative  -->
+    <style name="Widget.TextButton.Negative" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.TextButton.Negative</item>
+    </style>
+
+    <style name="ThemeOverlay.TextButton.Negative" parent="">
+        <item name="colorPrimary">?colorError</item>
+    </style>
+    <!--  End TextButton Negative  -->
+
 </resources>

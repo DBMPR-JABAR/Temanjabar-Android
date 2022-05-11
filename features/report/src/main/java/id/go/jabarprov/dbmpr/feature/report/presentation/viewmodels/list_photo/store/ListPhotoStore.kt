@@ -14,11 +14,25 @@ class ListPhotoStore @Inject constructor() :
                 is ListPhotoAction.InitializePhoto -> initListPhoto(action.listPhoto)
                 is ListPhotoAction.SelectPhoto -> selectPhoto(action.photoModel)
                 is ListPhotoAction.UnselectPhoto -> unselectPhoto(action.photoModel)
+                ListPhotoAction.DeleteSelectedImage -> deleteSelectedPhoto()
             }
         }
     }
 
+    private fun resetSelectedImage() {
+        if (state.value.totalSelectedImage > 0) {
+            val newList = state.value.currentListPhoto.map {
+                it.copy(isSelected = false)
+            }
+            state.value = state.value.copy(totalSelectedImage = 0)
+            updateListPhoto(newList)
+        }
+    }
+
     private fun setModeDeleteImage(value: Boolean) {
+        if (!value) {
+            resetSelectedImage()
+        }
         state.value = state.value.copy(isModeDeleteImage = value)
     }
 
@@ -38,6 +52,7 @@ class ListPhotoStore @Inject constructor() :
                 it
             }
         }
+        state.value = state.value.copy(totalSelectedImage = state.value.totalSelectedImage + 1)
         updateListPhoto(newList)
     }
 
@@ -49,6 +64,15 @@ class ListPhotoStore @Inject constructor() :
                 it
             }
         }
+        state.value = state.value.copy(totalSelectedImage = state.value.totalSelectedImage - 1)
         updateListPhoto(newList)
+    }
+
+    private fun deleteSelectedPhoto() {
+        val newList = state.value.currentListPhoto.filter {
+            !it.isSelected
+        }
+        updateListPhoto(newList)
+        setModeDeleteImage(false)
     }
 }

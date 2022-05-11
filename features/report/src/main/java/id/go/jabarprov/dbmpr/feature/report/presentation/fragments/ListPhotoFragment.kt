@@ -16,6 +16,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import id.go.jabarprov.dbmpr.common.presentation.widgets.ConfirmationDialog
+import id.go.jabarprov.dbmpr.feature.report.R
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentListPhotoBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.PhotoAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
@@ -57,6 +59,17 @@ class ListPhotoFragment : Fragment() {
                 listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(true))
             }
         }
+    }
+
+    private val confirmationDialog by lazy {
+        ConfirmationDialog
+            .Builder()
+            .setTitle(getString(R.string.hapus_foto))
+            .setDescription(getString(R.string.hapus_foto_deskripsi))
+            .setOnPositiveButtonClickListener {
+                listPhotoViewModel.processAction(ListPhotoAction.DeleteSelectedImage)
+            }
+            .build()
     }
 
     override fun onCreateView(
@@ -101,6 +114,10 @@ class ListPhotoFragment : Fragment() {
             buttonCancel.setOnClickListener {
                 listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
             }
+
+            buttonDelete.setOnClickListener {
+                confirmationDialog.show(childFragmentManager)
+            }
         }
     }
 
@@ -141,11 +158,13 @@ class ListPhotoFragment : Fragment() {
         if (listPhoto.none { it.isSelected }) {
             listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
         }
+        binding.textViewTotalImage.text = "${listPhoto.filter { it.isSelected }.size} Terpilih"
         photoAdapter.submitList(listPhoto)
     }
 
     override fun onDestroy() {
-        ContextCompat.getColor(requireContext(), android.R.color.white)
+        requireActivity().window?.statusBarColor =
+            ContextCompat.getColor(requireContext(), android.R.color.white)
         super.onDestroy()
     }
 }
