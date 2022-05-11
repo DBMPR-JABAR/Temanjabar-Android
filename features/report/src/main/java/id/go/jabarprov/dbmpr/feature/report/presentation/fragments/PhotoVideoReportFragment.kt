@@ -2,10 +2,8 @@ package id.go.jabarprov.dbmpr.feature.report.presentation.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,22 +15,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentPhotoVideoReportBinding
-import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.PhotoAdapter
+import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.ThumbnailPhotoAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
 import id.go.jabarprov.dbmpr.utils.contract.CaptureLimitedVideo
 import id.go.jabarprov.dbmpr.utils.extensions.getUri
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import id.go.jabarprov.dbmpr.utils.utils.FileUtils.Companion.createPictureCacheFile
 import id.go.jabarprov.dbmpr.utils.utils.FileUtils.Companion.createVideoCacheFile
 import kotlinx.coroutines.launch
-
-private const val TAG = "PhotoVideoReportFragmen"
 
 @AndroidEntryPoint
 class PhotoVideoReportFragment : Fragment() {
@@ -82,7 +79,14 @@ class PhotoVideoReportFragment : Fragment() {
 
     private lateinit var videoFileUri: Uri
 
-    private val photoAdapter by lazy { PhotoAdapter() }
+    private val thumbnailPhotoAdapter by lazy {
+        ThumbnailPhotoAdapter {
+            val action = MakeReportFragmentDirections.actionReportFragmentToListPhotoFragment(
+                makeReportViewModel.uiState.value.currentListPhoto.toTypedArray()
+            )
+            findNavController().navigate(action)
+        }
+    }
 
     private lateinit var binding: FragmentPhotoVideoReportBinding
 
@@ -102,9 +106,8 @@ class PhotoVideoReportFragment : Fragment() {
 
     private fun initUI() {
         binding.apply {
-
             recyclerViewPhoto.apply {
-                adapter = photoAdapter
+                adapter = thumbnailPhotoAdapter
                 layoutManager = object : GridLayoutManager(requireContext(), 5) {
                     override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
                         lp?.width = (width - (20 * 4)) / spanCount
@@ -161,7 +164,7 @@ class PhotoVideoReportFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 makeReportViewModel.uiState.collect {
-                    processListPhoto(it.listPhoto)
+                    processListPhoto(it.currentListPhoto)
                 }
             }
         }
@@ -180,7 +183,7 @@ class PhotoVideoReportFragment : Fragment() {
             }
         }
 
-        photoAdapter.submitList(listPhoto)
+        thumbnailPhotoAdapter.submitList(listPhoto)
     }
 
 

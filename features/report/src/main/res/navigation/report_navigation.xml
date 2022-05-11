@@ -9,5 +9,20 @@
         android:id="@+id/reportFragment"
         android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.MakeReportFragment"
         android:label="fragment_laporan"
-        tools:layout="@layout/fragment_make_report" />
+        tools:layout="@layout/fragment_make_report">
+        <action
+            android:id="@+id/action_reportFragment_to_listPhotoFragment"
+            app:destination="@id/listPhotoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listPhotoFragment"
+        android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.ListPhotoFragment"
+        android:label="fragment_list_photo"
+        tools:layout="@layout/fragment_list_photo">
+        <argument
+            android:name="listPhoto"
+            app:argType="id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel[]" />
+    </fragment>
+
 </navigation>

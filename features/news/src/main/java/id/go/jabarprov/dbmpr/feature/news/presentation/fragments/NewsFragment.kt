@@ -126,8 +126,8 @@ class NewsFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
         WindowCompat.setDecorFitsSystemWindows(activity?.window!!, true)
+        super.onDestroy()
     }
 }

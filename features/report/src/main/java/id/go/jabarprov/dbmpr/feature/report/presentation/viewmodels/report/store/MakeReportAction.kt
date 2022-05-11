@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store
+package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store
 
 import android.net.Uri
 import id.go.jabarprov.dbmpr.core_main.store.Action

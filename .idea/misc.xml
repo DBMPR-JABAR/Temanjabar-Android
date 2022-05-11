@@ -27,6 +27,7 @@
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_placeholder_text_body.xml" value="0.34601449275362317" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_placeholder_text_subtitle.xml" value="0.34601449275362317" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_placeholder_text_title.xml" value="0.34601449275362317" />
+        <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_thumbnail_medium.xml" value="0.32222222222222224" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_thumbnail_small.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/layout_upload_file.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/layout/text_view_mandatory.xml" value="1.25" />
@@ -63,6 +64,7 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_category_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_detail_report.xml" value="0.30972222222222223" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_laporan.xml" value="0.32222222222222224" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_list_photo.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_make_report.xml" value="0.32222222222222224" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_photo_video_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_report.xml" value="0.32222222222222224" />

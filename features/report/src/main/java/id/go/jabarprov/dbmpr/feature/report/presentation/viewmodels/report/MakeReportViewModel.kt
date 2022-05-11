@@ -1,12 +1,12 @@
-package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels
+package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.go.jabarprov.dbmpr.core_main.store.WithStore
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportAction
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportState
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportStore
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportState
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportStore
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

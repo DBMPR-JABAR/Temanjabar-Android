@@ -1,15 +1,14 @@
-package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store
+package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store
 
-import android.net.Uri
 import id.go.jabarprov.dbmpr.core_main.store.State
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
 
 data class MakeReportState(
-    val currentList: List<CategoryReportModel> = LIST_CATEGORY_REPORT,
+    val currentListCategoryReport: List<CategoryReportModel> = LIST_CATEGORY_REPORT,
     val selectedCategory: CategoryReportModel? = null,
     val screenState: MakeReportScreenState = MakeReportScreenState.CATEGORY,
-    val listPhoto: List<PhotoModel> = listOf()
+    val currentListPhoto: List<PhotoModel> = listOf()
 ) : State {
     companion object {
         val LIST_CATEGORY_REPORT = listOf(

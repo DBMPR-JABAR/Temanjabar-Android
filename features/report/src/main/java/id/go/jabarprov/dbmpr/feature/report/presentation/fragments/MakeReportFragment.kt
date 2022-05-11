@@ -13,9 +13,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.R
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentMakeReportBinding
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportAction
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportScreenState
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportScreenState
 import kotlinx.coroutines.launch
 import id.go.jabarprov.dbmpr.common.R as CommonR
 

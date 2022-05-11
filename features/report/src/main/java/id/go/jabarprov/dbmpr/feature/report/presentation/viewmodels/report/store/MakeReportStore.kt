@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store
+package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store
 
 import android.net.Uri
 import id.go.jabarprov.dbmpr.core_main.store.Store
@@ -23,7 +23,7 @@ class MakeReportStore @Inject constructor() :
 
     private fun updateListBySearchKeyword(keyword: String) {
         state.value = state.value.copy(
-            currentList = if (keyword.isEmpty()) {
+            currentListCategoryReport = if (keyword.isEmpty()) {
                 MakeReportState.LIST_CATEGORY_REPORT
                     .map {
                         it.copy(isSelected = it.id == state.value.selectedCategory?.id)
@@ -43,7 +43,7 @@ class MakeReportStore @Inject constructor() :
     private fun updateSelectedCategory(category: CategoryReportModel) {
         state.value = state.value.copy(
             selectedCategory = category,
-            currentList = state.value.currentList.map {
+            currentListCategoryReport = state.value.currentListCategoryReport.map {
                 it.copy(isSelected = it.id == category.id)
             }
         )
@@ -75,6 +75,6 @@ class MakeReportStore @Inject constructor() :
 
     private fun addPhoto(photoUri: Uri) {
         state.value =
-            state.value.copy(listPhoto = state.value.listPhoto + listOf(PhotoModel(photoUri)))
+            state.value.copy(currentListPhoto = state.value.currentListPhoto + listOf(PhotoModel(photoUri)))
     }
 }

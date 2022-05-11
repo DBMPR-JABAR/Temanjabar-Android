@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentCategoryReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.CategoryReportAdapter
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -93,12 +93,7 @@ class CategoryReportFragment : Fragment() {
     private fun setUpRecyclerView() {
         binding.recyclerViewCategory.apply {
             adapter = categoryAdapter
-            layoutManager = object : GridLayoutManager(requireContext(), 4) {
-                override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                    lp?.width = width / spanCount
-                    return true
-                }
-            }
+            layoutManager = GridLayoutManager(requireContext(), 4)
             setHasFixedSize(true)
         }
     }
@@ -107,7 +102,7 @@ class CategoryReportFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 makeReportViewModel.uiState.collect {
-                    categoryAdapter.submitList(it.currentList)
+                    categoryAdapter.submitList(it.currentListCategoryReport)
                 }
             }
         }
