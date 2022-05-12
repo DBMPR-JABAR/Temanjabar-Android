@@ -91,6 +91,7 @@ object Libs {
     const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicator}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
     const val coil = "io.coil-kt:coil:${Versions.coil}"
+    const val coilVideo = "io.coil-kt:coil-video:${Versions.coil}"
 
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"

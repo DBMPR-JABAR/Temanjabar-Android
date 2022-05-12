@@ -4,10 +4,10 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
@@ -41,42 +41,13 @@ class PhotoVideoReportFragment : Fragment() {
         requireParentFragment()
     })
 
-    private val takePictureLauncher =
-        registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
-            if (isSuccess) {
-                makeReportViewModel.processAction(MakeReportAction.AddPhoto(imageFileUri))
-            }
-        }
+    private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
 
-    private val takeVideoLauncher = registerForActivityResult(CaptureLimitedVideo(15)) {
+    private lateinit var takeVideoLauncher: ActivityResultLauncher<Uri>
 
-    }
+    private lateinit var takePicturePermissionLauncher: ActivityResultLauncher<String>
 
-    private val takePicturePermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                takePicture()
-            } else {
-                showToast("Akses Kamera Ditolak")
-            }
-        }
-
-    private val takeVideoPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-            when {
-                it[Manifest.permission.CAMERA] == true && it[Manifest.permission.RECORD_AUDIO] == true -> {
-                    takeVideo()
-                }
-
-                it[Manifest.permission.CAMERA] == false -> {
-                    showToast("Akses Kamera Ditolak")
-                }
-
-                it[Manifest.permission.RECORD_AUDIO] == false -> {
-                    showToast("Akses Audio Ditolak")
-                }
-            }
-        }
+    private lateinit var takeVideoPermissionLauncher: ActivityResultLauncher<Array<String>>
 
     private lateinit var imageFileUri: Uri
 
@@ -92,6 +63,50 @@ class PhotoVideoReportFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentPhotoVideoReportBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        takePictureLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+                if (isSuccess) {
+                    makeReportViewModel.processAction(MakeReportAction.AddPhoto(imageFileUri))
+                }
+            }
+
+        takeVideoLauncher = registerForActivityResult(CaptureLimitedVideo(15)) { isSuccess ->
+            if (isSuccess) {
+                lifecycleScope.launchWhenResumed {
+                    binding.uploadFileViewVideo.loadVideo(videoFileUri)
+                }
+            }
+        }
+
+        takePicturePermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if (isGranted) {
+                    takePicture()
+                } else {
+                    showToast("Akses Kamera Ditolak")
+                }
+            }
+
+        takeVideoPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+                when {
+                    it[Manifest.permission.CAMERA] == true && it[Manifest.permission.RECORD_AUDIO] == true -> {
+                        takeVideo()
+                    }
+
+                    it[Manifest.permission.CAMERA] == false -> {
+                        showToast("Akses Kamera Ditolak")
+                    }
+
+                    it[Manifest.permission.RECORD_AUDIO] == false -> {
+                        showToast("Akses Audio Ditolak")
+                    }
+                }
+            }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
