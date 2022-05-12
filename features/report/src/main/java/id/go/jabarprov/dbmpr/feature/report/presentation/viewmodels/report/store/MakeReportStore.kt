@@ -12,16 +12,17 @@ class MakeReportStore @Inject constructor() :
     override fun reduce(action: MakeReportAction) {
         coroutineScope.launch {
             when (action) {
-                is MakeReportAction.UpdateSearchKeyword -> updateListBySearchKeyword(action.keyword)
+                is MakeReportAction.UpdateSearchKeyword -> updateListCategoryBySearchKeyword(action.keyword)
                 is MakeReportAction.UpdateSelectedCategory -> updateSelectedCategory(action.category)
                 is MakeReportAction.GoToNextScreen -> goToNextScreen()
                 is MakeReportAction.GoToPreviousScreen -> goToPreviousScreen()
                 is MakeReportAction.AddPhoto -> addPhoto(action.uri)
+                is MakeReportAction.UpdateListPhoto -> updateListPhoto(action.listPhotoModel)
             }
         }
     }
 
-    private fun updateListBySearchKeyword(keyword: String) {
+    private fun updateListCategoryBySearchKeyword(keyword: String) {
         state.value = state.value.copy(
             currentListCategoryReport = if (keyword.isEmpty()) {
                 MakeReportState.LIST_CATEGORY_REPORT
@@ -75,6 +76,16 @@ class MakeReportStore @Inject constructor() :
 
     private fun addPhoto(photoUri: Uri) {
         state.value =
-            state.value.copy(currentListPhoto = state.value.currentListPhoto + listOf(PhotoModel(photoUri)))
+            state.value.copy(
+                currentListPhoto = state.value.currentListPhoto + listOf(
+                    PhotoModel(
+                        photoUri
+                    )
+                )
+            )
+    }
+
+    private fun updateListPhoto(listPhotoModel: List<PhotoModel>) {
+        state.value = state.value.copy(currentListPhoto = listPhotoModel)
     }
 }

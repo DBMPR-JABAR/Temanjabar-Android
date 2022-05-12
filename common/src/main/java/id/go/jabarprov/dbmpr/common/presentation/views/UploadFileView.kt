@@ -2,7 +2,6 @@ package id.go.jabarprov.dbmpr.common.presentation.views
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
@@ -37,7 +36,7 @@ class UploadFileView(context: Context, attrs: AttributeSet? = null) :
         elevation = 0f
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.layout_upload_file, this, true)
+        val view = inflater.inflate(R.layout.layout_upload_file_view, this, true)
 
         mImageView = view.findViewById(R.id.image_view_upload)
         mImageViewIcon = view.findViewById(R.id.image_view_icon_upload)

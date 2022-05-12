@@ -11,7 +11,7 @@ class ListPhotoStore @Inject constructor() :
         coroutineScope.launch {
             when (action) {
                 is ListPhotoAction.SetModeDeleteImage -> setModeDeleteImage(action.value)
-                is ListPhotoAction.InitializePhoto -> initListPhoto(action.listPhoto)
+                is ListPhotoAction.InitializePhoto -> initListPhoto(action.listPhotoModel)
                 is ListPhotoAction.SelectPhoto -> selectPhoto(action.photoModel)
                 is ListPhotoAction.UnselectPhoto -> unselectPhoto(action.photoModel)
                 ListPhotoAction.DeleteSelectedImage -> deleteSelectedPhoto()

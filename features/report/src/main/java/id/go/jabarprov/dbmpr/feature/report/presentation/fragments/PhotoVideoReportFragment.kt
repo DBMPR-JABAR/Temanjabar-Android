@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,8 @@ import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import id.go.jabarprov.dbmpr.utils.utils.FileUtils.Companion.createPictureCacheFile
 import id.go.jabarprov.dbmpr.utils.utils.FileUtils.Companion.createVideoCacheFile
 import kotlinx.coroutines.launch
+
+private const val TAG = "PhotoVideoReportFragmen"
 
 @AndroidEntryPoint
 class PhotoVideoReportFragment : Fragment() {
@@ -102,6 +105,7 @@ class PhotoVideoReportFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initUI()
         observeMakeReportState()
+        onResultListPhotoFragment()
     }
 
     private fun initUI() {
@@ -159,6 +163,13 @@ class PhotoVideoReportFragment : Fragment() {
         requireContext(),
         Manifest.permission.RECORD_AUDIO
     ) == PackageManager.PERMISSION_GRANTED
+
+    private fun onResultListPhotoFragment() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<List<PhotoModel>>("NEW_LIST_PHOTO")
+            ?.observe(viewLifecycleOwner) {
+                makeReportViewModel.processAction(MakeReportAction.UpdateListPhoto(it))
+            }
+    }
 
     private fun observeMakeReportState() {
         viewLifecycleOwner.lifecycleScope.launch {

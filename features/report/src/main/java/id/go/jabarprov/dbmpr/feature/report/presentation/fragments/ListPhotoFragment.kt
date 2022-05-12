@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -111,6 +112,10 @@ class ListPhotoFragment : Fragment() {
                 })
             }
 
+            buttonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
             buttonCancel.setOnClickListener {
                 listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
             }
@@ -155,16 +160,36 @@ class ListPhotoFragment : Fragment() {
     }
 
     private fun updateListPhoto(listPhoto: List<PhotoModel>) {
-        if (listPhoto.none { it.isSelected }) {
-            listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
+        if (listPhoto.isEmpty()) {
+            binding.apply {
+                recyclerViewPhoto.isVisible = false
+                emptyStateView.isVisible = true
+            }
+        } else {
+            if (listPhoto.none { it.isSelected }) {
+                listPhotoViewModel.processAction(ListPhotoAction.SetModeDeleteImage(false))
+            }
+            binding.apply {
+                recyclerViewPhoto.isVisible = true
+                emptyStateView.isVisible = false
+                textViewTotalImage.text = "${listPhoto.filter { it.isSelected }.size} Terpilih"
+            }
         }
-        binding.textViewTotalImage.text = "${listPhoto.filter { it.isSelected }.size} Terpilih"
+        returnListPhoto()
         photoAdapter.submitList(listPhoto)
     }
 
     override fun onDestroy() {
+        returnListPhoto()
         requireActivity().window?.statusBarColor =
             ContextCompat.getColor(requireContext(), android.R.color.white)
         super.onDestroy()
+    }
+
+    private fun returnListPhoto() {
+        findNavController().previousBackStackEntry?.savedStateHandle?.set<List<PhotoModel>>(
+            "NEW_LIST_PHOTO",
+            listPhotoViewModel.uiState.value.currentListPhoto
+        )
     }
 }

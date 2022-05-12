@@ -7,4 +7,8 @@
             <enum name="video" value="3" />
         </attr>
     </declare-styleable>
+    <declare-styleable name="EmptyStateView">
+        <attr name="title" format="string" />
+        <attr name="description" format="string" />
+    </declare-styleable>
 </resources>

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraint_layout_empty"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="48dp"
-    android:paddingBottom="48dp">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/image_view_empty"
@@ -25,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/informasi_tidak_ditemukan"
+        android:text="Informasi Tidak Ditemukan"
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@id/text_view_desc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +38,11 @@
         android:layout_marginEnd="56dp"
         android:gravity="center"
         android:lineSpacingMultiplier="1.1"
-        android:text="@string/informasi_tidak_ditemukan_description"
+        android:text="Mohon maaf, sepertinya kami tidak memiliki informasi yang Anda cari."
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</merge>
