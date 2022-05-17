@@ -14,4 +14,7 @@ sealed class MakeReportAction : Action {
     data class AddVideo(val uri: Uri) : MakeReportAction()
     object ClearVideo : MakeReportAction()
     data class UpdateListPhoto(val listPhotoModel: List<PhotoModel>) : MakeReportAction()
+    data class UpdateDescription(val description: String?) : MakeReportAction()
+    data class UpdateLocation(val location: String?) : MakeReportAction()
+    data class UpdateExplanation(val explanation: String?) : MakeReportAction()
 }

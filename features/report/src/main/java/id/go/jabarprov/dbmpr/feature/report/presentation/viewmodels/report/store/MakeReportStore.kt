@@ -21,6 +21,9 @@ class MakeReportStore @Inject constructor() :
                 is MakeReportAction.UpdateListPhoto -> updateListPhoto(action.listPhotoModel)
                 is MakeReportAction.AddVideo -> addVideo(action.uri)
                 MakeReportAction.ClearVideo -> clearVideo()
+                is MakeReportAction.UpdateDescription -> updateDescription(action.description)
+                is MakeReportAction.UpdateExplanation -> updateExplanation(action.explanation)
+                is MakeReportAction.UpdateLocation -> updateLocation(action.location)
             }
         }
     }
@@ -102,5 +105,30 @@ class MakeReportStore @Inject constructor() :
 
     private fun updateListPhoto(listPhotoModel: List<PhotoModel>) {
         state.value = state.value.copy(currentListPhoto = listPhotoModel)
+    }
+
+    private fun updateDescription(description: String?) {
+        if (description.isNullOrEmpty()) {
+            state.value =
+                state.value.copy(descriptionErrorMessage = "Deskripsi laporan tidak boleh kosong!")
+        } else {
+            state.value = state.value.copy(descriptionErrorMessage = null)
+        }
+        state.value = state.value.copy(description = description)
+    }
+
+    private fun updateLocation(location: String?) {
+        if (location.isNullOrEmpty()) {
+            state.value =
+                state.value.copy(locationErrorMessage = "Lokasi laporan tidak boleh kosong!")
+        } else {
+            state.value =
+                state.value.copy(locationErrorMessage = null)
+        }
+        state.value = state.value.copy(location = location)
+    }
+
+    private fun updateExplanation(explanation: String?) {
+        state.value = state.value.copy(explanation = explanation)
     }
 }

@@ -10,7 +10,12 @@ data class MakeReportState(
     val selectedCategory: CategoryReportModel? = null,
     val screenState: MakeReportScreenState = MakeReportScreenState.CATEGORY,
     val currentListPhoto: List<PhotoModel> = listOf(),
-    val currentVideo: VideoModel? = null
+    val currentVideo: VideoModel? = null,
+    val description: String? = null,
+    val descriptionErrorMessage: String? = null,
+    val location: String? = null,
+    val locationErrorMessage: String? = null,
+    val explanation: String? = null
 ) : State {
     companion object {
         val LIST_CATEGORY_REPORT = listOf(

@@ -55,6 +55,9 @@ class VideoPlayerFragment : Fragment() {
             setShowRewindButton(false)
             setShowPreviousButton(false)
             setShowSubtitleButton(false)
+            setControllerOnFullScreenModeChangedListener {
+
+            }
             player = exoPlayer
         }
     }
