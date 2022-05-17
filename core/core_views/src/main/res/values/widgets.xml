@@ -37,14 +37,34 @@
     </style>
     <!--  End Checkbox  -->
 
-    <!--  TextButton Negative  -->
-    <style name="Widget.TextButton.Negative" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.TextButton.Negative</item>
+    <!--  TextButton Error  -->
+    <style name="Widget.TextButton.Error" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.TextButton.Error</item>
     </style>
 
-    <style name="ThemeOverlay.TextButton.Negative" parent="">
+    <style name="ThemeOverlay.TextButton.Error" parent="">
         <item name="colorPrimary">?colorError</item>
     </style>
-    <!--  End TextButton Negative  -->
+    <!--  End TextButton Error  -->
+
+    <!--  Button Info  -->
+    <style name="Widget.Button.Error" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Button.Error</item>
+    </style>
+
+    <style name="ThemeOverlay.Button.Error" parent="">
+        <item name="colorPrimary">?colorError</item>
+    </style>
+    <!--  End Button Info  -->
+
+    <!--  Button Info  -->
+    <style name="Widget.Button.Info" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Button.Info</item>
+    </style>
+
+    <style name="ThemeOverlay.Button.Info" parent="">
+        <item name="colorPrimary">?colorInfo</item>
+    </style>
+    <!--  End Button Info  -->
 
 </resources>

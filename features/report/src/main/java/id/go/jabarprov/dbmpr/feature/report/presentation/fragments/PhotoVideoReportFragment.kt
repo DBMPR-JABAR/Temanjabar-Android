@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentPhotoVideoReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.ThumbnailPhotoAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
 import id.go.jabarprov.dbmpr.utils.contract.CaptureLimitedVideo
@@ -75,9 +76,7 @@ class PhotoVideoReportFragment : Fragment() {
 
         takeVideoLauncher = registerForActivityResult(CaptureLimitedVideo(15)) { isSuccess ->
             if (isSuccess) {
-                lifecycleScope.launchWhenResumed {
-                    binding.uploadFileViewVideo.loadVideo(videoFileUri)
-                }
+                makeReportViewModel.processAction(MakeReportAction.AddVideo(videoFileUri))
             }
         }
 
@@ -144,16 +143,32 @@ class PhotoVideoReportFragment : Fragment() {
                 }
             }
 
+            buttonClearVideo.setOnClickListener {
+                makeReportViewModel.processAction(MakeReportAction.ClearVideo)
+            }
+
+            buttonChangeVideo.setOnClickListener {
+                takeVideo()
+            }
+
             uploadFileViewVideo.setOnClickListener {
-                if (isCameraPermissionGranted() && isAudioPermissionGranted()) {
-                    takeVideo()
-                } else {
-                    takeVideoPermissionLauncher.launch(
-                        arrayOf(
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.RECORD_AUDIO
+                if (makeReportViewModel.uiState.value.currentVideo != null) {
+                    val action =
+                        MakeReportFragmentDirections.actionReportFragmentToVideoPlayerFragment(
+                            makeReportViewModel.uiState.value.currentVideo?.uri.toString()
                         )
-                    )
+                    findNavController().navigate(action)
+                } else {
+                    if (isCameraPermissionGranted() && isAudioPermissionGranted()) {
+                        takeVideo()
+                    } else {
+                        takeVideoPermissionLauncher.launch(
+                            arrayOf(
+                                Manifest.permission.CAMERA,
+                                Manifest.permission.RECORD_AUDIO
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -191,6 +206,7 @@ class PhotoVideoReportFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 makeReportViewModel.uiState.collect {
                     processListPhoto(it.currentListPhoto)
+                    processVideo(it.currentVideo)
                 }
             }
         }
@@ -212,5 +228,16 @@ class PhotoVideoReportFragment : Fragment() {
         thumbnailPhotoAdapter.submitList(listPhoto)
     }
 
+    private fun processVideo(video: VideoModel?) {
+        binding.apply {
+            if (video != null) {
+                uploadFileViewVideo.loadVideo(video.uri)
+            } else {
+                uploadFileViewVideo.clear()
+            }
+            buttonChangeVideo.isVisible = video != null
+            buttonClearVideo.isVisible = video != null
+        }
+    }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Temanjabar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -29,7 +29,7 @@
         <item name="textAppearanceCaption">@style/TextAppearance.TemanJabar.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.TemanJabar.Overline</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
         <!-- Customize your theme here. -->
         <item name="colorError">@color/red_700</item>
         <item name="colorWarning">@color/yellow_700</item>
@@ -47,10 +47,6 @@
             @style/Widget.CircularProgressIndicator.Indeterminate
         </item>
         <item name="checkboxStyle">@style/Widget.CheckBox</item>
-    </style>
-
-    <style name="Theme.Temanjabar.Transparent.StatusBar" parent="Theme.Temanjabar">
-        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
 </resources>

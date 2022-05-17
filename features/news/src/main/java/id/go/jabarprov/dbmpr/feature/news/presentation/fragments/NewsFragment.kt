@@ -70,9 +70,9 @@ class NewsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity?.window?.statusBarColor =
+        requireActivity().window?.statusBarColor =
             ContextCompat.getColor(requireContext(), android.R.color.transparent)
-        WindowCompat.setDecorFitsSystemWindows(activity?.window!!, false)
+        WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())

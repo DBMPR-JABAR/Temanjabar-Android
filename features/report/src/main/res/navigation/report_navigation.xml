@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_reportFragment_to_listPhotoFragment"
             app:destination="@id/listPhotoFragment" />
+        <action
+            android:id="@+id/action_reportFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
     </fragment>
 
     <fragment
@@ -23,6 +26,13 @@
         <argument
             android:name="listPhoto"
             app:argType="id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.VideoPlayerFragment"
+        android:label="fragment_video_player"
+        tools:layout="@layout/fragment_video_player" >
+        <argument android:name="videoUri" />
     </fragment>
 
 </navigation>

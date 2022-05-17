@@ -3,12 +3,14 @@ package id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.stor
 import id.go.jabarprov.dbmpr.core_main.store.State
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
 
 data class MakeReportState(
     val currentListCategoryReport: List<CategoryReportModel> = LIST_CATEGORY_REPORT,
     val selectedCategory: CategoryReportModel? = null,
     val screenState: MakeReportScreenState = MakeReportScreenState.CATEGORY,
-    val currentListPhoto: List<PhotoModel> = listOf()
+    val currentListPhoto: List<PhotoModel> = listOf(),
+    val currentVideo: VideoModel? = null
 ) : State {
     companion object {
         val LIST_CATEGORY_REPORT = listOf(

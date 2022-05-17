@@ -21,6 +21,7 @@ dependencies {
     implementation Libs.swipeRefreshLayout
     implementation Libs.shimmer
     implementation Libs.coil
+    implementation Libs.exoPlayer
 
     implementation Libs.viewModelScope
     implementation Libs.lifecycleScope
@@ -30,7 +31,6 @@ dependencies {
     implementation Libs.gsonConverter
 
     implementation Libs.hiltAndroid
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libs.hiltCompiler
 
     // Integration with activities

@@ -11,8 +11,6 @@ import androidx.core.view.isVisible
 import coil.ImageLoader
 import coil.decode.VideoFrameDecoder
 import coil.load
-import coil.request.ImageRequest
-import coil.request.videoFrameMillis
 import com.google.android.material.card.MaterialCardView
 import id.go.jabarprov.dbmpr.common.R
 import id.go.jabarprov.dbmpr.core_views.R as CoreViewR
@@ -81,7 +79,7 @@ class UploadFileView(context: Context, attrs: AttributeSet? = null) :
         }
     }
 
-    suspend fun loadVideo(uri: Uri) {
+    fun loadVideo(uri: Uri) {
         mConstraintLayoutUpload.isVisible = false
         mConstraintLayoutImageView.isVisible = true
         mImageViewIconPlay.isVisible = true

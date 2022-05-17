@@ -3,4 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hapus_foto">Hapus Foto</string>
     <string name="hapus_foto_deskripsi">Apakah anda yakin untuk menghapus foto yang sudah terpilih?</string>
+    <string name="hapus_video">Hapus Video</string>
+    <string name="ubah_video">Ubah Video</string>
 </resources>

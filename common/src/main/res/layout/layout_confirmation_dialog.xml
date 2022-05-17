@@ -55,7 +55,7 @@
 
     <Button
         android:id="@+id/button_negative"
-        style="@style/Widget.TextButton.Negative"
+        style="@style/Widget.TextButton.Error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

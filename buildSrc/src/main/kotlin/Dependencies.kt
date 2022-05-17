@@ -40,6 +40,7 @@ object Versions {
     const val dotsIndicator = "4.2"
     const val shimmer = "0.5.0"
     const val coil = "2.0.0-rc02"
+    const val exoPlayer = "2.17.1"
 
     const val navigation = "2.4.1"
 
@@ -92,6 +93,7 @@ object Libs {
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
     const val coil = "io.coil-kt:coil:${Versions.coil}"
     const val coilVideo = "io.coil-kt:coil-video:${Versions.coil}"
+    const val exoPlayer = "com.google.android.exoplayer:exoplayer:${Versions.exoPlayer}"
 
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"

@@ -4,6 +4,7 @@ import android.net.Uri
 import id.go.jabarprov.dbmpr.core_main.store.Store
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +19,8 @@ class MakeReportStore @Inject constructor() :
                 is MakeReportAction.GoToPreviousScreen -> goToPreviousScreen()
                 is MakeReportAction.AddPhoto -> addPhoto(action.uri)
                 is MakeReportAction.UpdateListPhoto -> updateListPhoto(action.listPhotoModel)
+                is MakeReportAction.AddVideo -> addVideo(action.uri)
+                MakeReportAction.ClearVideo -> clearVideo()
             }
         }
     }
@@ -83,6 +86,18 @@ class MakeReportStore @Inject constructor() :
                     )
                 )
             )
+    }
+
+    private fun addVideo(videoUri: Uri) {
+        state.value = state.value.copy(
+            currentVideo = VideoModel(videoUri)
+        )
+    }
+
+    private fun clearVideo() {
+        state.value = state.value.copy(
+            currentVideo = null
+        )
     }
 
     private fun updateListPhoto(listPhotoModel: List<PhotoModel>) {
