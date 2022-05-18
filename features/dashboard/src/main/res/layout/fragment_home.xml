@@ -59,16 +59,32 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_pager_news"
-                    app:selectedDotColor="?colorSecondary" />
+                    app:selectedDotColor="?colorPrimary" />
                 <!--     End View Pager Indicator      -->
 
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier_bottom_dot_indicator"
+                <TextView
+                    android:id="@+id/text_view_title_section_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="dot_indicator" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Menu &amp; Informasi"
+                    android:textAppearance="?textAppearanceBody1"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dot_indicator" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_title_section_menu" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

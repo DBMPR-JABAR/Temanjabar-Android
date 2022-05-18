@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +25,9 @@ import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.DashboardMenuAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsAdapter
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.DashboardMenuModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
 import id.go.jabarprov.dbmpr.utils.extensions.capitalizeEachWord
@@ -45,6 +48,12 @@ class HomeFragment : Fragment() {
     private val newsPagerAdapter by lazy { NewsAdapter() }
 
     private val locationUtils by lazy { LocationUtils(requireActivity()) }
+
+    private val dashboardMenuAdapter by lazy {
+        DashboardMenuAdapter(4, 0).also {
+            it.submitList(LIST_MENU_DASHBOARD)
+        }
+    }
 
     private val locationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -103,7 +112,11 @@ class HomeFragment : Fragment() {
                 }
             }
 
-
+            recyclerViewMenu.apply {
+                adapter = dashboardMenuAdapter
+                layoutManager = GridLayoutManager(requireContext(), 4)
+                setHasFixedSize(true)
+            }
 
             buttonCekLokasi.setOnClickListener {
                 if (!checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION) || !checkPermission(
@@ -263,6 +276,27 @@ class HomeFragment : Fragment() {
                 setVisibilityLokasiSaatIni(true)
             }
         }
+    }
+
+    companion object {
+        private val LIST_MENU_DASHBOARD = listOf(
+            DashboardMenuModel(
+                "Peta DBMPR",
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_map
+            ),
+            DashboardMenuModel(
+                "Berita DBMPR",
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_post
+            ),
+            DashboardMenuModel(
+                "Response Laporan",
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_half_opened_mail
+            ),
+            DashboardMenuModel(
+                "Menu Lainnya",
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_menu
+            ),
+        )
     }
 
 }
