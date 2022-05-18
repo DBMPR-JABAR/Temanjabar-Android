@@ -3,48 +3,56 @@ package id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import id.go.jabarprov.dbmpr.common.domain.entity.News
-import id.go.jabarprov.dbmpr.feature.dashboard.databinding.LayoutPagerNewsBinding
+import id.go.jabarprov.dbmpr.feature.dashboard.databinding.LayoutNewsItemBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.diff_utils.NewsItemDiffUtil
+import id.go.jabarprov.dbmpr.utils.utils.CalendarUtils
 
-class NewsAdapter :
-    ListAdapter<News, NewsAdapter.NewsItemViewHolder>(NewsItemDiffUtil()) {
-
-    private var onClickListener: ((News) -> Unit)? = null
+class NewsAdapter : ListAdapter<News, NewsAdapter.NewsItemViewHolder>(NewsItemDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = LayoutPagerNewsBinding.inflate(layoutInflater, parent, false)
+        val binding =
+            LayoutNewsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(it, onClickListener)
+            holder.bind(it)
         }
     }
 
-    fun setOnClickListener(action: (News) -> Unit) = this.apply { onClickListener = action }
-
-    class NewsItemViewHolder(private val binding: LayoutPagerNewsBinding) :
+    class NewsItemViewHolder(private val binding: LayoutNewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(news: News, action: ((News) -> Unit)?) {
+        fun bind(news: News) {
             binding.apply {
-                imageViewThumbnailNews.load(news.imageUrl) {
+                imageViewNews.load(news.imageUrl) {
                     listener(
                         onSuccess = { _, _ ->
                             shimmerFrameLayoutLoadingNewsImage.stopShimmer()
                             shimmerFrameLayoutLoadingNewsImage.visibility = View.GONE
-                            imageViewThumbnailNews.visibility = View.VISIBLE
+                            imageViewNews.isVisible = true
                         },
                     )
                 }
-                root.setOnClickListener {
-                    action?.invoke(news)
-                }
+
+                textViewTitle.text = news.title
+                textViewSubtitle.text =
+                    if (news.publishedAt != null) {
+                        "${
+                            CalendarUtils.formatCalendarToString(
+                                news.publishedAt!!,
+                                CalendarUtils.DATE_MONTH_YEAR_WITH_TIME_READABLE
+                            )
+                        } WIB"
+                    } else {
+                        "-"
+                    }
+                textViewBody.text = news.shortDescription
             }
         }
     }

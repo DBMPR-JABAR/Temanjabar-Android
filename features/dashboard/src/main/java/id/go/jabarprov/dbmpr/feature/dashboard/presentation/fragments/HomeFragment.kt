@@ -15,7 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +29,7 @@ import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.DashboardMenuAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsAdapter
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.SliderAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.DashboardMenuModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
@@ -45,7 +48,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val newsPagerAdapter by lazy { NewsAdapter() }
+    private val sliderAdapter by lazy { SliderAdapter() }
+
+    private val newsAdapter by lazy { NewsAdapter() }
 
     private val locationUtils by lazy { LocationUtils(requireActivity()) }
 
@@ -93,7 +98,7 @@ class HomeFragment : Fragment() {
             root.isEnabled = false
 
             viewPagerNews.apply {
-                adapter = newsPagerAdapter.apply {
+                adapter = sliderAdapter.apply {
                     setOnClickListener {
                         if (it.slug == "laporan-masyarakat") {
                             val request = NavDeepLinkRequest
@@ -116,6 +121,18 @@ class HomeFragment : Fragment() {
                 adapter = dashboardMenuAdapter
                 layoutManager = GridLayoutManager(requireContext(), 4)
                 setHasFixedSize(true)
+            }
+
+            recyclerViewNews.apply {
+                adapter = newsAdapter
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+                addItemDecoration(
+                    DividerItemDecoration(
+                        requireContext(),
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
             }
 
             buttonCekLokasi.setOnClickListener {
@@ -149,7 +166,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(request)
             }
 
-            dotIndicator.setViewPager2(viewPagerNews)
+            dotIndicator.attachTo(viewPagerNews)
         }
 
         setVisibilityCekLokasi(true)
@@ -224,6 +241,7 @@ class HomeFragment : Fragment() {
                 homeViewModel.uiState.collect {
                     processSlideNewsState(it.listSlideNewsState)
                     processNearbyRuasJalanState(it.nearbyRuasJalanState)
+                    processNewsState(it.listSlideNewsState)
                 }
             }
         }
@@ -232,7 +250,7 @@ class HomeFragment : Fragment() {
     private fun processSlideNewsState(state: Resource<List<News>>) {
         when (state) {
             is Resource.Success -> {
-                newsPagerAdapter.submitList(
+                sliderAdapter.submitList(
                     state.data + listOf(
                         News(
                             id = 999,
@@ -274,6 +292,26 @@ class HomeFragment : Fragment() {
                 setVisibilityCekLokasi(false)
                 setVisibilityLoadingLokasi(false)
                 setVisibilityLokasiSaatIni(true)
+            }
+        }
+    }
+
+    private fun processNewsState(state: Resource<List<News>>) {
+        binding.apply {
+            when (state) {
+                is Resource.Failed -> {
+                    showToast("ERROR LOADING NEWS ${state.errorMessage}")
+                }
+                is Resource.Success -> {
+                    layoutPlaceholderNews.root.isVisible = false
+                    recyclerViewNews.isVisible = true
+                    newsAdapter.submitList(state.data)
+
+                }
+                else -> {
+                    layoutPlaceholderNews.root.isVisible = true
+                    recyclerViewNews.isVisible = false
+                }
             }
         }
     }
