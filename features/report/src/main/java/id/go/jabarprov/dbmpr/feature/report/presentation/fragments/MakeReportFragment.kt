@@ -11,11 +11,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import id.go.jabarprov.dbmpr.common.presentation.widgets.ConfirmationDialog
 import id.go.jabarprov.dbmpr.feature.report.R
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentMakeReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportScreenState
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportState
+import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
 import kotlinx.coroutines.launch
 import id.go.jabarprov.dbmpr.common.R as CommonR
 
@@ -29,6 +32,10 @@ class MakeReportFragment : Fragment() {
     private val categoryReportFragment by lazy { CategoryReportFragment() }
     private val photoVideoReportFragment by lazy { PhotoVideoReportFragment() }
     private val detailReportFragment by lazy { DetailReportFragment() }
+    private val confirmationDialog by lazy {
+        ConfirmationDialog.Builder()
+            .setTitle("")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +67,7 @@ class MakeReportFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 makeReportViewModel.uiState.collect {
                     processScreenState(it.screenState)
+                    processNextButtonState(it)
                 }
             }
         }
@@ -177,6 +185,32 @@ class MakeReportFragment : Fragment() {
         binding.apply {
             imageViewDetail.isSelected = value
             textViewStepDetail.isSelected = value
+        }
+    }
+
+    private fun processNextButtonState(state: MakeReportState) {
+        when (state.screenState) {
+            MakeReportScreenState.CATEGORY -> {
+                if (state.selectedCategory == null) {
+                    binding.linearLayoutNext.setEnabledRecursive(false)
+                } else {
+                    binding.linearLayoutNext.setEnabledRecursive(true)
+                }
+            }
+            MakeReportScreenState.PHOTO_VIDEO -> {
+                if (state.currentListPhoto.isEmpty()) {
+                    binding.linearLayoutNext.setEnabledRecursive(false)
+                } else {
+                    binding.linearLayoutNext.setEnabledRecursive(true)
+                }
+            }
+            MakeReportScreenState.DETAIL -> {
+                if (state.description.isNullOrBlank() || state.location.isNullOrBlank()) {
+                    binding.linearLayoutNext.setEnabledRecursive(false)
+                } else {
+                    binding.linearLayoutNext.setEnabledRecursive(true)
+                }
+            }
         }
     }
 

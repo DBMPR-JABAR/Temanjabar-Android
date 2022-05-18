@@ -24,15 +24,13 @@ import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
 import id.go.jabarprov.dbmpr.feature.dashboard.domain.entity.RuasJalan
-import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsPagerAdapter
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
 import id.go.jabarprov.dbmpr.utils.extensions.capitalizeEachWord
 import id.go.jabarprov.dbmpr.utils.extensions.checkPermission
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 private const val TAG = "HomeFragment"
@@ -44,11 +42,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val newsPagerAdapter by lazy { NewsPagerAdapter() }
+    private val newsPagerAdapter by lazy { NewsAdapter() }
 
     private val locationUtils by lazy { LocationUtils(requireActivity()) }
-
-    private var job: Job? = null
 
     private val locationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -137,11 +133,12 @@ class HomeFragment : Fragment() {
                         .build()
                 findNavController().navigate(request)
             }
+
+            dotIndicator.setViewPager2(viewPagerNews)
         }
 
         setVisibilityCekLokasi(true)
         setupCarousel()
-        setUpInfiniteOnPageListener(5)
     }
 
     private fun setVisibilityLoadingLokasi(isVisible: Boolean) {
@@ -189,9 +186,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupCarousel() {
-
         binding.viewPagerNews.offscreenPageLimit = 1
-
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
         val currentItemHorizontalMarginPx =
             resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
@@ -206,40 +201,6 @@ class HomeFragment : Fragment() {
             R.dimen.viewpager_current_item_horizontal_margin
         )
         binding.viewPagerNews.addItemDecoration(itemDecoration)
-        binding.viewPagerNews.setCurrentItem(1, false)
-
-//        job = startAutomaticScroll()
-    }
-
-    private fun startAutomaticScroll(): Job {
-        return viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                while (true) {
-                    delay(5000)
-                    binding.viewPagerNews.currentItem += 1
-                }
-            }
-        }
-    }
-
-    private fun setUpInfiniteOnPageListener(listSize: Int) {
-        val newListSize = listSize + 3
-        binding.viewPagerNews.apply {
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageScrollStateChanged(state: Int) {
-                    super.onPageScrollStateChanged(state)
-
-                    if (state == ViewPager2.SCROLL_STATE_IDLE) {
-//                        job?.cancel()
-//                        job = startAutomaticScroll()
-                        when (binding.viewPagerNews.currentItem) {
-                            newListSize - 1 -> binding.viewPagerNews.setCurrentItem(1, false)
-                            0 -> binding.viewPagerNews.setCurrentItem(newListSize - 2, false)
-                        }
-                    }
-                }
-            })
-        }
     }
 
     private fun observeHomeState() {
@@ -267,7 +228,6 @@ class HomeFragment : Fragment() {
                         )
                     )
                 )
-                binding.viewPagerNews.setCurrentItem(1, false)
             }
         }
     }

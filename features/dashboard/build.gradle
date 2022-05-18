@@ -26,6 +26,7 @@ dependencies {
     implementation Libs.swipeRefreshLayout
     implementation Libs.shimmer
     implementation Libs.coil
+    implementation Libs.dotsIndicator
 
     implementation Libs.viewModelScope
     implementation Libs.lifecycleScope

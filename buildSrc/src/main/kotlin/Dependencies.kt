@@ -37,7 +37,7 @@ object Versions {
     const val materialDesign = "1.5.0"
     const val constraintLayout = "2.1.3"
     const val swipeRefreshLayout = "1.1.0"
-    const val dotsIndicator = "4.2"
+    const val dotsIndicator = "4.3"
     const val shimmer = "0.5.0"
     const val coil = "2.0.0-rc02"
     const val exoPlayer = "2.17.1"

@@ -39,19 +39,42 @@
                 app:layout_constraintTop_toBottomOf="@+id/logo_teman_jabar" />
             <!--     End View Pager Berita      -->
 
+            <!--     View Pager Indicator      -->
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dot_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:dotsColor="@color/gray_400"
+                app:dotsSize="8dp"
+                app:dotsSpacing="4dp"
+                app:selectedDotColor="?colorSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_pager_news" />
+            <!--     End View Pager Indicator      -->
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_bottom_dot_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="dot_indicator" />
+
             <!--     Shimmer Cek Lokasi       -->
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmer_frame_layout_loading_lokasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager_news"
+                app:layout_constraintTop_toBottomOf="@id/barrier_bottom_dot_indicator"
                 app:shimmer_auto_start="true"
                 app:shimmer_clip_to_children="true">
 
@@ -63,7 +86,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_pager_news">
+                    app:layout_constraintTop_toBottomOf="@id/dot_indicator">
 
                     <ImageView
                         android:id="@+id/image_view_icon_location_shimmer"
@@ -109,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_container_gray_100_solid"
                 android:padding="16dp"
@@ -117,7 +140,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager_news">
+                app:layout_constraintTop_toBottomOf="@id/barrier_bottom_dot_indicator">
 
                 <ImageView
                     android:id="@+id/image_view_icon_location"
@@ -171,7 +194,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_container_gray_100_solid"
                 android:padding="16dp"
@@ -179,7 +202,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager_news">
+                app:layout_constraintTop_toBottomOf="@id/barrier_bottom_dot_indicator">
 
                 <ImageView
                     android:id="@+id/image_view_icon_current_location"
