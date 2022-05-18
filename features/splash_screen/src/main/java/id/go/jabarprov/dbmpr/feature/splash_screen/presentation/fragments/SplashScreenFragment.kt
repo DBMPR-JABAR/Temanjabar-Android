@@ -9,7 +9,9 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import id.go.jabarprov.dbmpr.feature.splash_screen.R
 import id.go.jabarprov.dbmpr.feature.splash_screen.databinding.FragmentSplashScreenBinding
 import kotlinx.coroutines.delay
 
@@ -39,7 +41,12 @@ class SplashScreenFragment : Fragment() {
                     .Builder
                     .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/dashboard".toUri())
                     .build()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                action,
+                NavOptions.Builder().apply {
+                    setPopUpTo(R.id.splashScreenFragment, true)
+                }.build(),
+            )
         }
     }
 }

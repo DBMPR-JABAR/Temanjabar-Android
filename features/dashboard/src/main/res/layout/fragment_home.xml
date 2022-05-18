@@ -8,286 +8,297 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_100"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <include
-                android:id="@+id/logo_teman_jabar"
-                layout="@layout/layout_logo_temanjabar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!--     View Pager Berita      -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager_news"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintDimensionRatio="16:9"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logo_teman_jabar" />
-            <!--     End View Pager Berita      -->
-
-            <!--     View Pager Indicator      -->
-            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                android:id="@+id/dot_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:dotsColor="@color/gray_400"
-                app:dotsSize="8dp"
-                app:dotsSpacing="4dp"
-                app:selectedDotColor="?colorSecondary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager_news" />
-            <!--     End View Pager Indicator      -->
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier_bottom_dot_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="dot_indicator" />
-
-            <!--     Shimmer Cek Lokasi       -->
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmer_frame_layout_loading_lokasi"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/barrier_bottom_dot_indicator"
-                app:shimmer_auto_start="true"
-                app:shimmer_clip_to_children="true">
+                android:background="@color/white"
+                android:paddingBottom="16dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                <include
+                    android:id="@+id/logo_teman_jabar"
+                    layout="@layout/layout_logo_temanjabar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_container_gray_100_solid"
-                    android:padding="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dot_indicator">
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--     View Pager Berita      -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager_news"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logo_teman_jabar" />
+                <!--     End View Pager Berita      -->
+
+                <!--     View Pager Indicator      -->
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dot_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:dotsColor="@color/gray_400"
+                    app:dotsSize="8dp"
+                    app:dotsSpacing="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_pager_news"
+                    app:selectedDotColor="?colorSecondary" />
+                <!--     End View Pager Indicator      -->
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_bottom_dot_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="dot_indicator" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"
+                android:paddingBottom="16dp">
+
+                <!--     Shimmer Cek Lokasi       -->
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_frame_layout_loading_lokasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_clip_to_children="true">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_container_gray_100_solid"
+                        android:padding="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dot_indicator">
+
+                        <ImageView
+                            android:id="@+id/image_view_icon_location_shimmer"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_pin_location"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/gray_600" />
+
+                        <TextView
+                            android:id="@+id/text_view_cek_lokasi_section_title_shimmer"
+                            style="@style/Style.Text.Section.Header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/cek_lokasi_description"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/image_view_icon_location_shimmer"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_view_cek_lokasi_section_description_shimmer"
+                            style="?textAppearanceBody2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/mencari_lokasi_ruas_jalan_terdekat"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/image_view_icon_location_shimmer"
+                            app:layout_constraintTop_toBottomOf="@id/text_view_cek_lokasi_section_title_shimmer" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+                <!--     End Shimmer Cek Lokasi       -->
+
+                <!--     Cek Lokasi      -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_cek_lokasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_container_gray_100_solid"
+                    android:padding="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/image_view_icon_location_shimmer"
+                        android:id="@+id/image_view_icon_location"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_pin_location"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/button_cek_lokasi"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/gray_600" />
 
                     <TextView
-                        android:id="@+id/text_view_cek_lokasi_section_title_shimmer"
+                        android:id="@+id/text_view_cek_lokasi_section_title"
                         style="@style/Style.Text.Section.Header"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/cek_lokasi_description"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/image_view_icon_location_shimmer"
+                        app:layout_constraintStart_toEndOf="@id/image_view_icon_location"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/text_view_cek_lokasi_section_description_shimmer"
+                        android:id="@+id/text_view_cek_lokasi_section_description"
                         style="?textAppearanceBody2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="@string/mencari_lokasi_ruas_jalan_terdekat"
+                        android:text="@string/cek_lokasi_anda_dengan_klik_tombol_di_bawah_ini"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/image_view_icon_location_shimmer"
-                        app:layout_constraintTop_toBottomOf="@id/text_view_cek_lokasi_section_title_shimmer" />
+                        app:layout_constraintStart_toEndOf="@id/image_view_icon_location"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_cek_lokasi_section_title" />
+
+                    <Button
+                        android:id="@+id/button_cek_lokasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/cek_lokasi_anda"
+                        android:textAppearance="@style/TextAppearance.TemanJabar.Button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_cek_lokasi_section_description" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--     End Cek Lokasi      -->
 
-            </com.facebook.shimmer.ShimmerFrameLayout>
-            <!--     End Shimmer Cek Lokasi       -->
-
-            <!--     Cek Lokasi      -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout_cek_lokasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_container_gray_100_solid"
-                android:padding="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/barrier_bottom_dot_indicator">
-
-                <ImageView
-                    android:id="@+id/image_view_icon_location"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_pin_location"
-                    app:layout_constraintBottom_toTopOf="@+id/button_cek_lokasi"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/gray_600" />
-
-                <TextView
-                    android:id="@+id/text_view_cek_lokasi_section_title"
-                    style="@style/Style.Text.Section.Header"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/cek_lokasi_description"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/image_view_icon_location"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/text_view_cek_lokasi_section_description"
-                    style="?textAppearanceBody2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/cek_lokasi_anda_dengan_klik_tombol_di_bawah_ini"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/image_view_icon_location"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_cek_lokasi_section_title" />
-
-                <Button
-                    android:id="@+id/button_cek_lokasi"
+                <!--     Lokasi Saat Ini      -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_current_lokasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/cek_lokasi_anda"
-                    android:textAppearance="@style/TextAppearance.TemanJabar.Button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_cek_lokasi_section_description" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--     End Cek Lokasi      -->
-
-            <!--     Lokasi Saat Ini      -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout_current_lokasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_container_gray_100_solid"
-                android:padding="16dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/barrier_bottom_dot_indicator">
-
-                <ImageView
-                    android:id="@+id/image_view_icon_current_location"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_pin_location"
-                    app:layout_constraintBottom_toTopOf="@+id/button_perbarui_lokasi"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bg_container_gray_100_solid"
+                    android:padding="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/gray_600" />
+                    tools:visibility="visible">
 
-                <TextView
-                    android:id="@+id/text_view_current_lokasi_section_title"
-                    style="@style/Style.Text.Section.Header"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/lokasi_anda_saat_ini"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/image_view_icon_current_location"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_pin_location"
+                        app:layout_constraintBottom_toTopOf="@+id/button_perbarui_lokasi"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/gray_600" />
 
-                <TextView
-                    android:id="@+id/text_view_current_lokasi_ruas_jalan"
-                    style="?textAppearanceBody2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_section_title"
-                    tools:text="Ciledug - Losari (Jl. Let. Jen. D.I. Panjaitan)" />
+                    <TextView
+                        android:id="@+id/text_view_current_lokasi_section_title"
+                        style="@style/Style.Text.Section.Header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/lokasi_anda_saat_ini"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/text_view_current_lokasi_kota"
-                    style="?textAppearanceBody2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_ruas_jalan"
-                    tools:text="KABUPATEN CIREBON" />
+                    <TextView
+                        android:id="@+id/text_view_current_lokasi_ruas_jalan"
+                        style="?textAppearanceBody2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_section_title"
+                        tools:text="Ciledug - Losari (Jl. Let. Jen. D.I. Panjaitan)" />
 
-                <Button
-                    android:id="@+id/button_perbarui_lokasi"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/perbarui_lokasi"
-                    android:textAppearance="@style/TextAppearance.TemanJabar.Button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button_lihat_lokasi_peta"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_kota" />
+                    <TextView
+                        android:id="@+id/text_view_current_lokasi_kota"
+                        style="?textAppearanceBody2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_ruas_jalan"
+                        tools:text="KABUPATEN CIREBON" />
 
-                <Button
-                    android:id="@+id/button_lihat_lokasi_peta"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Lihat Pada Peta"
-                    android:textAppearance="@style/TextAppearance.TemanJabar.Button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/button_perbarui_lokasi"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_kota" />
+                    <Button
+                        android:id="@+id/button_perbarui_lokasi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/perbarui_lokasi"
+                        android:textAppearance="@style/TextAppearance.TemanJabar.Button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button_lihat_lokasi_peta"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_kota" />
+
+                    <Button
+                        android:id="@+id/button_lihat_lokasi_peta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Lihat Pada Peta"
+                        android:textAppearance="@style/TextAppearance.TemanJabar.Button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/button_perbarui_lokasi"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_kota" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--     Lokasi Saat Ini      -->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--     Lokasi Saat Ini      -->
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier_lokasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="shimmer_frame_layout_loading_lokasi, constraint_layout_cek_lokasi, constraint_layout_current_lokasi" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

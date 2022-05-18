@@ -103,6 +103,8 @@ class HomeFragment : Fragment() {
                 }
             }
 
+
+
             buttonCekLokasi.setOnClickListener {
                 if (!checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION) || !checkPermission(
                         Manifest.permission.ACCESS_FINE_LOCATION
