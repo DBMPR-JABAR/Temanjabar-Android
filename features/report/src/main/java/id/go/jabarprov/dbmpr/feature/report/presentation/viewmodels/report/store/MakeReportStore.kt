@@ -24,6 +24,7 @@ class MakeReportStore @Inject constructor() :
                 is MakeReportAction.UpdateDescription -> updateDescription(action.description)
                 is MakeReportAction.UpdateExplanation -> updateExplanation(action.explanation)
                 is MakeReportAction.UpdateLocation -> updateLocation(action.location)
+                is MakeReportAction.UpdateReportPrivacy -> updateReportPrivacy(action.reportPrivacy)
             }
         }
     }
@@ -58,6 +59,9 @@ class MakeReportStore @Inject constructor() :
 
     private fun goToNextScreen() {
         when (state.value.screenState) {
+            MakeReportScreenState.PRIVACY -> {
+                state.value = state.value.copy(screenState = MakeReportScreenState.CATEGORY)
+            }
             MakeReportScreenState.CATEGORY -> {
                 state.value = state.value.copy(screenState = MakeReportScreenState.PHOTO_VIDEO)
             }
@@ -70,6 +74,9 @@ class MakeReportStore @Inject constructor() :
 
     private fun goToPreviousScreen() {
         when (state.value.screenState) {
+            MakeReportScreenState.CATEGORY -> {
+                state.value = state.value.copy(screenState = MakeReportScreenState.PRIVACY)
+            }
             MakeReportScreenState.DETAIL -> {
                 state.value = state.value.copy(screenState = MakeReportScreenState.PHOTO_VIDEO)
             }
@@ -130,5 +137,9 @@ class MakeReportStore @Inject constructor() :
 
     private fun updateExplanation(explanation: String?) {
         state.value = state.value.copy(explanation = explanation)
+    }
+
+    private fun updateReportPrivacy(privacy: MakeReportPrivacy) {
+        state.value = state.value.copy(reportPrivacy = privacy)
     }
 }

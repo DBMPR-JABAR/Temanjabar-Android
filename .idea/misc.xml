@@ -21,6 +21,7 @@
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_gray_600_alpha_low.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_gray_900_alpha_low.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_photo.xml" value="0.3225" />
+        <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_selectable_container.xml" value="0.328" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/bg_upload_image.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/ic_logo_temanjabar.xml" value="0.3465" />
         <entry key="..\:/Project/BPMR/Temanjabar/common/src/main/res/drawable/ic_menu.xml" value="0.215" />
@@ -77,8 +78,9 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_detail_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_laporan.xml" value="0.32222222222222224" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_list_photo.xml" value="0.33" />
-        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_make_report.xml" value="0.25" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_make_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_photo_video_report.xml" value="0.33" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_privacy_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_report.xml" value="0.32222222222222224" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_video_player.xml" value="0.30972222222222223" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/layout_category_report_item.xml" value="0.32222222222222224" />

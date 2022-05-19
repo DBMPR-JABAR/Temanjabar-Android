@@ -6,9 +6,10 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
 
 data class MakeReportState(
+    val reportPrivacy: MakeReportPrivacy = MakeReportPrivacy.PRIVATE,
     val currentListCategoryReport: List<CategoryReportModel> = LIST_CATEGORY_REPORT,
     val selectedCategory: CategoryReportModel? = null,
-    val screenState: MakeReportScreenState = MakeReportScreenState.CATEGORY,
+    val screenState: MakeReportScreenState = MakeReportScreenState.PRIVACY,
     val currentListPhoto: List<PhotoModel> = listOf(),
     val currentVideo: VideoModel? = null,
     val description: String? = null,
@@ -34,7 +35,13 @@ data class MakeReportState(
 }
 
 enum class MakeReportScreenState {
+    PRIVACY,
     CATEGORY,
     PHOTO_VIDEO,
     DETAIL
+}
+
+enum class MakeReportPrivacy {
+    PRIVATE,
+    PUBLIC
 }

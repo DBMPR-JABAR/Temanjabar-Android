@@ -33,6 +33,7 @@ class MakeReportFragment : Fragment() {
 
     private lateinit var binding: FragmentMakeReportBinding
 
+    private val privacyReportFragment by lazy { PrivacyReportFragment() }
     private val categoryReportFragment by lazy { CategoryReportFragment() }
     private val photoVideoReportFragment by lazy { PhotoVideoReportFragment() }
     private val detailReportFragment by lazy { DetailReportFragment() }
@@ -41,7 +42,7 @@ class MakeReportFragment : Fragment() {
             .setTitle("")
     }
 
-    private var activeFragment: Fragment = categoryReportFragment
+    private var activeFragment: Fragment = privacyReportFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,40 +84,62 @@ class MakeReportFragment : Fragment() {
 
     private fun processScreenState(screenState: MakeReportScreenState) {
         when (screenState) {
-            MakeReportScreenState.CATEGORY -> {
+            MakeReportScreenState.PRIVACY -> {
+                setEnableReportPrivacyStep(false)
                 setEnableReportCategoryStep(false)
                 setEnableReportPhotoVideoStep(false)
                 setEnableReportDetailStep(false)
 
+                setSelectedReportPrivacyStep(true)
+                setSelectedReportCategoryStep(false)
+                setSelectedReportPhotoVideoStep(false)
+                setSelectedReportDetailStep(false)
+
+                navigateChildFragment(privacyReportFragment)
+                binding.apply {
+                    linearLayoutPrevious.isVisible = false
+                }
+            }
+            MakeReportScreenState.CATEGORY -> {
+                setEnableReportPrivacyStep(true)
+                setEnableReportCategoryStep(false)
+                setEnableReportPhotoVideoStep(false)
+                setEnableReportDetailStep(false)
+
+                setSelectedReportPrivacyStep(false)
                 setSelectedReportCategoryStep(true)
                 setSelectedReportPhotoVideoStep(false)
                 setSelectedReportDetailStep(false)
 
                 navigateChildFragment(categoryReportFragment)
                 binding.apply {
-                    linearLayoutPrevious.isVisible = false
+                    linearLayoutPrevious.isVisible = true
+                    textViewNext.text = getString(CommonR.string.selanjutnya)
                 }
             }
             MakeReportScreenState.PHOTO_VIDEO -> {
+                setEnableReportPrivacyStep(true)
                 setEnableReportCategoryStep(true)
                 setEnableReportPhotoVideoStep(false)
                 setEnableReportDetailStep(false)
 
+                setSelectedReportPrivacyStep(false)
                 setSelectedReportCategoryStep(false)
                 setSelectedReportPhotoVideoStep(true)
                 setSelectedReportDetailStep(false)
 
                 navigateChildFragment(photoVideoReportFragment)
                 binding.apply {
-                    linearLayoutPrevious.isVisible = true
                     textViewNext.text = getString(CommonR.string.selanjutnya)
                 }
             }
             MakeReportScreenState.DETAIL -> {
+                setEnableReportPrivacyStep(true)
                 setEnableReportCategoryStep(true)
                 setEnableReportPhotoVideoStep(true)
                 setEnableReportDetailStep(false)
 
+                setSelectedReportPrivacyStep(false)
                 setSelectedReportCategoryStep(false)
                 setSelectedReportPhotoVideoStep(false)
                 setSelectedReportDetailStep(true)
@@ -138,6 +161,8 @@ class MakeReportFragment : Fragment() {
                 add(R.id.frame_layout_fragment_container, photoVideoReportFragment)
                 hide(photoVideoReportFragment)
                 add(R.id.frame_layout_fragment_container, categoryReportFragment)
+                hide(categoryReportFragment)
+                add(R.id.frame_layout_fragment_container, privacyReportFragment)
             }
             .commit()
     }
@@ -159,7 +184,7 @@ class MakeReportFragment : Fragment() {
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     Log.d(TAG, "handleOnBackPressed: ON BACK PRESSED")
-                    if (makeReportViewModel.uiState.value.screenState == MakeReportScreenState.CATEGORY) {
+                    if (makeReportViewModel.uiState.value.screenState == MakeReportScreenState.PRIVACY) {
                         isEnabled = false
                         activity?.onBackPressed()
                     } else {
@@ -168,6 +193,28 @@ class MakeReportFragment : Fragment() {
                     }
                 }
             })
+    }
+
+    private fun setEnableReportPrivacyStep(value: Boolean) {
+        binding.apply {
+            if (value) {
+                imageViewPrivacy.apply {
+                    setImageResource(CommonR.drawable.ic_checklist)
+                }
+            } else {
+                imageViewCategory.setImageResource(CommonR.drawable.ic_lock)
+            }
+            stepBar1.isEnabled = value
+            imageViewPrivacy.isEnabled = value
+            textViewStepPrivacy.isEnabled = value
+        }
+    }
+
+    private fun setSelectedReportPrivacyStep(value: Boolean) {
+        binding.apply {
+            imageViewPrivacy.isSelected = value
+            textViewStepPrivacy.isSelected = value
+        }
     }
 
     private fun setEnableReportCategoryStep(value: Boolean) {
@@ -179,7 +226,7 @@ class MakeReportFragment : Fragment() {
             } else {
                 imageViewCategory.setImageResource(CommonR.drawable.ic_menu)
             }
-            stepBar1.isEnabled = value
+            stepBar2.isEnabled = value
             imageViewCategory.isEnabled = value
             textViewStepCategory.isEnabled = value
         }
@@ -199,7 +246,7 @@ class MakeReportFragment : Fragment() {
             } else {
                 imageViewPhoto.setImageResource(CommonR.drawable.ic_camera)
             }
-            stepBar2.isEnabled = value
+            stepBar3.isEnabled = value
             imageViewPhoto.isEnabled = value
             textViewStepPhoto.isEnabled = value
         }
@@ -233,6 +280,9 @@ class MakeReportFragment : Fragment() {
 
     private fun processNextButtonState(state: MakeReportState) {
         when (state.screenState) {
+            MakeReportScreenState.PRIVACY -> {
+                binding.linearLayoutNext.setEnabledRecursive(true)
+            }
             MakeReportScreenState.CATEGORY -> {
                 if (state.selectedCategory == null) {
                     binding.linearLayoutNext.setEnabledRecursive(false)

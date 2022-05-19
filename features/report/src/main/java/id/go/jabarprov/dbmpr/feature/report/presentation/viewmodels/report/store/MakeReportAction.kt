@@ -17,4 +17,5 @@ sealed class MakeReportAction : Action {
     data class UpdateDescription(val description: String?) : MakeReportAction()
     data class UpdateLocation(val location: String?) : MakeReportAction()
     data class UpdateExplanation(val explanation: String?) : MakeReportAction()
+    data class UpdateReportPrivacy(val reportPrivacy: MakeReportPrivacy) : MakeReportAction()
 }
