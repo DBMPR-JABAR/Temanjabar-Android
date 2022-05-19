@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/reportFragment"
-        android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.MakeReportFragment"
+        android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report.MakeReportFragment"
         android:label="fragment_laporan"
         tools:layout="@layout/fragment_make_report">
         <action

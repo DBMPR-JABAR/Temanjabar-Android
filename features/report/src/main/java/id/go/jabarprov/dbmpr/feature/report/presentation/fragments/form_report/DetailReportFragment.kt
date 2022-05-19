@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.feature.report.presentation.fragments
+package id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report
 
 import android.os.Bundle
 import android.view.LayoutInflater

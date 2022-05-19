@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.feature.report.presentation.fragments
+package id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentCategoryReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.CategoryReportAdapter
