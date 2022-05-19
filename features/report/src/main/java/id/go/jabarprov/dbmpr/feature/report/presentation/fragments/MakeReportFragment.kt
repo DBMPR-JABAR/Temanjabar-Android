@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.common.presentation.widgets.ConfirmationDialog
 import id.go.jabarprov.dbmpr.feature.report.R
@@ -62,6 +63,9 @@ class MakeReportFragment : Fragment() {
 
     private fun initUI() {
         binding.apply {
+            buttonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
             linearLayoutPrevious.setOnClickListener {
                 makeReportViewModel.processAction(MakeReportAction.GoToPreviousScreen)
             }
