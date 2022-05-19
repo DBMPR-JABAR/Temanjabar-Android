@@ -37,6 +37,8 @@ class MakeReportFragment : Fragment() {
             .setTitle("")
     }
 
+    private var activeFragment: Fragment = categoryReportFragment
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +51,7 @@ class MakeReportFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initUI()
         observeMakeReportState()
+        if (childFragmentManager.fragments.isEmpty()) initChildFragment()
     }
 
     private fun initUI() {
@@ -121,9 +124,27 @@ class MakeReportFragment : Fragment() {
         }
     }
 
+    private fun initChildFragment() {
+        childFragmentManager
+            .beginTransaction()
+            .apply {
+                add(R.id.frame_layout_fragment_container, detailReportFragment)
+                hide(detailReportFragment)
+                add(R.id.frame_layout_fragment_container, photoVideoReportFragment)
+                hide(photoVideoReportFragment)
+                add(R.id.frame_layout_fragment_container, categoryReportFragment)
+            }
+            .commit()
+    }
+
     private fun navigateChildFragment(fragment: Fragment) {
-        childFragmentManager.beginTransaction()
-            .replace(R.id.frame_layout_fragment_container, fragment)
+        childFragmentManager
+            .beginTransaction()
+            .apply {
+                hide(activeFragment)
+                show(fragment)
+                activeFragment = fragment
+            }
             .commit()
     }
 

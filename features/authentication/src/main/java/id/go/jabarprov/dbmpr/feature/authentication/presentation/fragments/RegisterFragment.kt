@@ -37,6 +37,8 @@ class RegisterFragment : Fragment() {
     private val registerPasswordFragment by lazy { RegisterPasswordFragment() }
     private val registerAgreementFragment by lazy { RegisterAgreementFragment() }
 
+    private var activeFragment: Fragment = registerNameFragment
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +50,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+        if (childFragmentManager.fragments.isEmpty()) initChildFragment()
         onBackPressed()
         observeRegisterState()
     }
@@ -68,10 +71,29 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun initChildFragment() {
+        childFragmentManager
+            .beginTransaction()
+            .apply {
+                add(R.id.frame_layout_fragment_container, registerAgreementFragment)
+                hide(registerAgreementFragment)
+                add(R.id.frame_layout_fragment_container, registerPasswordFragment)
+                hide(registerPasswordFragment)
+                add(R.id.frame_layout_fragment_container, registerEmailFragment)
+                hide(registerEmailFragment)
+                add(R.id.frame_layout_fragment_container, registerNameFragment)
+            }
+            .commit()
+    }
+
     private fun navigateChildFragment(fragment: Fragment) {
         childFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout_fragment_container, fragment)
+            .apply {
+                hide(activeFragment)
+                show(fragment)
+                activeFragment = fragment
+            }
             .commit()
     }
 
@@ -163,11 +185,11 @@ class RegisterFragment : Fragment() {
     }
 
     private fun onBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+        activity?.onBackPressedDispatcher?.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (registerViewModel.uiState.value.screenState == RegisterScreenState.REGISTER_NAME) {
                     isEnabled = false
-                    requireActivity().onBackPressed()
+                    activity?.onBackPressed()
                 } else {
                     registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
                 }
