@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import id.go.jabarprov.dbmpr.common.R as CommonResource
 import id.go.jabarprov.dbmpr.feature.authentication.R
 import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentRegisterBinding
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.RegisterViewModel
@@ -22,6 +21,7 @@ import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.regi
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.store.RegisterState
 import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
 import kotlinx.coroutines.launch
+import id.go.jabarprov.dbmpr.common.R as CommonResource
 
 private const val TAG = "RegisterFragment"
 
@@ -165,7 +165,12 @@ class RegisterFragment : Fragment() {
     private fun onBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
+                if (registerViewModel.uiState.value.screenState == RegisterScreenState.REGISTER_NAME) {
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                } else {
+                    registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
+                }
             }
         })
     }

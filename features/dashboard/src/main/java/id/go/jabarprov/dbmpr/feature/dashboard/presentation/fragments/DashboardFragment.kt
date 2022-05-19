@@ -22,6 +22,8 @@ class DashboardFragment : Fragment() {
     private val faqFragment by lazy { FaqFragment() }
     private val userFragment by lazy { UserFragment() }
 
+    private var activeFragment: Fragment = homeFragment
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,14 +74,26 @@ class DashboardFragment : Fragment() {
     private fun initChildFragment() {
         childFragmentManager
             .beginTransaction()
-            .add(R.id.frame_layout_fragment_container, homeFragment)
+            .apply {
+                add(R.id.frame_layout_fragment_container, userFragment)
+                hide(userFragment)
+                add(R.id.frame_layout_fragment_container, faqFragment)
+                hide(faqFragment)
+                add(R.id.frame_layout_fragment_container, messageFragment)
+                hide(messageFragment)
+                add(R.id.frame_layout_fragment_container, homeFragment)
+            }
             .commit()
     }
 
     private fun navigateChildFragment(fragment: Fragment) {
         childFragmentManager
             .beginTransaction()
-            .replace(R.id.frame_layout_fragment_container, fragment)
+            .apply {
+                hide(activeFragment)
+                show(fragment)
+                activeFragment = fragment
+            }
             .commit()
     }
 }

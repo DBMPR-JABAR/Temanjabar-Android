@@ -32,7 +32,7 @@ class UserFragment : Fragment() {
             buttonLogin.setOnClickListener {
                 val request = NavDeepLinkRequest
                     .Builder
-                    .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/webview?url=https://tj.temanjabar.net/login".toUri())
+                    .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/authentication".toUri())
                     .build()
                 findNavController().navigate(request)
             }
