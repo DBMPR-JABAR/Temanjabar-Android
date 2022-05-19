@@ -1,9 +1,11 @@
 package id.go.jabarprov.dbmpr.feature.report.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +23,8 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store
 import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
 import kotlinx.coroutines.launch
 import id.go.jabarprov.dbmpr.common.R as CommonR
+
+private const val TAG = "MakeReportFragment"
 
 @AndroidEntryPoint
 class MakeReportFragment : Fragment() {
@@ -50,8 +54,9 @@ class MakeReportFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-        observeMakeReportState()
         if (childFragmentManager.fragments.isEmpty()) initChildFragment()
+        observeMakeReportState()
+        onBackPressed()
     }
 
     private fun initUI() {
@@ -146,6 +151,23 @@ class MakeReportFragment : Fragment() {
                 activeFragment = fragment
             }
             .commit()
+    }
+
+    private fun onBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    Log.d(TAG, "handleOnBackPressed: ON BACK PRESSED")
+                    if (makeReportViewModel.uiState.value.screenState == MakeReportScreenState.CATEGORY) {
+                        isEnabled = false
+                        activity?.onBackPressed()
+                    } else {
+                        isEnabled = true
+                        makeReportViewModel.processAction(MakeReportAction.GoToPreviousScreen)
+                    }
+                }
+            })
     }
 
     private fun setEnableReportCategoryStep(value: Boolean) {

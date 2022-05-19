@@ -195,10 +195,12 @@ class PhotoVideoReportFragment : Fragment() {
     ) == PackageManager.PERMISSION_GRANTED
 
     private fun onResultListPhotoFragment() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<List<PhotoModel>>("NEW_LIST_PHOTO")
-            ?.observe(viewLifecycleOwner) {
+        findNavController().currentBackStackEntry?.savedStateHandle?.apply {
+            get<List<PhotoModel>>("NEW_LIST_PHOTO")?.let {
                 makeReportViewModel.processAction(MakeReportAction.UpdateListPhoto(it))
             }
+            remove<List<PhotoModel>>("NEW_LIST_PHOTO")
+        }
     }
 
     private fun observeMakeReportState() {

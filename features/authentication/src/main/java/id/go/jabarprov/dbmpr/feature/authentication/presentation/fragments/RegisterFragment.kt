@@ -185,16 +185,19 @@ class RegisterFragment : Fragment() {
     }
 
     private fun onBackPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (registerViewModel.uiState.value.screenState == RegisterScreenState.REGISTER_NAME) {
-                    isEnabled = false
-                    activity?.onBackPressed()
-                } else {
-                    registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (registerViewModel.uiState.value.screenState == RegisterScreenState.REGISTER_NAME) {
+                        isEnabled = false
+                        activity?.onBackPressed()
+                    } else {
+                        isEnabled = true
+                        registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
+                    }
                 }
-            }
-        })
+            })
     }
 
     private fun observeRegisterState() {
