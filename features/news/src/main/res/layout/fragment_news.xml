@@ -24,6 +24,7 @@
                 android:id="@+id/image_view_news_image"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:foreground="@drawable/bg_vertical_gradient_black_to_transparent"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
