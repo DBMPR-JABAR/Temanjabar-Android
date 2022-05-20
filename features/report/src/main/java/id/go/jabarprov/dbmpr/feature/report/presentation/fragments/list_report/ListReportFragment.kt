@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentListReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.ReportGridAdapter
+import id.go.jabarprov.dbmpr.common.R as CommonR
 
 @AndroidEntryPoint
 class ListReportFragment : Fragment() {
@@ -18,6 +19,8 @@ class ListReportFragment : Fragment() {
     private lateinit var binding: FragmentListReportBinding
 
     private val reportGridAdapter by lazy { ReportGridAdapter(2, 32) }
+
+    private var listType = ListType.GRID
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,37 +37,67 @@ class ListReportFragment : Fragment() {
 
     private fun initUI() {
         binding.apply {
+
             recyclerViewReport.apply {
                 adapter = reportGridAdapter
                 layoutManager = GridLayoutManager(requireContext(), 2)
-                addItemDecoration(object : RecyclerView.ItemDecoration() {
-                    override fun getItemOffsets(
-                        outRect: Rect,
-                        view: View,
-                        parent: RecyclerView,
-                        state: RecyclerView.State
-                    ) {
-                        super.getItemOffsets(outRect, view, parent, state)
+                addItemDecoration(gridItemDecoration)
+            }
 
-                        val position = parent.getChildAdapterPosition(view)
+            linearLayoutListType.setOnClickListener {
+                if (listType == ListType.GRID) {
+                    imageViewListType.setImageResource(CommonR.drawable.ic_list)
+                    textViewListType.text = "List"
+                    listType = ListType.LIST
+                } else {
+                    imageViewListType.setImageResource(CommonR.drawable.ic_grid)
+                    textViewListType.text = "Grid"
+                    listType = ListType.GRID
+                }
+            }
 
-                        if (position % 2 == 0) {
-                            outRect.right = 16
-                            outRect.left = 32
-                        } else {
-                            outRect.left = 16
-                            outRect.right = 32
-                        }
+        }
+    }
 
-                        if (position < 2) {
-                            outRect.top = 32
-                        }
+    private fun setListTypeGrid() {
 
-                        outRect.bottom = 32
-                    }
-                })
+    }
+
+    private fun setListTypeList() {
+
+    }
+
+    companion object {
+        private val gridItemDecoration = object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                super.getItemOffsets(outRect, view, parent, state)
+
+                val position = parent.getChildAdapterPosition(view)
+
+                if (position % 2 == 0) {
+                    outRect.right = 16
+                    outRect.left = 32
+                } else {
+                    outRect.left = 16
+                    outRect.right = 32
+                }
+
+                if (position < 2) {
+                    outRect.top = 32
+                }
+
+                outRect.bottom = 32
             }
         }
     }
 
+    enum class ListType {
+        GRID,
+        LIST
+    }
 }
