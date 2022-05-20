@@ -57,7 +57,7 @@ class PhotoVideoReportFragment : Fragment() {
     private val thumbnailPhotoAdapter by lazy {
         ThumbnailPhotoAdapter {
             val action =
-                id.go.jabarprov.dbmpr.feature.report.presentation.fragments.MakeReportFragmentDirections.actionReportFragmentToListPhotoFragment(
+                MakeReportFragmentDirections.actionReportFragmentToListPhotoFragment(
                     makeReportViewModel.uiState.value.currentListPhoto.toTypedArray()
                 )
             findNavController().navigate(action)
@@ -155,7 +155,7 @@ class PhotoVideoReportFragment : Fragment() {
             uploadFileViewVideo.setOnClickListener {
                 if (makeReportViewModel.uiState.value.currentVideo != null) {
                     val action =
-                        id.go.jabarprov.dbmpr.feature.report.presentation.fragments.MakeReportFragmentDirections.actionReportFragmentToVideoPlayerFragment(
+                        MakeReportFragmentDirections.actionReportFragmentToVideoPlayerFragment(
                             makeReportViewModel.uiState.value.currentVideo?.uri.toString()
                         )
                     findNavController().navigate(action)

@@ -44,15 +44,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <Button
             android:id="@+id/button_search"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            style="@style/Style.Button.UnelevatedButton.Circle.Icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="?selectableItemBackgroundBorderless"
-            android:foreground="@drawable/ic_search"
-            android:foregroundTint="@color/gray_500"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_search"
+            app:iconTint="@color/gray_500"
+            app:iconSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
