@@ -109,7 +109,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="Filter"
                         android:textAppearance="?textAppearanceBody1"
                         android:textStyle="bold" />
@@ -155,7 +155,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="Urutkan"
                         android:textAppearance="?textAppearanceBody1"
                         android:textStyle="bold" />
@@ -204,7 +204,7 @@
                         android:id="@+id/text_view_list_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:text="Grid"
                         android:textAppearance="?textAppearanceBody1"
                         android:textStyle="bold" />

@@ -87,7 +87,8 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_report.xml" value="0.32222222222222224" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_video_player.xml" value="0.30972222222222223" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/layout_category_report_item.xml" value="0.32222222222222224" />
-        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/layout_item_report_grid.xml" value="0.33" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/layout_item_report_grid.xml" value="0.5" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/layout_item_report_list.xml" value="0.3212962962962963" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/splash_screen/src/main/res/layout/fragment_splash_screen.xml" value="0.3625" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/webview/src/main/res/layout/fragment_web_view.xml" value="0.2359375" />
       </map>

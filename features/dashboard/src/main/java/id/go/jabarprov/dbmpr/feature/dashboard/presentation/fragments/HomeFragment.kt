@@ -2,7 +2,6 @@ package id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments
 
 import android.Manifest
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +31,7 @@ import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.DashboardMe
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.NewsAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.adapters.SliderAdapter
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.DashboardMenuModel
+import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.DashboardMenuType
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
 import id.go.jabarprov.dbmpr.utils.extensions.capitalizeEachWord
@@ -119,7 +119,23 @@ class HomeFragment : Fragment() {
             }
 
             recyclerViewMenu.apply {
-                adapter = dashboardMenuAdapter
+                adapter = dashboardMenuAdapter.also {
+                    it.setOnClickListener { menuType ->
+                        when (menuType) {
+                            DashboardMenuType.MAP -> Unit
+                            DashboardMenuType.NEWS -> Unit
+                            DashboardMenuType.REPORT -> {
+                                val action =
+                                    NavDeepLinkRequest
+                                        .Builder
+                                        .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/list-report".toUri())
+                                        .build()
+                                findNavController().navigate(action)
+                            }
+                            DashboardMenuType.OTHER -> Unit
+                        }
+                    }
+                }
                 layoutManager = GridLayoutManager(requireContext(), 4)
                 setHasFixedSize(true)
             }
@@ -321,19 +337,23 @@ class HomeFragment : Fragment() {
         private val LIST_MENU_DASHBOARD = listOf(
             DashboardMenuModel(
                 "Peta DBMPR",
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_map
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_map,
+                DashboardMenuType.MAP
             ),
             DashboardMenuModel(
                 "Berita DBMPR",
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_post
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_post,
+                DashboardMenuType.NEWS
             ),
             DashboardMenuModel(
-                "Response Laporan",
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_half_opened_mail
+                "Laporan Masyarakat",
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_half_opened_mail,
+                DashboardMenuType.REPORT
             ),
             DashboardMenuModel(
                 "Menu Lainnya",
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_menu
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_menu,
+                DashboardMenuType.OTHER
             ),
         )
     }

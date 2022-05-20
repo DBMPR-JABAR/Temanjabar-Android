@@ -41,6 +41,10 @@
         android:id="@+id/listReportFragment"
         android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.list_report.ListReportFragment"
         android:label="fragment_list_report"
-        tools:layout="@layout/fragment_list_report" />
+        tools:layout="@layout/fragment_list_report">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://temanjabar.dbmpr.jabarprov.go.id/list-report" />
+    </fragment>
 
 </navigation>
