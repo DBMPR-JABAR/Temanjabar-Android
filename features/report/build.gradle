@@ -22,6 +22,7 @@ dependencies {
     implementation Libs.shimmer
     implementation Libs.coil
     implementation Libs.exoPlayer
+    implementation Libs.dotsIndicator
 
     implementation Libs.viewModelScope
     implementation Libs.lifecycleScope
@@ -32,6 +33,8 @@ dependencies {
 
     implementation Libs.hiltAndroid
     kapt Libs.hiltCompiler
+
+    implementation Libs.arcgis
 
     // Integration with activities
     implementation Libs.activityCompose

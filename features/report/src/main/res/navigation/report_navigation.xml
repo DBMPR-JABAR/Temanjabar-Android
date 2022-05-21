@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/report_navigation"
-    app:startDestination="@id/listReportFragment">
+    app:startDestination="@id/reportFragment2">
 
     <fragment
         android:id="@+id/reportFragment"
@@ -46,5 +46,10 @@
             android:id="@+id/deepLink"
             app:uri="https://temanjabar.dbmpr.jabarprov.go.id/list-report" />
     </fragment>
+    <fragment
+        android:id="@+id/reportFragment2"
+        android:name="id.go.jabarprov.dbmpr.feature.report.presentation.fragments.report.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
 
 </navigation>

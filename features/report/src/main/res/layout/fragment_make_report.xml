@@ -49,9 +49,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="Buat Laporan"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@id/button_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,8 +138,8 @@
             android:layout_margin="8dp"
             android:background="@drawable/step_bar"
             app:layout_constraintBottom_toBottomOf="@id/barrier_icon_step_bottom"
-            app:layout_constraintStart_toEndOf="@id/image_view_privacy"
             app:layout_constraintEnd_toStartOf="@id/image_view_category"
+            app:layout_constraintStart_toEndOf="@id/image_view_privacy"
             app:layout_constraintTop_toTopOf="@id/barrier_icon_step_top" />
 
         <androidx.constraintlayout.widget.Guideline

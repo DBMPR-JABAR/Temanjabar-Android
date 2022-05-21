@@ -240,7 +240,7 @@
                         android:id="@+id/image_view_icon_current_location"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_pin_location"
+                        android:src="@drawable/ic_location"
                         app:layout_constraintBottom_toTopOf="@+id/button_perbarui_lokasi"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -279,7 +279,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/image_view_icon_current_location"
                         app:layout_constraintTop_toBottomOf="@id/text_view_current_lokasi_ruas_jalan"
-                        tools:text="KABUPATEN CIREBON" />
+                        tools:text="Kabupaten Cirebon" />
 
                     <Button
                         android:id="@+id/button_perbarui_lokasi"
@@ -346,12 +346,12 @@
                     app:layout_constraintTop_toBottomOf="@id/text_view_title_section_news" />
 
                 <include
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_title_section_news"
                     android:id="@+id/layout_placeholder_news"
                     layout="@layout/layout_placeholder_news"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_title_section_news" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
