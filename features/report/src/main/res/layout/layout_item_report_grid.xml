@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
+    app:cardElevation="0dp"
     app:cardCornerRadius="@dimen/medium_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout

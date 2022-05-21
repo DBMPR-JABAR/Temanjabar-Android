@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import id.go.jabarprov.dbmpr.common.presentation.widgets.DividerVerticalItemDecoration
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentListReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.ReportGridAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.ReportListAdapter
@@ -24,6 +25,39 @@ class ListReportFragment : Fragment() {
     private val reportGridAdapter by lazy { ReportGridAdapter(2, 32) }
 
     private val reportListAdapter by lazy { ReportListAdapter() }
+
+    private val gridItemDecoration by lazy {
+        object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                super.getItemOffsets(outRect, view, parent, state)
+
+                val position = parent.getChildAdapterPosition(view)
+
+                if (position % 2 == 0) {
+                    outRect.right = 16
+                    outRect.left = 32
+                } else {
+                    outRect.left = 16
+                    outRect.right = 32
+                }
+
+                if (position < 2) {
+                    outRect.top = 32
+                }
+
+                outRect.bottom = 32
+            }
+        }
+    }
+
+    private val listItemDecoration by lazy {
+        DividerVerticalItemDecoration(requireContext())
+    }
 
     private var listType = ListType.GRID
 
@@ -84,56 +118,6 @@ class ListReportFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             removeItemDecoration(gridItemDecoration)
             addItemDecoration(listItemDecoration)
-        }
-    }
-
-    companion object {
-        private val gridItemDecoration = object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                super.getItemOffsets(outRect, view, parent, state)
-
-                val position = parent.getChildAdapterPosition(view)
-
-                if (position % 2 == 0) {
-                    outRect.right = 16
-                    outRect.left = 32
-                } else {
-                    outRect.left = 16
-                    outRect.right = 32
-                }
-
-                if (position < 2) {
-                    outRect.top = 32
-                }
-
-                outRect.bottom = 32
-            }
-        }
-
-        private val listItemDecoration = object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                super.getItemOffsets(outRect, view, parent, state)
-
-                val position = parent.getChildAdapterPosition(view)
-
-                if (position == 0) {
-                    outRect.top = 32
-                }
-
-                outRect.left = 32
-                outRect.right = 32
-                outRect.bottom = 32
-            }
         }
     }
 

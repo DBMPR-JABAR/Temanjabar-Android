@@ -15,7 +15,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -23,6 +22,7 @@ import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.common.domain.entity.News
 import id.go.jabarprov.dbmpr.common.presentation.widget_utils.HorizontalMarginItemDecoration
+import id.go.jabarprov.dbmpr.common.presentation.widgets.DividerVerticalItemDecoration
 import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentHomeBinding
@@ -144,12 +144,7 @@ class HomeFragment : Fragment() {
                 adapter = newsAdapter
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
-                addItemDecoration(
-                    DividerItemDecoration(
-                        requireContext(),
-                        DividerItemDecoration.VERTICAL
-                    )
-                )
+                addItemDecoration(DividerVerticalItemDecoration(requireContext()))
             }
 
             buttonCekLokasi.setOnClickListener {

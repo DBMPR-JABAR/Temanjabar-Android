@@ -111,8 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="Filter"
-                        android:textAppearance="?textAppearanceBody1"
-                        android:textStyle="bold" />
+                        android:textAppearance="?textAppearanceBody1" />
 
                 </LinearLayout>
 
@@ -157,8 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="Urutkan"
-                        android:textAppearance="?textAppearanceBody1"
-                        android:textStyle="bold" />
+                        android:textAppearance="?textAppearanceBody1" />
 
                 </LinearLayout>
 
@@ -206,8 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="Grid"
-                        android:textAppearance="?textAppearanceBody1"
-                        android:textStyle="bold" />
+                        android:textAppearance="?textAppearanceBody1" />
 
                 </LinearLayout>
 
@@ -225,6 +222,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_report"
+        android:background="@color/gray_100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="true"
