@@ -10,12 +10,6 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-    <application android:theme="@style/Theme.Temanjabar">
-        <activity
-            android:name="id.go.jabarprov.dbmpr.temanjabar.map.MapActivity"
-            android:exported="true">
-
-        </activity>
-    </application>
+    <application android:theme="@style/Theme.Temanjabar" />
 
 </manifest>

@@ -67,4 +67,15 @@
     </style>
     <!--  End Button Info  -->
 
+    <!--  Bottom Sheet  -->
+    <style name="ThemeOverlay.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.BottomSheet</item>
+    </style>
+
+    <style name="Widget.BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="backgroundTint">@color/white</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.LargeComponent</item>
+    </style>
+    <!--  End Bottom Sheet  -->
+
 </resources>
