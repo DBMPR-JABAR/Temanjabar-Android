@@ -2,6 +2,7 @@ package id.go.jabarprov.dbmpr.temanjabar.map.presentation.fragments
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.esri.arcgisruntime.data.ServiceFeatureTable
+import com.esri.arcgisruntime.layers.FeatureLayer
 import com.esri.arcgisruntime.mapping.ArcGISMap
 import com.esri.arcgisruntime.mapping.BasemapStyle
 import com.esri.arcgisruntime.mapping.Viewpoint
@@ -193,6 +196,69 @@ class MapFragment : Fragment() {
         }
     }
 
+    private fun loadLubang() {
+        val wfsFeatureTable =
+            ArcGISMapUtils.createWfsFeatureTable(tableName = "temanjabar:sapu_lubang_unhandled")
+        val featureLayer =
+            ArcGISMapUtils.createPointFeatureLayer(
+                wfsFeatureTable,
+                ArcGISMapUtils.createPictureMarker(IMAGE_LUBANG)
+            )
+        binding.mvArcgis.apply {
+            map.operationalLayers.add(featureLayer)
+            addNavigationChangedListener {
+                if (!it.isNavigating) {
+                    ArcGISMapUtils.populateFromServer(
+                        wfsFeatureTable,
+                        binding.mvArcgis.visibleArea.extent
+                    )
+                }
+            }
+        }
+    }
+
+    private fun loadLubangDirencanakan() {
+        val wfsFeatureTable =
+            ArcGISMapUtils.createWfsFeatureTable(tableName = "temanjabar:sapu_lubang_scheduled")
+        val featureLayer =
+            ArcGISMapUtils.createPointFeatureLayer(
+                wfsFeatureTable,
+                ArcGISMapUtils.createPictureMarker(IMAGE_LUBANG_DIRENCANAKAN)
+            )
+        binding.mvArcgis.apply {
+            map.operationalLayers.add(featureLayer)
+            addNavigationChangedListener {
+                if (!it.isNavigating) {
+                    ArcGISMapUtils.populateFromServer(
+                        wfsFeatureTable,
+                        binding.mvArcgis.visibleArea.extent
+                    )
+                }
+            }
+        }
+    }
+
+    private fun loadLubangDitangani() {
+        val wfsFeatureTable =
+            ArcGISMapUtils.createWfsFeatureTable(tableName = "temanjabar:sapu_lubang_done")
+        val featureLayer =
+            ArcGISMapUtils.createPointFeatureLayer(
+                wfsFeatureTable,
+                ArcGISMapUtils.createPictureMarker(IMAGE_LUBANG_SELESAI)
+            )
+        binding.mvArcgis.apply {
+            map.operationalLayers.add(featureLayer)
+            addNavigationChangedListener {
+                if (!it.isNavigating) {
+                    ArcGISMapUtils.populateFromServer(
+                        wfsFeatureTable,
+                        binding.mvArcgis.visibleArea.extent
+                    )
+                }
+            }
+        }
+    }
+
     private fun initLocation() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
@@ -220,5 +286,13 @@ class MapFragment : Fragment() {
     override fun onDestroy() {
         mapView.dispose()
         super.onDestroy()
+    }
+
+    private companion object {
+        const val IMAGE_LUBANG = "https://tj.temanjabar.net/assets/images/marker/sapulobang.png"
+        const val IMAGE_LUBANG_DIRENCANAKAN =
+            "https://tj.temanjabar.net/assets/images/marker/sapulobang_schedule.png"
+        const val IMAGE_LUBANG_SELESAI =
+            "https://tj.temanjabar.net/assets/images/marker/sapulobang_finish.png"
     }
 }

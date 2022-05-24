@@ -3,4 +3,5 @@
     <item name="jalan_provinsi" type="color">#16A75C</item>
     <item name="jalan_kota_kabupaten" type="color">#E53935</item>
     <item name="jalan_nasional" type="color">#1E88E5</item>
+    <item name="lubang" type="color"></item>
 </resources>

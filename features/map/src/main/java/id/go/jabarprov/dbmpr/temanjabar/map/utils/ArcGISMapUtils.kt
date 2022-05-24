@@ -1,13 +1,13 @@
 package id.go.jabarprov.dbmpr.temanjabar.map.utils
 
+import android.graphics.Color
 import android.util.Log
 import com.esri.arcgisruntime.data.QueryParameters
 import com.esri.arcgisruntime.data.ServiceFeatureTable
 import com.esri.arcgisruntime.geometry.Envelope
 import com.esri.arcgisruntime.layers.FeatureLayer
 import com.esri.arcgisruntime.ogc.wfs.WfsFeatureTable
-import com.esri.arcgisruntime.symbology.SimpleLineSymbol
-import com.esri.arcgisruntime.symbology.SimpleRenderer
+import com.esri.arcgisruntime.symbology.*
 
 private const val TAG = "ArcGISMapUtils"
 
@@ -26,6 +26,36 @@ abstract class ArcGISMapUtils {
             }
         }
 
+        fun createPointFeatureLayer(
+            wfsFeatureTable: WfsFeatureTable,
+            marker: MarkerSymbol = SimpleMarkerSymbol(
+                SimpleMarkerSymbol.Style.CIRCLE,
+                Color.parseColor("#E53935"),
+                12f
+            ).apply {
+                outline =
+                    SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, Color.parseColor("#FFFFFF"), 2f)
+            }
+        ): FeatureLayer {
+            val simpleRenderer = SimpleRenderer(marker)
+
+            return FeatureLayer(wfsFeatureTable).also {
+                it.renderer = simpleRenderer
+                it.addDoneLoadingListener {
+                    Log.d(
+                        TAG,
+                        "LOAD POINT LAYER (${wfsFeatureTable.tableName}) STATUS: ${it.loadStatus}"
+                    )
+                    if (it.loadError != null) {
+                        Log.d(
+                            TAG,
+                            "POINT LAYER (${wfsFeatureTable.tableName}) ERROR STATUS: ${it.loadError.cause}"
+                        )
+                    }
+                }
+            }
+        }
+
         fun createLineFeatureLayer(
             wfsFeatureTable: WfsFeatureTable,
             lineColor: Int,
@@ -37,11 +67,24 @@ abstract class ArcGISMapUtils {
             return FeatureLayer(wfsFeatureTable).also {
                 it.renderer = simpleRenderer
                 it.addDoneLoadingListener {
-                    Log.d(TAG, "LOAD LINE LAYER (${wfsFeatureTable.tableName}) STATUS: ${it.loadStatus}")
+                    Log.d(
+                        TAG,
+                        "LOAD LINE LAYER (${wfsFeatureTable.tableName}) STATUS: ${it.loadStatus}"
+                    )
                     if (it.loadError != null) {
-                        Log.d(TAG, "LINE LAYER (${wfsFeatureTable.tableName}) ERROR STATUS: ${it.loadError.cause}")
+                        Log.d(
+                            TAG,
+                            "LINE LAYER (${wfsFeatureTable.tableName}) ERROR STATUS: ${it.loadError.cause}"
+                        )
                     }
                 }
+            }
+        }
+
+        fun createPictureMarker(url: String, size: Float = 32f): PictureMarkerSymbol {
+            return PictureMarkerSymbol(url).apply {
+                width = size
+                height = size
             }
         }
 
