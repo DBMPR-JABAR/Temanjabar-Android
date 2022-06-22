@@ -14,8 +14,6 @@
 
     <include app:graph="@navigation/authentication_navigation" />
 
-    <include app:graph="@navigation/splash_screen_navigation" />
-
     <include app:graph="@navigation/report_navigation" />
 
 </navigation>

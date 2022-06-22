@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.activity.DashboardActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/frame_layout_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize">
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/gray_100"
+        app:layout_anchor="@id/bottom_app_bar" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:contentInsetStart="0dp"
+        app:elevation="0dp"
+        app:fabCradleRoundedCornerRadius="0dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            style="@style/Widget.MaterialComponents.BottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemIconSize="22dp"
+            app:itemIconTint="@color/color_item_bottom_navigation_view"
+            app:itemTextAppearanceActive="@style/Style.Text.Item.BottomNavigationView"
+            app:itemTextAppearanceInactive="@style/Style.Text.Item.BottomNavigationView"
+            app:itemTextColor="@color/color_item_bottom_navigation_view"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/dashboard_menu" />
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?colorPrimary"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:layout_anchor="@id/bottom_app_bar"
+        app:srcCompat="@drawable/ic_megaphone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
