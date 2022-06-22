@@ -122,7 +122,14 @@ class HomeFragment : Fragment() {
                 adapter = dashboardMenuAdapter.also {
                     it.setOnClickListener { menuType ->
                         when (menuType) {
-                            DashboardMenuType.MAP -> Unit
+                            DashboardMenuType.MAP -> {
+                                val action =
+                                    NavDeepLinkRequest
+                                        .Builder
+                                        .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/map".toUri())
+                                        .build()
+                                findNavController().navigate(action)
+                            }
                             DashboardMenuType.NEWS -> Unit
                             DashboardMenuType.REPORT -> {
                                 val action =

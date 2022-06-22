@@ -15,4 +15,6 @@
     <string name="selesai">Selesai</string>
     <string name="informasi_tidak_ditemukan">Informasi Tidak Ditemukan</string>
     <string name="informasi_tidak_ditemukan_description">Mohon maaf, sepertinya kami tidak memiliki informasi yang Anda cari.</string>
+    <string name="kesalahan_sistem">Oops, terjadi kesalahan</string>
+    <string name="kesalahan_sistem_description">Mohon maaf, sepertinya terjadi kesalahan pada sistem. Mohon untuk tunggu beberapa saat kemudian dan coba kembali.</string>
 </resources>

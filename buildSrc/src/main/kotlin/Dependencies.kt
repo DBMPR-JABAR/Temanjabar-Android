@@ -20,6 +20,10 @@ object Features {
     const val report = ":features:report"
 }
 
+object Navigation {
+    const val navigation = ":navigation"
+}
+
 object Common {
     const val common = ":common"
 }

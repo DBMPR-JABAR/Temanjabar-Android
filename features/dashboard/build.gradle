@@ -4,6 +4,7 @@ apply {
 
 apply plugin: "dagger.hilt.android.plugin"
 apply plugin: "kotlin-kapt"
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     buildFeatures {
@@ -36,6 +37,9 @@ dependencies {
     implementation Libs.gsonConverter
 
     implementation Libs.hiltAndroid
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     kapt Libs.hiltCompiler
 
     // Integration with activities

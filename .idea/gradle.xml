@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/features/report" />
             <option value="$PROJECT_DIR$/features/splash_screen" />
             <option value="$PROJECT_DIR$/features/webview" />
+            <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>

@@ -55,6 +55,8 @@ dependencies {
 
     implementation project(Common.common)
 
+    implementation project(Navigation.navigation)
+
     implementation project(Features.splashScreen)
     implementation project(Features.dashboard)
     implementation project(Features.map)

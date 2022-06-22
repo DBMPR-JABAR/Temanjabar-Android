@@ -131,6 +131,7 @@ class MapFragment : Fragment() {
         loadRuasJalanNasional()
         loadRuasJalanProvinsi()
         loadRuasJalanKabKota()
+        loadPaketPekerjaan()
     }
 
     private fun loadRuasJalanNasional() {
@@ -196,6 +197,27 @@ class MapFragment : Fragment() {
         }
     }
 
+    private fun loadPaketPekerjaan() {
+        val wfsFeatureTable =
+            ArcGISMapUtils.createWfsFeatureTable(tableName = "talikuat:paket_pekerjaan")
+        val featureLayer =
+            ArcGISMapUtils.createPointFeatureLayer(
+                wfsFeatureTable,
+                ArcGISMapUtils.createPictureMarker(IMAGE_LUBANG)
+            )
+        binding.mvArcgis.apply {
+            map.operationalLayers.add(featureLayer)
+            addNavigationChangedListener {
+                if (!it.isNavigating) {
+                    ArcGISMapUtils.populateFromServer(
+                        wfsFeatureTable,
+                        binding.mvArcgis.visibleArea.extent
+                    )
+                }
+            }
+        }
+    }
+
     private fun loadLubang() {
         val wfsFeatureTable =
             ArcGISMapUtils.createWfsFeatureTable(tableName = "temanjabar:sapu_lubang_unhandled")
@@ -204,6 +226,9 @@ class MapFragment : Fragment() {
                 wfsFeatureTable,
                 ArcGISMapUtils.createPictureMarker(IMAGE_LUBANG)
             )
+        wfsFeatureTable.addDoneLoadingListener {
+            Log.d(TAG, "loadPaketPekerjaan: ${wfsFeatureTable.geometryType.name}")
+        }
         binding.mvArcgis.apply {
             map.operationalLayers.add(featureLayer)
             addNavigationChangedListener {

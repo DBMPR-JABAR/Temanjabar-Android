@@ -8,8 +8,12 @@
         </attr>
     </declare-styleable>
     <declare-styleable name="EmptyStateView">
-        <attr name="title" format="string" />
-        <attr name="description" format="string" />
+        <attr name="title_empty" format="string" />
+        <attr name="description_empty" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ErrorStateView">
+        <attr name="title_error" format="string" />
+        <attr name="description_error" format="string" />
     </declare-styleable>
     <declare-styleable name="SearchTextView">
         <attr name="hint" format="string" />

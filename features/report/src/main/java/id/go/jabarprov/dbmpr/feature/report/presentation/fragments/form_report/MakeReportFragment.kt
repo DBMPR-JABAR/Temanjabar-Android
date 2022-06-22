@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -44,6 +45,13 @@ class MakeReportFragment : Fragment() {
     }
 
     private var activeFragment: Fragment = privacyReportFragment
+
+    override fun onResume() {
+        super.onResume()
+        val windowInsetsController =
+            ViewCompat.getWindowInsetsController(requireActivity().window.decorView)
+        windowInsetsController?.isAppearanceLightStatusBars = true
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

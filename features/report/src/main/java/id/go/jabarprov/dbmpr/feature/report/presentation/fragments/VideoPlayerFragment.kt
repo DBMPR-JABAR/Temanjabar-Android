@@ -27,6 +27,7 @@ class VideoPlayerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        requireActivity().window.statusBarColor = requireContext().getColor(android.R.color.black)
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(requireActivity().window.decorView)
         windowInsetsController?.isAppearanceLightStatusBars = false
@@ -70,6 +71,7 @@ class VideoPlayerFragment : Fragment() {
     }
 
     override fun onPause() {
+        requireActivity().window.statusBarColor = requireContext().getColor(android.R.color.white)
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(requireActivity().window.decorView)
         windowInsetsController?.isAppearanceLightStatusBars = true

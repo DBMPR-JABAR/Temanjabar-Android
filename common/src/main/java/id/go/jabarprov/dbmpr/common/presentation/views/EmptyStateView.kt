@@ -20,10 +20,10 @@ class EmptyStateView(context: Context, attrs: AttributeSet? = null) :
         )
     }
 
-    private var title = mTypedArray.getString(R.styleable.EmptyStateView_title)
+    private var title = mTypedArray.getString(R.styleable.EmptyStateView_title_empty)
         ?: context.getString(R.string.informasi_tidak_ditemukan)
 
-    private var description = mTypedArray.getString(R.styleable.EmptyStateView_description)
+    private var description = mTypedArray.getString(R.styleable.EmptyStateView_description_empty)
         ?: context.getString(R.string.informasi_tidak_ditemukan_description)
 
     private lateinit var mTitleTextView: TextView
@@ -37,7 +37,7 @@ class EmptyStateView(context: Context, attrs: AttributeSet? = null) :
         setPadding(48)
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.layout_empty, this, true)
+        val view = inflater.inflate(R.layout.layout_empty_state_view, this, true)
 
         mTitleTextView = view.findViewById(R.id.text_view_title)
         mDescriptionTextView = view.findViewById(R.id.text_view_desc)

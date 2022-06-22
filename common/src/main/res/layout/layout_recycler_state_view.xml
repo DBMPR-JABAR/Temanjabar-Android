@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <id.go.jabarprov.dbmpr.common.presentation.views.EmptyStateView
+        android:id="@+id/empty_state_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <id.go.jabarprov.dbmpr.common.presentation.views.ErrorStateView
+        android:id="@+id/error_state_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</merge>

@@ -27,6 +27,11 @@ data class MakeReportState(
             ),
             CategoryReportModel(
                 1,
+                id.go.jabarprov.dbmpr.common.R.drawable.ic_bridge,
+                "Kerusakan Jembatan"
+            ),
+            CategoryReportModel(
+                2,
                 id.go.jabarprov.dbmpr.common.R.drawable.ic_avalanche,
                 "Bencana Alam"
             ),

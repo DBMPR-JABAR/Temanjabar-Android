@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_navigation"
-    app:startDestination="@id/splash_screen_navigation">
+    app:startDestination="@id/map_navigation">
 
     <include app:graph="@navigation/dashboard_navigation" />
 

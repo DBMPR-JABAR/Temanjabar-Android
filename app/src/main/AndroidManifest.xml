@@ -16,11 +16,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">
-            <nav-graph android:value="@navigation/app_navigation" />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <nav-graph android:value="@navigation/app_navigation" />-->
+
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
