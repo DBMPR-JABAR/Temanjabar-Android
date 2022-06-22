@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.temanjabar.map.utils
+package id.go.jabarprov.dbmpr.temanjabar.feature.map.utils
 
 import android.graphics.Color
 import android.util.Log

@@ -124,12 +124,7 @@ class HomeFragment : Fragment() {
                     it.setOnClickListener { menuType ->
                         when (menuType) {
                             DashboardMenuType.MAP -> {
-                                val action =
-                                    NavDeepLinkRequest
-                                        .Builder
-                                        .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/map".toUri())
-                                        .build()
-                                findNavController().navigate(action)
+                                dashboardNavigationModule.goToMapScreen(requireContext())
                             }
                             DashboardMenuType.NEWS -> Unit
                             DashboardMenuType.REPORT -> {
@@ -178,12 +173,7 @@ class HomeFragment : Fragment() {
             buttonLihatLokasiPeta.setOnClickListener {
                 val currentLat = homeViewModel.uiState.value.currentLat
                 val currentLong = homeViewModel.uiState.value.currentLong
-                val request =
-                    NavDeepLinkRequest
-                        .Builder
-                        .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/map?lat=${currentLat}&long=${currentLong}".toUri())
-                        .build()
-                findNavController().navigate(request)
+                dashboardNavigationModule.goToMapScreen(requireContext(), currentLat, currentLong)
             }
 
             dotIndicator.attachTo(viewPagerNews)

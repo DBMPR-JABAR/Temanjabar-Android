@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.temanjabar.map
+package id.go.jabarprov.dbmpr.temanjabar.feature.map
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("id.go.jabarprov.dbmpr.temanjabar.map.test", appContext.packageName)
+        assertEquals("id.go.jabarprov.dbmpr.temanjabar.feature.map.test", appContext.packageName)
     }
 }

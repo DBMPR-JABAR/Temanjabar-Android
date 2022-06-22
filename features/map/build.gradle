@@ -4,11 +4,13 @@ apply {
 
 apply plugin: "dagger.hilt.android.plugin"
 apply plugin: "kotlin-kapt"
+apply plugin: 'org.jetbrains.kotlin.android'
 
 dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
 
+    implementation project(Navigation.navigation)
     implementation project(Common.common)
     implementation project(Utils.utils)
 

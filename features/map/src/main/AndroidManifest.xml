@@ -10,6 +10,10 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
-    <application android:theme="@style/Theme.Temanjabar" />
+    <application android:theme="@style/Theme.Temanjabar">
+        <activity
+            android:name=".presentation.activity.MapActivity"
+            android:exported="false" />
+    </application>
 
 </manifest>

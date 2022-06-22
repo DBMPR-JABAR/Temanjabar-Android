@@ -1,4 +1,4 @@
-package id.go.jabarprov.dbmpr.temanjabar.map
+package id.go.jabarprov.dbmpr.temanjabar.feature.map
 
 import org.junit.Test
 

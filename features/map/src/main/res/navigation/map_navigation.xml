@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="id.go.jabarprov.dbmpr.temanjabar.map.presentation.fragments.MapFragment"
+        android:name="id.go.jabarprov.dbmpr.temanjabar.feature.map.presentation.fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map">
         <deepLink

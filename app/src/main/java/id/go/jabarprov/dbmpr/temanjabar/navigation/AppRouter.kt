@@ -5,7 +5,9 @@ import android.content.Intent
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.activity.DashboardActivity
 import id.go.jabarprov.dbmpr.feature.news.presentation.activity.NewsActivity
 import id.go.jabarprov.dbmpr.feature.report.presentation.activity.FormReportActivity
+import id.go.jabarprov.dbmpr.temanjabar.feature.map.presentation.activity.MapActivity
 import id.go.jabarprov.dbmpr.temanjabar.navigation.dashboard.DashboardNavigationModule
+import id.go.jabarprov.dbmpr.temanjabar.navigation.map.MapArgs
 import id.go.jabarprov.dbmpr.temanjabar.navigation.news.NewsArgs
 import id.go.jabarprov.dbmpr.temanjabar.navigation.splash_screen.SplashScreenNavigationModule
 import javax.inject.Inject
@@ -30,6 +32,14 @@ class AppRouter @Inject constructor() : SplashScreenNavigationModule, DashboardN
 
     override fun goToFormReportScreen(context: Context) {
         val intent = Intent(context, FormReportActivity::class.java)
+        context.startActivity(intent)
+    }
+
+    override fun goToMapScreen(context: Context, lat: Double?, long: Double?) {
+        val intent = Intent(context, MapActivity::class.java).apply {
+            putExtra(MapArgs.LAT, lat)
+            putExtra(MapArgs.LONG, long)
+        }
         context.startActivity(intent)
     }
 }
