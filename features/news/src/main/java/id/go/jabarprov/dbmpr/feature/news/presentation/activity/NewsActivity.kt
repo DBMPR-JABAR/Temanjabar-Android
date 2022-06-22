@@ -1,14 +1,13 @@
-package id.go.jabarprov.dbmpr.feature.news.presentation.fragments
+package id.go.jabarprov.dbmpr.feature.news.presentation.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.*
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,41 +16,55 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.common.domain.entity.News
 import id.go.jabarprov.dbmpr.core_main.Resource
 import id.go.jabarprov.dbmpr.core_views.R
-import id.go.jabarprov.dbmpr.feature.news.databinding.FragmentNewsBinding
+import id.go.jabarprov.dbmpr.feature.news.databinding.ActivityNewsBinding
 import id.go.jabarprov.dbmpr.feature.news.presentation.viewmodels.NewsViewModel
 import id.go.jabarprov.dbmpr.feature.news.presentation.viewmodels.store.NewsAction
+import id.go.jabarprov.dbmpr.temanjabar.navigation.news.NewsArgs
 import kotlinx.coroutines.launch
 
-private const val TAG = "NewsFragment"
+private const val TAG = "NewsActivity"
 
 @AndroidEntryPoint
-class NewsFragment : Fragment() {
+class NewsActivity : AppCompatActivity() {
 
     private val newsViewModel by viewModels<NewsViewModel>()
 
-    private lateinit var binding: FragmentNewsBinding
+    private val binding by lazy { ActivityNewsBinding.inflate(layoutInflater) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentNewsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        window?.statusBarColor =
+            ContextCompat.getColor(this, android.R.color.transparent)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            binding.toolbar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                topMargin = insets.top
+            }
+            WindowInsetsCompat.CONSUMED
+        }
+
+        setContentView(binding.root)
+
         initUI()
         observeNewsState()
-
         getNews()
     }
 
     private fun initUI() {
-
+        with(binding) {
+            buttonBack.setOnClickListener {
+                finish()
+            }
+        }
     }
 
     private fun getNews() {
-        newsViewModel.processAction(NewsAction.GetNews(arguments?.get("slug") as String))
+        intent.getStringExtra(NewsArgs.SLUG)?.let {
+            newsViewModel.processAction(NewsAction.GetNews(it))
+        }
     }
 
     private fun setVisibilityLoadingNews(isVisible: Boolean) {
@@ -68,24 +81,10 @@ class NewsFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        requireActivity().window?.statusBarColor =
-            ContextCompat.getColor(requireContext(), android.R.color.transparent)
-        WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            binding.toolbar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                topMargin = insets.top
-            }
-            WindowInsetsCompat.CONSUMED
-        }
-    }
 
     private fun observeNewsState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 newsViewModel.uiState.collect {
                     processNewsState(it.news)
                 }
@@ -126,8 +125,8 @@ class NewsFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
-        WindowCompat.setDecorFitsSystemWindows(activity?.window!!, true)
+        window?.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onDestroy()
     }
 }

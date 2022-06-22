@@ -3,11 +3,8 @@ package id.go.jabarprov.dbmpr.feature.dashboard.presentation.activity
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.dashboard.R
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.ActivityDashboardBinding
@@ -15,9 +12,14 @@ import id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments.FaqFragmen
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments.HomeFragment
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments.MessageFragment
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.fragments.UserFragment
+import id.go.jabarprov.dbmpr.temanjabar.navigation.dashboard.DashboardNavigationModule
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DashboardActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var dashboardNavigationModule: DashboardNavigationModule
 
     private val binding by lazy { ActivityDashboardBinding.inflate(layoutInflater) }
 
@@ -48,10 +50,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun initUI() {
         binding.apply {
             buttonReport.setOnClickListener {
-//                val action =
-//                    NavDeepLinkRequest.Builder.fromUri("https://temanjabar.dbmpr.jabarprov.go.id/report".toUri())
-//                        .build()
-//                findNavController().navigate(action)
+                dashboardNavigationModule.goToFormReportScreen(this@DashboardActivity)
             }
 
             bottomNavigationView.setOnItemSelectedListener { item ->

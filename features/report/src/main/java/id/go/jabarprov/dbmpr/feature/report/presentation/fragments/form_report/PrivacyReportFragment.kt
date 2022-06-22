@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -22,7 +22,7 @@ import id.go.jabarprov.dbmpr.core_views.R as CoreR
 @AndroidEntryPoint
 class PrivacyReportFragment : Fragment() {
 
-    private val makeReportViewModel: MakeReportViewModel by viewModels({ requireParentFragment() })
+    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
 
     private lateinit var binding: FragmentPrivacyReportBinding
 

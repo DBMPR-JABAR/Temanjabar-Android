@@ -33,13 +33,16 @@ private const val TAG = "ListPhotoFragment"
 @AndroidEntryPoint
 class ListPhotoFragment : Fragment() {
 
-    private val listPhotoFragmentArgs: ListPhotoFragmentArgs by navArgs()
+//    private val listPhotoFragmentArgs: ListPhotoFragmentArgs by navArgs()
 
     private val listPhotoViewModel by viewModels<ListPhotoViewModel>()
 
     private lateinit var binding: FragmentListPhotoBinding
 
-    private val initialListPhoto by lazy { listPhotoFragmentArgs.listPhoto }
+    private val initialListPhoto by lazy {
+//        listPhotoFragmentArgs.listPhoto
+        listOf<PhotoModel>()
+    }
 
     private val photoAdapter by lazy {
         PhotoAdapter(3, 16).apply {

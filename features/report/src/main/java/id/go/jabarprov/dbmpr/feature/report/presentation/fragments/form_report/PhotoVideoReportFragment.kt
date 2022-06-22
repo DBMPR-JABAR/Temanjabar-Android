@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -38,9 +39,7 @@ private const val TAG = "PhotoVideoReportFragmen"
 @AndroidEntryPoint
 class PhotoVideoReportFragment : Fragment() {
 
-    private val makeReportViewModel by viewModels<MakeReportViewModel>({
-        requireParentFragment()
-    })
+    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
 
     private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
 
@@ -56,11 +55,11 @@ class PhotoVideoReportFragment : Fragment() {
 
     private val thumbnailPhotoAdapter by lazy {
         ThumbnailPhotoAdapter {
-            val action =
-                MakeReportFragmentDirections.actionReportFragmentToListPhotoFragment(
-                    makeReportViewModel.uiState.value.currentListPhoto.toTypedArray()
-                )
-            findNavController().navigate(action)
+//            val action =
+//                MakeReportFragmentDirections.actionReportFragmentToListPhotoFragment(
+//                    makeReportViewModel.uiState.value.currentListPhoto.toTypedArray()
+//                )
+//            findNavController().navigate(action)
         }
     }
 
@@ -154,11 +153,11 @@ class PhotoVideoReportFragment : Fragment() {
 
             uploadFileViewVideo.setOnClickListener {
                 if (makeReportViewModel.uiState.value.currentVideo != null) {
-                    val action =
-                        MakeReportFragmentDirections.actionReportFragmentToVideoPlayerFragment(
-                            makeReportViewModel.uiState.value.currentVideo?.uri.toString()
-                        )
-                    findNavController().navigate(action)
+//                    val action =
+//                        MakeReportFragmentDirections.actionReportFragmentToVideoPlayerFragment(
+//                            makeReportViewModel.uiState.value.currentVideo?.uri.toString()
+//                        )
+//                    findNavController().navigate(action)
                 } else {
                     if (isCameraPermissionGranted() && isAudioPermissionGranted()) {
                         takeVideo()
@@ -196,12 +195,12 @@ class PhotoVideoReportFragment : Fragment() {
     ) == PackageManager.PERMISSION_GRANTED
 
     private fun onResultListPhotoFragment() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.apply {
-            get<List<PhotoModel>>("NEW_LIST_PHOTO")?.let {
-                makeReportViewModel.processAction(MakeReportAction.UpdateListPhoto(it))
-            }
-            remove<List<PhotoModel>>("NEW_LIST_PHOTO")
-        }
+//        findNavController().currentBackStackEntry?.savedStateHandle?.apply {
+//            get<List<PhotoModel>>("NEW_LIST_PHOTO")?.let {
+//                makeReportViewModel.processAction(MakeReportAction.UpdateListPhoto(it))
+//            }
+//            remove<List<PhotoModel>>("NEW_LIST_PHOTO")
+//        }
     }
 
     private fun observeMakeReportState() {

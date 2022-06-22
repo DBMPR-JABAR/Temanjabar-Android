@@ -34,16 +34,21 @@ import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.DashboardMenu
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.models.DashboardMenuType
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.HomeViewModel
 import id.go.jabarprov.dbmpr.feature.dashboard.presentation.viewmodels.home.store.HomeAction
+import id.go.jabarprov.dbmpr.temanjabar.navigation.dashboard.DashboardNavigationModule
 import id.go.jabarprov.dbmpr.utils.extensions.capitalizeEachWord
 import id.go.jabarprov.dbmpr.utils.extensions.checkPermission
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
 import id.go.jabarprov.dbmpr.utils.utils.LocationUtils
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 private const val TAG = "HomeFragment"
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
+    @Inject
+    lateinit var dashboardNavigationModule: DashboardNavigationModule
 
     private val homeViewModel by viewModels<HomeViewModel>()
 
@@ -108,11 +113,7 @@ class HomeFragment : Fragment() {
                                 .build()
                             findNavController().navigate(request)
                         } else {
-                            val request = NavDeepLinkRequest
-                                .Builder
-                                .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/news?slug=${it.slug}".toUri())
-                                .build()
-                            findNavController().navigate(request)
+                            dashboardNavigationModule.goToNewsScreen(requireContext(), it.slug)
                         }
                     }
                 }

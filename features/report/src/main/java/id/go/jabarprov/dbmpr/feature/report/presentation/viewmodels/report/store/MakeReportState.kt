@@ -4,6 +4,7 @@ import id.go.jabarprov.dbmpr.core_main.store.State
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.CategoryReportModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
+import id.go.jabarprov.dbmpr.common.R as CommonR
 
 data class MakeReportState(
     val reportPrivacy: MakeReportPrivacy = MakeReportPrivacy.PRIVATE,
@@ -22,17 +23,17 @@ data class MakeReportState(
         val LIST_CATEGORY_REPORT = listOf(
             CategoryReportModel(
                 0,
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_damage_road,
+                CommonR.drawable.ic_damage_road,
                 "Kerusakan Jalan"
             ),
             CategoryReportModel(
                 1,
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_bridge,
+                CommonR.drawable.ic_bridge,
                 "Kerusakan Jembatan"
             ),
             CategoryReportModel(
                 2,
-                id.go.jabarprov.dbmpr.common.R.drawable.ic_avalanche,
+                CommonR.drawable.ic_avalanche,
                 "Bencana Alam"
             ),
         )

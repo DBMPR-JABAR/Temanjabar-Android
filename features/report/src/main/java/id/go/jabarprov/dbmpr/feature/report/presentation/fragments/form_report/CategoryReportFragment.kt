@@ -8,6 +8,7 @@ import android.view.WindowManager
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -27,9 +28,7 @@ private const val TAG = "CategoryReportFragment"
 @AndroidEntryPoint
 class CategoryReportFragment : Fragment() {
 
-    private val makeReportViewModel by viewModels<MakeReportViewModel>({
-        requireParentFragment()
-    })
+    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
 
     private val categoryAdapter by lazy {
         CategoryReportAdapter(

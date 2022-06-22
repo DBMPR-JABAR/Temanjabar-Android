@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentVideoPlayerBinding
@@ -17,9 +16,12 @@ private const val TAG = "VideoPlayerFragment"
 
 class VideoPlayerFragment : Fragment() {
 
-    private val videoPlayerArgs: VideoPlayerFragmentArgs by navArgs()
+//    private val videoPlayerArgs: VideoPlayerFragmentArgs by navArgs()
 
-    private val videoUri by lazy { Uri.parse(videoPlayerArgs.videoUri) }
+    private val videoUri by lazy {
+//        Uri.parse(videoPlayerArgs.videoUri)
+        Uri.parse("")
+    }
 
     private lateinit var binding: FragmentVideoPlayerBinding
 

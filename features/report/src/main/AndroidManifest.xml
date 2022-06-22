@@ -5,5 +5,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <application android:theme="@style/Theme.Temanjabar" />
+    <application android:theme="@style/Theme.Temanjabar">
+        <activity
+            android:name=".presentation.activity.FormReportActivity"
+            android:exported="true" />
+    </application>
+
 </manifest>

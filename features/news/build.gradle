@@ -10,6 +10,8 @@ dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
 
+    implementation project(Navigation.navigation)
+
     implementation project(Common.common)
 
     implementation project(Utils.utils)

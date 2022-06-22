@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DetailReportFragment : Fragment() {
 
-    private val makeReportViewModel by viewModels<MakeReportViewModel>({ requireParentFragment() })
+    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
 
     private lateinit var binding: FragmentDetailReportBinding
 
