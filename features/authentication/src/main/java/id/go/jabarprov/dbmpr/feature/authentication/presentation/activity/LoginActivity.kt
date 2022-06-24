@@ -1,5 +1,6 @@
-package id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments
+package id.go.jabarprov.dbmpr.feature.authentication.presentation.activity
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -7,13 +8,11 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -22,23 +21,26 @@ import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.authentication.R
-import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentLoginBinding
+import id.go.jabarprov.dbmpr.feature.authentication.databinding.ActivityLoginBinding
+import id.go.jabarprov.dbmpr.temanjabar.navigation.auth.AuthNavigationModule
 import id.go.jabarprov.dbmpr.utils.extensions.getColorFromAttr
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-private const val TAG = "LoginFragment"
+private const val TAG = "LoginActivity"
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var authNavigationModule: AuthNavigationModule
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
-
-    private lateinit var binding: FragmentLoginBinding
 
     private val googleSignInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val googleSignInTask = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            lifecycleScope.launchWhenResumed {
                 try {
                     val googleAccount = googleSignInTask.await()
                     if (googleAccount.idToken != null) {
@@ -52,16 +54,21 @@ class LoginFragment : Fragment() {
             }
         }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        val windowInsetsController =
+            ViewCompat.getWindowInsetsController(window.decorView)
+        windowInsetsController?.let {
+            it.isAppearanceLightStatusBars = true
+        }
+
+        setContentView(binding.root)
+
         initUI()
         setUpGoogleAccountStateListener()
     }
@@ -74,27 +81,25 @@ class LoginFragment : Fragment() {
             }
 
             val packageInfo =
-                requireContext().packageManager.getPackageInfo(context?.packageName!!, 0)
+                packageManager.getPackageInfo(packageName!!, 0)
             textViewVersion.text = "App Version\n${packageInfo.versionName}"
         }
     }
 
     private fun setUpRegisterSpanText() {
-        val registerAccountText = requireContext().getString(R.string.register_account)
+        val registerAccountText = getString(R.string.register_account)
 
         val startIndex = registerAccountText.indexOf("Daftar Sekarang")
         val endIndex = startIndex + "Daftar Sekarang".length
 
         val registerAccountSpanText = object : ClickableSpan() {
             override fun onClick(p0: View) {
-                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-                findNavController().navigate(action)
+                authNavigationModule.goToRegisterScreen(this@LoginActivity)
             }
 
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
-                ds.color =
-                    requireContext().getColorFromAttr(com.google.android.material.R.attr.colorPrimary)
+                ds.color = getColorFromAttr(com.google.android.material.R.attr.colorPrimary)
             }
         }
 
@@ -116,9 +121,15 @@ class LoginFragment : Fragment() {
     private fun setUpGoogleAccountStateListener() {
         FirebaseAuth.AuthStateListener {
             if (it.currentUser != null) {
-                Log.d(TAG, "GOOGLE ACCOUNT: ${it.currentUser}")
+                Log.d(
+                    TAG,
+                    "GOOGLE ACCOUNT: ${it.currentUser}"
+                )
             } else {
-                Log.d(TAG, "GOOGLE ACCOUNT: USER SIGN OUT")
+                Log.d(
+                    TAG,
+                    "GOOGLE ACCOUNT: USER SIGN OUT"
+                )
             }
         }
     }
@@ -129,7 +140,7 @@ class LoginFragment : Fragment() {
             .requestEmail()
             .build()
 
-        val googleSignInClient = GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
+        val googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
 
         val googleSignInIntent = googleSignInClient.signInIntent
 
@@ -137,7 +148,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun signInWithGoogle(idToken: String?) {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        lifecycleScope.launchWhenResumed {
             try {
                 val credential = GoogleAuthProvider.getCredential(idToken, null)
                 val user = firebaseAuth.signInWithCredential(credential).await().user

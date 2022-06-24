@@ -60,6 +60,8 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/drawable/bg_step_primary.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/drawable/ic_contained_logo_google.xml" value="0.3465" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/drawable/step_bar.xml" value="0.3465" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/layout/activity_login.xml" value="0.32222222222222224" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/layout/activity_register.xml" value="0.30972222222222223" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/layout/fragment_login.xml" value="0.3484375" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/layout/fragment_register.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/authentication/src/main/res/layout/fragment_register_agreement.xml" value="0.33" />

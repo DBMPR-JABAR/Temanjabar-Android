@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentRegisterAgreementBinding
@@ -14,7 +15,7 @@ import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.regi
 @AndroidEntryPoint
 class RegisterAgreementFragment : Fragment() {
 
-    private val registerViewModel by viewModels<RegisterViewModel>({ requireParentFragment() })
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
 
     private lateinit var binding: FragmentRegisterAgreementBinding
 

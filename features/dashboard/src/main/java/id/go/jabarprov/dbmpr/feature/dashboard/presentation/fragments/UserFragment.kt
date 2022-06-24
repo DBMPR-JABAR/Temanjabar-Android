@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.dashboard.databinding.FragmentUserBinding
+import id.go.jabarprov.dbmpr.temanjabar.navigation.dashboard.DashboardNavigationModule
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class UserFragment : Fragment() {
+
+    @Inject
+    lateinit var dashboardNavigationModule: DashboardNavigationModule
 
     private lateinit var binding: FragmentUserBinding
 
@@ -30,11 +34,7 @@ class UserFragment : Fragment() {
     private fun initUI() {
         binding.apply {
             buttonLogin.setOnClickListener {
-                val request = NavDeepLinkRequest
-                    .Builder
-                    .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/authentication".toUri())
-                    .build()
-                findNavController().navigate(request)
+                dashboardNavigationModule.goToLoginScreen(requireContext())
             }
 
             val packageInfo =

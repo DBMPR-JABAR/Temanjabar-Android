@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.RegisterFragment">
+    tools:context=".presentation.activity.RegisterActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -28,19 +28,25 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <Button
+                <FrameLayout
                     android:id="@+id/button_back"
-                    style="@style/Style.Button.UnelevatedButton.Circle.Icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:backgroundTint="@color/white"
-                    app:icon="@drawable/ic_chevron_left"
-                    app:iconTint="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/bg_ripple_circle_white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_page_title"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/text_view_page_title">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_chevron_left" />
+
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/text_view_page_title"

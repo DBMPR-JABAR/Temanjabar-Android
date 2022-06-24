@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -19,9 +20,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class RegisterEmailFragment : Fragment() {
 
-    private val registerViewModel by viewModels<RegisterViewModel>({
-        requireParentFragment()
-    })
+    private val registerViewModel by activityViewModels<RegisterViewModel>()
 
     private lateinit var binding: FragmentRegisterEmailBinding
 

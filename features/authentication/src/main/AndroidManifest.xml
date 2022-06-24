@@ -4,5 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:theme="@style/Theme.Temanjabar" />
+    <application android:theme="@style/Theme.Temanjabar">
+        <activity
+            android:name=".presentation.activity.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.activity.LoginActivity"
+            android:exported="true" />
+    </application>
+
 </manifest>

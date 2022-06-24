@@ -1,36 +1,35 @@
-package id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments
+package id.go.jabarprov.dbmpr.feature.authentication.presentation.activity
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.authentication.R
-import id.go.jabarprov.dbmpr.feature.authentication.databinding.FragmentRegisterBinding
+import id.go.jabarprov.dbmpr.feature.authentication.databinding.ActivityRegisterBinding
+import id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments.RegisterAgreementFragment
+import id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments.RegisterEmailFragment
+import id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments.RegisterNameFragment
+import id.go.jabarprov.dbmpr.feature.authentication.presentation.fragments.RegisterPasswordFragment
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.RegisterViewModel
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.store.RegisterAction
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.store.RegisterScreenState
 import id.go.jabarprov.dbmpr.feature.authentication.presentation.viewmodels.register.store.RegisterState
 import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
 import kotlinx.coroutines.launch
-import id.go.jabarprov.dbmpr.common.R as CommonResource
-
-private const val TAG = "RegisterFragment"
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment() {
+class RegisterActivity : AppCompatActivity() {
 
     private val registerViewModel by viewModels<RegisterViewModel>()
 
-    private lateinit var binding: FragmentRegisterBinding
+    private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
 
     private val registerNameFragment by lazy { RegisterNameFragment() }
     private val registerEmailFragment by lazy { RegisterEmailFragment() }
@@ -39,19 +38,21 @@ class RegisterFragment : Fragment() {
 
     private var activeFragment: Fragment = registerNameFragment
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        val windowInsetsController =
+            ViewCompat.getWindowInsetsController(window.decorView)
+        windowInsetsController?.let {
+            it.isAppearanceLightStatusBars = true
+        }
+
+        setContentView(binding.root)
+
         initUI()
-        if (childFragmentManager.fragments.isEmpty()) initChildFragment()
-        onBackPressed()
+        if (supportFragmentManager.fragments.isEmpty()) initChildFragment()
         observeRegisterState()
     }
 
@@ -66,13 +67,21 @@ class RegisterFragment : Fragment() {
             }
 
             buttonBack.setOnClickListener {
-                findNavController().popBackStack()
+                finish()
             }
         }
     }
 
+    override fun onBackPressed() {
+        if (registerViewModel.uiState.value.screenState == RegisterScreenState.REGISTER_NAME) {
+            super.onBackPressed()
+        } else {
+            registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
+        }
+    }
+
     private fun initChildFragment() {
-        childFragmentManager
+        supportFragmentManager
             .beginTransaction()
             .apply {
                 add(R.id.frame_layout_fragment_container, registerAgreementFragment)
@@ -87,7 +96,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigateChildFragment(fragment: Fragment) {
-        childFragmentManager
+        supportFragmentManager
             .beginTransaction()
             .apply {
                 hide(activeFragment)
@@ -184,25 +193,9 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun onBackPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (registerViewModel.uiState.value.screenState == RegisterScreenState.REGISTER_NAME) {
-                        isEnabled = false
-                        activity?.onBackPressed()
-                    } else {
-                        isEnabled = true
-                        registerViewModel.processAction(RegisterAction.GoToPreviousScreen)
-                    }
-                }
-            })
-    }
-
     private fun observeRegisterState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 registerViewModel.uiState.collect {
                     processScreenState(it.screenState)
                     processNextButtonState(it)
@@ -259,7 +252,7 @@ class RegisterFragment : Fragment() {
                 navigateChildFragment(registerPasswordFragment)
                 binding.apply {
                     linearLayoutPrevious.isVisible = true
-                    textViewNext.text = getString(CommonResource.string.selanjutnya)
+                    textViewNext.text = getString(id.go.jabarprov.dbmpr.common.R.string.selanjutnya)
                 }
             }
             RegisterScreenState.REGISTER_AGREEMENT -> {
@@ -278,7 +271,7 @@ class RegisterFragment : Fragment() {
                 )
                 binding.apply {
                     linearLayoutPrevious.isVisible = true
-                    textViewNext.text = getString(CommonResource.string.selesai)
+                    textViewNext.text = getString(id.go.jabarprov.dbmpr.common.R.string.selesai)
                 }
             }
         }
