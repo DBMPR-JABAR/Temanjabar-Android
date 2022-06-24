@@ -8,23 +8,23 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MakeReportStore @Inject constructor() :
-    Store<MakeReportAction, MakeReportState>(MakeReportState()) {
-    override fun reduce(action: MakeReportAction) {
+class FormReportStore @Inject constructor() :
+    Store<FormReportAction, MakeReportState>(MakeReportState()) {
+    override fun reduce(action: FormReportAction) {
         coroutineScope.launch {
             when (action) {
-                is MakeReportAction.UpdateSearchKeyword -> updateListCategoryBySearchKeyword(action.keyword)
-                is MakeReportAction.UpdateSelectedCategory -> updateSelectedCategory(action.category)
-                is MakeReportAction.GoToNextScreen -> goToNextScreen()
-                is MakeReportAction.GoToPreviousScreen -> goToPreviousScreen()
-                is MakeReportAction.AddPhoto -> addPhoto(action.uri)
-                is MakeReportAction.UpdateListPhoto -> updateListPhoto(action.listPhotoModel)
-                is MakeReportAction.AddVideo -> addVideo(action.uri)
-                MakeReportAction.ClearVideo -> clearVideo()
-                is MakeReportAction.UpdateDescription -> updateDescription(action.description)
-                is MakeReportAction.UpdateExplanation -> updateExplanation(action.explanation)
-                is MakeReportAction.UpdateLocation -> updateLocation(action.location)
-                is MakeReportAction.UpdateReportPrivacy -> updateReportPrivacy(action.reportPrivacy)
+                is FormReportAction.UpdateSearchKeyword -> updateListCategoryBySearchKeyword(action.keyword)
+                is FormReportAction.UpdateSelectedCategory -> updateSelectedCategory(action.category)
+                is FormReportAction.GoToNextScreen -> goToNextScreen()
+                is FormReportAction.GoToPreviousScreen -> goToPreviousScreen()
+                is FormReportAction.AddPhoto -> addPhoto(action.uri)
+                is FormReportAction.UpdateListPhoto -> updateListPhoto(action.listPhotoModel)
+                is FormReportAction.AddVideo -> addVideo(action.uri)
+                FormReportAction.ClearVideo -> clearVideo()
+                is FormReportAction.UpdateDescription -> updateDescription(action.description)
+                is FormReportAction.UpdateExplanation -> updateExplanation(action.explanation)
+                is FormReportAction.UpdateLocation -> updateLocation(action.location)
+                is FormReportAction.UpdateReportPrivacy -> updateReportPrivacy(action.reportPrivacy)
             }
         }
     }

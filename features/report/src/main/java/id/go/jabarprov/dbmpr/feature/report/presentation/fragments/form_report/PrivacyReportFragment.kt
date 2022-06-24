@@ -12,8 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentPrivacyReportBinding
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.FormReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.FormReportAction
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportPrivacy
 import id.go.jabarprov.dbmpr.utils.extensions.setSelectedRecursive
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ import id.go.jabarprov.dbmpr.core_views.R as CoreR
 @AndroidEntryPoint
 class PrivacyReportFragment : Fragment() {
 
-    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
+    private val formReportViewModel by activityViewModels<FormReportViewModel>()
 
     private lateinit var binding: FragmentPrivacyReportBinding
 
@@ -43,16 +43,16 @@ class PrivacyReportFragment : Fragment() {
     private fun initUI() {
         binding.apply {
             materialCardViewPrivate.setOnClickListener {
-                makeReportViewModel.processAction(
-                    MakeReportAction.UpdateReportPrivacy(
+                formReportViewModel.processAction(
+                    FormReportAction.UpdateReportPrivacy(
                         MakeReportPrivacy.PRIVATE
                     )
                 )
             }
 
             materialCardViewPublic.setOnClickListener {
-                makeReportViewModel.processAction(
-                    MakeReportAction.UpdateReportPrivacy(
+                formReportViewModel.processAction(
+                    FormReportAction.UpdateReportPrivacy(
                         MakeReportPrivacy.PUBLIC
                     )
                 )
@@ -115,7 +115,7 @@ class PrivacyReportFragment : Fragment() {
     private fun observeMakeReportState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                makeReportViewModel.uiState.collect {
+                formReportViewModel.uiState.collect {
                     processReportPrivacy(it.reportPrivacy)
                 }
             }

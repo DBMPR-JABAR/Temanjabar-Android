@@ -10,6 +10,8 @@ dependencies {
     implementation project(Core.main)
     implementation project(Core.views)
 
+    implementation project(Navigation.navigation)
+
     implementation project(Common.common)
 
     implementation project(Utils.utils)
@@ -32,9 +34,6 @@ dependencies {
     implementation Libs.gsonConverter
 
     implementation Libs.hiltAndroid
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     kapt Libs.hiltCompiler
 
     implementation Libs.arcgis

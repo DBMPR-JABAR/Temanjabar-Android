@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,8 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentCategoryReportBinding
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.CategoryReportAdapter
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.FormReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.FormReportAction
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -28,12 +27,12 @@ private const val TAG = "CategoryReportFragment"
 @AndroidEntryPoint
 class CategoryReportFragment : Fragment() {
 
-    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
+    private val formReportViewModel by activityViewModels<FormReportViewModel>()
 
     private val categoryAdapter by lazy {
         CategoryReportAdapter(
             onCategorySelected = {
-                makeReportViewModel.processAction(MakeReportAction.UpdateSelectedCategory(it))
+                formReportViewModel.processAction(FormReportAction.UpdateSelectedCategory(it))
             },
             onDataEmpty = {
                 binding.apply {
@@ -83,7 +82,7 @@ class CategoryReportFragment : Fragment() {
             job?.cancel()
             job = viewLifecycleOwner.lifecycleScope.launchWhenResumed {
                 delay(500)
-                makeReportViewModel.processAction(MakeReportAction.UpdateSearchKeyword(text.toString()))
+                formReportViewModel.processAction(FormReportAction.UpdateSearchKeyword(text.toString()))
             }
         }
     }
@@ -99,7 +98,7 @@ class CategoryReportFragment : Fragment() {
     private fun observeMakeReportState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                makeReportViewModel.uiState.collect {
+                formReportViewModel.uiState.collect {
                     categoryAdapter.submitList(it.currentListCategoryReport)
                 }
             }

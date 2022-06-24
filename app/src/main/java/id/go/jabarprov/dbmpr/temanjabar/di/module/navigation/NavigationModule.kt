@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.go.jabarprov.dbmpr.temanjabar.navigation.AppRouter
 import id.go.jabarprov.dbmpr.temanjabar.navigation.dashboard.DashboardNavigationModule
+import id.go.jabarprov.dbmpr.temanjabar.navigation.report.ReportNavigationModule
 import id.go.jabarprov.dbmpr.temanjabar.navigation.splash_screen.SplashScreenNavigationModule
 
 @Module
@@ -16,4 +17,7 @@ abstract class NavigationModule {
 
     @Binds
     abstract fun bindAppRouterToDashboardDirections(appRouter: AppRouter): DashboardNavigationModule
+
+    @Binds
+    abstract fun bindAppRouterToReportDirections(appRouter: AppRouter): ReportNavigationModule
 }

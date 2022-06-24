@@ -17,8 +17,8 @@ import id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report.C
 import id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report.DetailReportFragment
 import id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report.PhotoVideoReportFragment
 import id.go.jabarprov.dbmpr.feature.report.presentation.fragments.form_report.PrivacyReportFragment
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.FormReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.FormReportAction
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportScreenState
 import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportState
 import id.go.jabarprov.dbmpr.utils.extensions.setEnabledRecursive
@@ -28,7 +28,7 @@ import id.go.jabarprov.dbmpr.common.R as CommonR
 @AndroidEntryPoint
 class FormReportActivity : AppCompatActivity() {
 
-    private val makeReportViewModel by viewModels<MakeReportViewModel>()
+    private val formReportViewModel by viewModels<FormReportViewModel>()
 
     private val binding by lazy { ActivityFormReportBinding.inflate(layoutInflater) }
 
@@ -63,10 +63,10 @@ class FormReportActivity : AppCompatActivity() {
                 finish()
             }
             linearLayoutPrevious.setOnClickListener {
-                makeReportViewModel.processAction(MakeReportAction.GoToPreviousScreen)
+                formReportViewModel.processAction(FormReportAction.GoToPreviousScreen)
             }
             linearLayoutNext.setOnClickListener {
-                makeReportViewModel.processAction(MakeReportAction.GoToNextScreen)
+                formReportViewModel.processAction(FormReportAction.GoToNextScreen)
             }
         }
     }
@@ -74,7 +74,7 @@ class FormReportActivity : AppCompatActivity() {
     private fun observeMakeReportState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                makeReportViewModel.uiState.collect {
+                formReportViewModel.uiState.collect {
                     processScreenState(it.screenState)
                     processNextButtonState(it)
                 }

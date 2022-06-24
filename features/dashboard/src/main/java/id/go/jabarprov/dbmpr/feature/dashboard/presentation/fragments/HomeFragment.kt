@@ -128,12 +128,7 @@ class HomeFragment : Fragment() {
                             }
                             DashboardMenuType.NEWS -> Unit
                             DashboardMenuType.REPORT -> {
-                                val action =
-                                    NavDeepLinkRequest
-                                        .Builder
-                                        .fromUri("https://temanjabar.dbmpr.jabarprov.go.id/list-report".toUri())
-                                        .build()
-                                findNavController().navigate(action)
+                                dashboardNavigationModule.goToListReportScreen(requireContext())
                             }
                             DashboardMenuType.OTHER -> Unit
                         }

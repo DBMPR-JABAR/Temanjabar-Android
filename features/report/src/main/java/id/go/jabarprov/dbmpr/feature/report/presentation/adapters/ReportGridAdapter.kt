@@ -12,6 +12,8 @@ import id.go.jabarprov.dbmpr.feature.report.databinding.LayoutItemReportGridBind
 class ReportGridAdapter(private val spanCount: Int, private val space: Int) :
     RecyclerView.Adapter<ReportGridAdapter.ReportGridItemViewHolder>() {
 
+    private var onClickListener: (() -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReportGridItemViewHolder {
         val binding =
             LayoutItemReportGridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,17 +24,25 @@ class ReportGridAdapter(private val spanCount: Int, private val space: Int) :
     }
 
     override fun onBindViewHolder(holder: ReportGridItemViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(onClickListener)
     }
 
     override fun getItemCount(): Int {
         return 10
     }
 
+    fun setOnClickListener(action: () -> Unit): ReportGridAdapter {
+        onClickListener = action
+        return this
+    }
+
     class ReportGridItemViewHolder(private val binding: LayoutItemReportGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
+        fun bind(action: (() -> Unit)?) {
             binding.apply {
+                root.setOnClickListener {
+                    action?.invoke()
+                }
                 imageView.load("https://thumbs.dreamstime.com/b/dangerous-pothole-asphalt-rural-road-damage-149107515.jpg") {
                     listener(
                         onSuccess = { _, _ ->

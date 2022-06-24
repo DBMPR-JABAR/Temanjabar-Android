@@ -7,6 +7,12 @@
 
     <application android:theme="@style/Theme.Temanjabar">
         <activity
+            android:name=".presentation.activity.ReportActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.activity.ListReportActivity"
+            android:exported="true" />
+        <activity
             android:name=".presentation.activity.FormReportActivity"
             android:exported="true" />
     </application>

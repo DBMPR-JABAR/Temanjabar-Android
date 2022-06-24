@@ -13,11 +13,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,8 +23,8 @@ import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentPhotoVideoReport
 import id.go.jabarprov.dbmpr.feature.report.presentation.adapters.ThumbnailPhotoAdapter
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.PhotoModel
 import id.go.jabarprov.dbmpr.feature.report.presentation.models.VideoModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.FormReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.FormReportAction
 import id.go.jabarprov.dbmpr.utils.contract.CaptureLimitedVideo
 import id.go.jabarprov.dbmpr.utils.extensions.getUri
 import id.go.jabarprov.dbmpr.utils.extensions.showToast
@@ -39,7 +37,7 @@ private const val TAG = "PhotoVideoReportFragmen"
 @AndroidEntryPoint
 class PhotoVideoReportFragment : Fragment() {
 
-    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
+    private val formReportViewModel by activityViewModels<FormReportViewModel>()
 
     private lateinit var takePictureLauncher: ActivityResultLauncher<Uri>
 
@@ -70,13 +68,13 @@ class PhotoVideoReportFragment : Fragment() {
         takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
                 if (isSuccess) {
-                    makeReportViewModel.processAction(MakeReportAction.AddPhoto(imageFileUri))
+                    formReportViewModel.processAction(FormReportAction.AddPhoto(imageFileUri))
                 }
             }
 
         takeVideoLauncher = registerForActivityResult(CaptureLimitedVideo(15)) { isSuccess ->
             if (isSuccess) {
-                makeReportViewModel.processAction(MakeReportAction.AddVideo(videoFileUri))
+                formReportViewModel.processAction(FormReportAction.AddVideo(videoFileUri))
             }
         }
 
@@ -144,7 +142,7 @@ class PhotoVideoReportFragment : Fragment() {
             }
 
             buttonClearVideo.setOnClickListener {
-                makeReportViewModel.processAction(MakeReportAction.ClearVideo)
+                formReportViewModel.processAction(FormReportAction.ClearVideo)
             }
 
             buttonChangeVideo.setOnClickListener {
@@ -152,7 +150,7 @@ class PhotoVideoReportFragment : Fragment() {
             }
 
             uploadFileViewVideo.setOnClickListener {
-                if (makeReportViewModel.uiState.value.currentVideo != null) {
+                if (formReportViewModel.uiState.value.currentVideo != null) {
 //                    val action =
 //                        MakeReportFragmentDirections.actionReportFragmentToVideoPlayerFragment(
 //                            makeReportViewModel.uiState.value.currentVideo?.uri.toString()
@@ -206,7 +204,7 @@ class PhotoVideoReportFragment : Fragment() {
     private fun observeMakeReportState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                makeReportViewModel.uiState.collect {
+                formReportViewModel.uiState.collect {
                     processListPhoto(it.currentListPhoto)
                     processVideo(it.currentVideo)
                 }

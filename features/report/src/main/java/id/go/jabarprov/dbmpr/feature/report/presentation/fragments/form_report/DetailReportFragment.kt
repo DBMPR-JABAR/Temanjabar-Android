@@ -7,20 +7,19 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import id.go.jabarprov.dbmpr.feature.report.databinding.FragmentDetailReportBinding
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.MakeReportViewModel
-import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.MakeReportAction
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.FormReportViewModel
+import id.go.jabarprov.dbmpr.feature.report.presentation.viewmodels.report.store.FormReportAction
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailReportFragment : Fragment() {
 
-    private val makeReportViewModel by activityViewModels<MakeReportViewModel>()
+    private val formReportViewModel by activityViewModels<FormReportViewModel>()
 
     private lateinit var binding: FragmentDetailReportBinding
 
@@ -41,15 +40,15 @@ class DetailReportFragment : Fragment() {
     private fun initUI() {
         binding.apply {
             editTextDescription.doOnTextChanged { text, _, _, _ ->
-                makeReportViewModel.processAction(MakeReportAction.UpdateDescription(text.toString()))
+                formReportViewModel.processAction(FormReportAction.UpdateDescription(text.toString()))
             }
 
             editTextLocation.doOnTextChanged { text, _, _, _ ->
-                makeReportViewModel.processAction(MakeReportAction.UpdateLocation(text.toString()))
+                formReportViewModel.processAction(FormReportAction.UpdateLocation(text.toString()))
             }
 
             editTextExplanation.doOnTextChanged { text, _, _, _ ->
-                makeReportViewModel.processAction(MakeReportAction.UpdateExplanation(text.toString()))
+                formReportViewModel.processAction(FormReportAction.UpdateExplanation(text.toString()))
             }
         }
     }
@@ -57,7 +56,7 @@ class DetailReportFragment : Fragment() {
     private fun observeMakeReportState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                makeReportViewModel.uiState.collect {
+                formReportViewModel.uiState.collect {
                     binding.apply {
                         textInputLayoutDescription.error = it.descriptionErrorMessage
                         textInputLayoutLocation.error = it.locationErrorMessage

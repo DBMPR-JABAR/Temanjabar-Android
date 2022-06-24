@@ -87,7 +87,9 @@
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/drawable/bg_chip_green_600.xml" value="0.328" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/drawable/bg_step.xml" value="0.3225" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/drawable/ripple_category_report_item.xml" value="0.3225" />
-        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/activity_form_report.xml" value="0.30972222222222223" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/activity_form_report.xml" value="0.1" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/activity_list_report.xml" value="0.22" />
+        <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/activity_report.xml" value="0.25" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_category_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_detail_report.xml" value="0.33" />
         <entry key="..\:/Project/BPMR/Temanjabar/features/report/src/main/res/layout/fragment_laporan.xml" value="0.32222222222222224" />
