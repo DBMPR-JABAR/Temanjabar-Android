@@ -71,6 +71,14 @@ class FormReportActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        if (formReportViewModel.uiState.value.screenState == MakeReportScreenState.PRIVACY) {
+            super.onBackPressed()
+        } else {
+            formReportViewModel.processAction(FormReportAction.GoToPreviousScreen)
+        }
+    }
+
     private fun observeMakeReportState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
